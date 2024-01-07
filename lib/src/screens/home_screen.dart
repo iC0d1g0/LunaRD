@@ -11,8 +11,9 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
+          const SizedBox(height: 20),
           const Center(
-            child: Text('Hello World'),
+            child: Text('Aquí va el Home'),
           ),
           ElevatedButton(
             onPressed: () {
