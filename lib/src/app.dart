@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import './screens/home_screen.dart';
-import './screens/login_screen.dart';
+//Screens
+import 'Views/screens/home_screen.dart';
+import 'Views/screens/login_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -9,12 +10,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      title: 'Luna',
+      theme: ThemeData(
+        colorSchemeSeed: const Color(0xFFFF8692),
+        fontFamily: "Inter",
+      ),
+      initialRoute: HomeScreen.routeName,
       routes: {
-        '/': (context) => const HomeScreen(),
-        '/login': (context) => const LoginScreen(),
+        HomeScreen.routeName: (context) => HomeScreen(),
+        LoginScreen.routeName: (context) => const LoginScreen(),
       },
     );
   }
