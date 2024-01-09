@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 //Screens
-import 'Views/screens/home_screen.dart';
-import 'Views/screens/login_screen.dart';
+import 'views/screens/home_screen.dart';
+import 'views/screens/login_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
