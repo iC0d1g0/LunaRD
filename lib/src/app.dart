@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 //Screens
-import 'views/screens/home_screen.dart';
-import 'views/screens/login_screen.dart';
+import './views/screens/home_screen.dart';
+import 'views/screens/login_screen_form.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: HomeScreen.routeName,
       routes: {
-        HomeScreen.routeName: (context) => HomeScreen(),
-        LoginScreen.routeName: (context) => const LoginScreen(),
+        HomeScreen.routeName: (context) => const HomeScreen(),
+        LoginScreenForm.routeName: (context) => const LoginScreenForm(),
       },
     );
   }

@@ -1,63 +1,39 @@
 import 'package:flutter/material.dart';
 
 //Widgets
-import '../widgets/menu_inferior.dart';
+//import '../widgets/menu_inferior.dart';
+
+//Controllers
+import '../../controllers/main_controller.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   static const String routeName = "/";
 
-  final List<String> meses = [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Nov', 'Dic'];
+  //final List<String> meses = [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Nov', 'Dic'];
 
   @override
   Widget build(BuildContext context) {
+    if (getLogiado()) {
+      Navigator.pushNamed(context, '/login');
+    }
+
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          color: const Color(0xFFFF8692),
-          height: MediaQuery.of(context).size.height,
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  'assets/images/gotaCirculo.png',
-                  scale: 0.9,
-                  height: 300,
-                ),
-                const SizedBox(height: 10),
-                Center(
-                  child: Text('${DateTime.now().day} ${(DateTime.now().month == 12) ? meses[1] : meses[DateTime.now().month]}.',
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold,
-                        height: 1,
-                      )),
-                ),
-                const Center(
-                  child: Text('Siguiente Periodo',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        height: 1,
-                      )),
-                ),
-                const SizedBox(height: 20),
-                /* ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/login');
-                  },
-                  child: const Text('Login'),
-                ), */
-              ],
+      body: Center(
+        child: Column(
+          children: [
+            const SizedBox(height: 100),
+            const Text('Home Screen'),
+            ElevatedButton(
+              child: const Text('Login'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/login');
+              },
             ),
-          ),
+          ],
         ),
       ),
-      bottomNavigationBar: const MenuInferior(index: 2),
     );
   }
 }
