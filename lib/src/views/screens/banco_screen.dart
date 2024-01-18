@@ -32,14 +32,12 @@ class _BonoPageState extends State<BonoPage> {
             },
           ),
         );
-
-        
       },
     );
 
-    if (picked != selectedDate && picked != Null) {
+    if (picked != selectedDate && picked != null) {
       setState(() {
-        selectedDate = picked!;
+        selectedDate = picked;
       });
     }
   }
@@ -47,7 +45,7 @@ class _BonoPageState extends State<BonoPage> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-       backgroundColor: const Color(0xFFFAE6E2),
+      backgroundColor: const Color(0xFFFAE6E2),
       // navigationBar: const CupertinoNavigationBar(
       //   middle: Text('Seleccionar Fecha'),
       // ),
@@ -55,54 +53,54 @@ class _BonoPageState extends State<BonoPage> {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
-          
-          children: <Widget>[
-            
-          
-               LinearPercentIndicator(   
+            children: <Widget>[
+              LinearPercentIndicator(
                 width: MediaQuery.of(context).size.width - 50,
-                    animation: true, 
-                    animationDuration: 1000,
-                    lineHeight: 10,
-                    percent: 0.2,
-                    progressColor: Colors.deepPurple,
-                    barRadius: const Radius.circular(10),
-                    // ignore: deprecated_member_use
-                    linearStrokeCap: LinearStrokeCap.roundAll,
-                  ),
-            const SizedBox(height: 250.0),
-            const Text(
-              'Fecha De Nacimiento',
-              style: TextStyle(fontSize: 22.0, color: Colors.black, decoration: TextDecoration.none),       
-            ),
-            Text(
-              '${selectedDate.toLocal()}'.split(' ')[0],
-              style: const TextStyle(fontSize: 20.0, color: Color(0xFFDA2B9E), decoration: TextDecoration.none),
-            ),
-            const SizedBox(height: 20.0),
-            CupertinoButton(
-              onPressed: () => _selectDate(context),
-              child: const Text('Seleccionar Fecha'),
-            ),
+                animation: true,
+                animationDuration: 1000,
+                lineHeight: 10,
+                percent: 0.2,
+                progressColor: Colors.deepPurple,
+                barRadius: const Radius.circular(10),
+                // ignore: deprecated_member_use
+                linearStrokeCap: LinearStrokeCap.roundAll,
+              ),
+              const SizedBox(height: 250.0),
+              const Text(
+                'Fecha De Nacimiento',
+                style: TextStyle(
+                    fontSize: 22.0,
+                    color: Colors.black,
+                    decoration: TextDecoration.none),
+              ),
+              Text(
+                '${selectedDate.toLocal()}'.split(' ')[0],
+                style: const TextStyle(
+                    fontSize: 20.0,
+                    color: Color(0xFFDA2B9E),
+                    decoration: TextDecoration.none),
+              ),
+              const SizedBox(height: 20.0),
+              CupertinoButton(
+                onPressed: () => _selectDate(context),
+                child: const Text('Seleccionar Fecha'),
+              ),
               const SizedBox(height: 250),
-           
               MyNext(
-                   customColor: const Color(0xFFDA2B9E).withOpacity(0.7),
-                     text:"Siguiente",
-                     onTap: () {
-                      Navigator.push(context, 
+                customColor: const Color(0xFFDA2B9E).withOpacity(0.7),
+                text: "Siguiente",
+                onTap: () {
+                  Navigator.push(
+                      context,
                       MaterialPageRoute(
-                      builder: (context) => const MyBanco2(), 
+                        builder: (context) => const MyBanco2(),
                       ));
-                     }, icon: null,
-                  ),
-            
-          ],
-                    
+                },
+                icon: null,
+              ),
+            ],
+          ),
         ),
-),
-
-        
       ),
     );
   }
