@@ -16,7 +16,6 @@ class SQLHelper {
     final db = await SQLHelper.db();
     final data = {'nombre': nombre, 'correo': correo, 'clave': clave};
     final id = await db.insert('usuario_login', data, conflictAlgorithm: sql.ConflictAlgorithm.replace);
-
     return id;
   }
 
