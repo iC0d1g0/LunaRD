@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:luna_rd/src/views/screens/banco_screen.dart';
+import 'package:luna_rd/src/views/widgets/mybuttondos.dart';
 
 //Screens
 import 'register_screen.dart';
 
 //Widgets
 import '../widgets/mytext.dart';
-import '../widgets/mybutton.dart';
+
 
 // ignore: camel_case_types
 class LoginScreen extends StatefulWidget {
@@ -93,10 +95,15 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 20,
               ),
-              MyButton(
+              MyButtono(
                   customColor: const Color(0xFFDA2B9E),
                   text: "Sign In",
-                  onTap: () {}),
+                  onTap: () {
+                     Navigator.push(context, 
+                    MaterialPageRoute(
+                    builder: (context) => const BonoPage(), 
+                    ));
+                  }),
               const SizedBox(
                 height: 10,
               ),

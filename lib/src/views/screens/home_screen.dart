@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (getLogiado()) {
+    if (!getLogiado()) {
       Navigator.pushNamed(context, '/login');
     }
 

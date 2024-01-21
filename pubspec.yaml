@@ -42,6 +42,8 @@ dependencies:
   firebase_core: ^2.24.2
   firebase_analytics: ^10.8.0
   firebase_auth: ^4.16.0
+  quantity_input: ^1.0.2
+  percent_indicator: ^4.0.1
 
 dev_dependencies:
   flutter_launcher_icons: ^0.13.1 #Agregado por Carlos para general el icono.
