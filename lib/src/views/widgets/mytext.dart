@@ -5,6 +5,8 @@ class MyText extends StatelessWidget {
   final IconData? icon;
   final void Function()? onPressed;
   final bool obsecureText;
+  final void Function(String value)? onChanged;
+  final String? value;
 
   const MyText({
     super.key,
@@ -12,6 +14,8 @@ class MyText extends StatelessWidget {
     this.icon,
     this.onPressed,
     this.obsecureText = false,
+    this.onChanged,
+    this.value,
   });
 
   @override
@@ -28,6 +32,8 @@ class MyText extends StatelessWidget {
         children: [
           Expanded(
             child: TextField(
+              onChanged: onChanged,
+              controller: TextEditingController(text: value),
               decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: hintText,

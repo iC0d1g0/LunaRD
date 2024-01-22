@@ -19,17 +19,20 @@ class _BonoPageState extends State<BonoPage> {
     final DateTime? picked = await showCupertinoModalPopup(
       context: context,
       builder: (BuildContext builder) {
+        return Center(
         // ignore: sized_box_for_whitespace
-        return Container(
-          height: 300.0,
-          child: CupertinoDatePicker(
-            mode: CupertinoDatePickerMode.date,
-            initialDateTime: selectedDate,
-            onDateTimeChanged: (DateTime newDate) {
-              setState(() {
-                selectedDate = newDate;
-              });
-            },
+          child: Container(
+            color: const Color(0xFFFAE6E2),
+            height: 300.0,
+            child: CupertinoDatePicker(
+              mode: CupertinoDatePickerMode.date,
+              initialDateTime: selectedDate,
+              onDateTimeChanged: (DateTime newDate) {
+                setState(() {
+                  selectedDate = newDate;
+                });
+              },
+            ),
           ),
         );
       },
@@ -73,23 +76,34 @@ class _BonoPageState extends State<BonoPage> {
                     color: Colors.black,
                     decoration: TextDecoration.none),
               ),
+              const SizedBox(height: 20.0),
               Text(
-                '${selectedDate.toLocal()}'.split(' ')[0],
+                '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
                 style: const TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 30.0,
                     color: Color(0xFFDA2B9E),
                     decoration: TextDecoration.none),
               ),
               const SizedBox(height: 20.0),
               CupertinoButton(
                 onPressed: () => _selectDate(context),
-                child: const Text('Seleccionar Fecha'),
+                child: const Text(
+                  'Seleccionar Fecha',
+                  style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFFDA2B9E),
+                      decoration: TextDecoration.none),
+                ),
               ),
-              const SizedBox(height: 250),
+              const SizedBox(height: 200),
               MyNext(
                 customColor: const Color(0xFFDA2B9E).withOpacity(0.7),
                 text: "Siguiente",
                 onTap: () {
+                  /* if ( DateTime.now().year - selectedDate.year < 18) {
+                    return; // mostrar mensaje de error
+                  } */
                   Navigator.push(
                       context,
                       MaterialPageRoute(

@@ -8,6 +8,8 @@ import 'register_screen.dart';
 //Widgets
 import '../widgets/mytext.dart';
 
+//controllers
+import '../../controllers/login_controller.dart';
 
 // ignore: camel_case_types
 class LoginScreen extends StatefulWidget {
@@ -19,6 +21,21 @@ class LoginScreen extends StatefulWidget {
 
 // ignore: camel_case_types
 class _LoginScreenState extends State<LoginScreen> {
+
+  String? nombre = '';
+  setNombre(String value) {
+    setState(() {
+      nombre = value;
+    });
+  }
+
+  String? password = '';
+  setPassword(String value) {
+    setState(() {
+      password = value;
+    });
+  }
+
   bool showPass = false;
   showPassword() {
     setState(() {
@@ -31,6 +48,32 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       checkTheBox = !checkTheBox;
     });
+  }
+
+  void navigateIfLoginSuccessful(BuildContext context, bool loginSuccessful) {
+    if (loginSuccessful) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const BonoPage(),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Center(
+            child: Text(
+              "Usuario o contraseña incorrecta",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
+            ),
+          ),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 
   @override
@@ -48,12 +91,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: 300,
               ),
               const SizedBox(height: 10),
-              const MyText(
-                hintText: "correo o usuario",
+              MyText(
+                onChanged: setNombre,
+                value: nombre,
+                hintText: "Correo o Usuario",
               ),
+              Text(nombre ?? ''),
               const SizedBox(height: 20),
               MyText(
-                hintText: "password",
+                hintText: "Contraseña",
+                onChanged: setPassword,
+                value: password,
                 onPressed: showPassword,
                 obsecureText: showPass ? false : true,
                 icon: showPass ? Icons.visibility_off : Icons.visibility,
@@ -77,13 +125,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         const Text(
-                          "Remenber me",
+                          "Mantenerme conectada",
                           style: TextStyle(color: Colors.black),
                         )
                       ],
                     ),
                     const Text(
-                      "Olvide mi password",
+                      "Olvide mi contraseña",
                       style: TextStyle(
                         color: Color(0xFFDA2B9E),
                         fontWeight: FontWeight.bold,
@@ -96,19 +144,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 20,
               ),
               MyButtono(
-                  customColor: const Color(0xFFDA2B9E),
-                  text: "Sign In",
-                  onTap: () {
-                     Navigator.push(context, 
-                    MaterialPageRoute(
-                    builder: (context) => const BonoPage(), 
-                    ));
-                  }),
+                customColor: const Color(0xFFDA2B9E),
+                text: "Iniciar Sesión",
+                onTap: () async {
+                  bool loginSuccessful = await verificarLogin(checkTheBox, nombre, password);
+                  // ignore: use_build_context_synchronously
+                  navigateIfLoginSuccessful(context, loginSuccessful);
+                }
+              ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               const Text(
-                "Iniciar session con",
+                "Iniciar sessión con",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
@@ -116,7 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(
-                height: 15,
+                height: 5,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -138,17 +186,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "¿aun no tienes cuenta?",
+                    "¿Aún no tienes cuenta?",
                     style: TextStyle(
                       color: Colors.black,
                     ),
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: 16),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -161,6 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       "Register",
                       style: TextStyle(
                         color: Color(0xFFDA2B9E),
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

@@ -6,19 +6,31 @@ import 'package:flutter/material.dart';
 //Controllers
 import '../../controllers/main_controller.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   static const String routeName = "/";
 
-  //final List<String> meses = [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Nov', 'Dic'];
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  
+  //final List<String> meses = [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+  
+  @override
+  void initState() {
+    super.initState();
+    if (!getLogiado()) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.pushNamed(context, '/login');
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (!getLogiado()) {
-      Navigator.pushNamed(context, '/login');
-    }
-
     return Scaffold(
       body: Center(
         child: Column(

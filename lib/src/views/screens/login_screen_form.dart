@@ -42,7 +42,7 @@ class _LoginScreenFormState extends State<LoginScreenForm> {
                   ),
                   MyButton(
                     customColor: const Color(0x00ffcec5).withOpacity(0.7),
-                    text: 'Sing In',
+                    text: 'Iniciar Sesión',
                     onTap: () {
                       Navigator.push(
                           context,
@@ -54,7 +54,7 @@ class _LoginScreenFormState extends State<LoginScreenForm> {
                   const SizedBox(height: 20),
                   MyButtono(
                     customColor: const Color(0xFFDA2B9E).withOpacity(0.7),
-                    text: "Create an account",
+                    text: "Crear Cuenta",
                     onTap: () {
                       Navigator.push(
                           context,
