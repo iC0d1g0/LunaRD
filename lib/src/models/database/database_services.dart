@@ -63,6 +63,7 @@ class SQLHelper {
 
   static Future<int> updateDatos(DatosUsuarios datos) async {
     final db = await SQLHelper.db();
+    
     final data = {
       'birthday': datos.birthday,
       'clave': datos.clave,

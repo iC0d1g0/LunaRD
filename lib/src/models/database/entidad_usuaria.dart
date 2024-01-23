@@ -1,13 +1,10 @@
 class DatosUsuarios {
-  int?  idUsuario,
-        duracionUsual, 
-        frecuenciaRelacionesMes;
+  int? idUsuario,
+   duracionUsual,
+    frecuenciaRelacionesMes;
   String? nombre,
-          correo,
-          clave,
-          createdAt,
-          birthday,
-          inicioUltimoPeriodo,
-          finalizoUltimoPeriodo,
-          tomasMuchoLiquido;
+   correo, clave, createdAt, birthday,
+   inicioUltimoPeriodo, finalizoUltimoPeriodo, tomasMuchoLiquido;
+
+ 
 }
