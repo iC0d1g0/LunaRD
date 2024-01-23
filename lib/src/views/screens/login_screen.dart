@@ -10,6 +10,7 @@ import '../widgets/mytext.dart';
 
 //controllers
 import '../../controllers/login_controller.dart';
+import 'package:luna_rd/src/controllers/main_controller.dart';
 
 // ignore: camel_case_types
 class LoginScreen extends StatefulWidget {
@@ -59,20 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Center(
-            child: Text(
-              "Usuario o contraseña incorrecta",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-              ),
-            ),
-          ),
-          backgroundColor: Colors.red,
-        ),
-      );
+      mensajeInferior(context, "Usuario o contraseña incorrecta", Colors.red);
     }
   }
 
@@ -96,7 +84,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 value: nombre,
                 hintText: "Correo o Usuario",
               ),
-              Text(nombre ?? ''),
               const SizedBox(height: 20),
               MyText(
                 hintText: "Contraseña",

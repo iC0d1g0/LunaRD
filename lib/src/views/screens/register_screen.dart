@@ -7,6 +7,9 @@ import 'login_screen.dart';
 import '../widgets/mybuttondos.dart';
 import '../widgets/mytext.dart';
 
+//controllers
+import '../../controllers/register_controller.dart';
+
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
@@ -84,7 +87,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Image.asset("assets/images/goo.png", width: 40),
+                  child: GestureDetector(
+                    onTap: (){
+                      registrarConGoogle();
+                    },
+                    child: Image.asset("assets/images/goo.png", width: 40),
+                  ),
                 ),
                 const SizedBox(width: 10),
                 Container(
@@ -92,7 +100,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Image.asset("assets/images/facebook.png", width: 40),
+                  child: GestureDetector(
+                    onTap: (){
+                      registrarConGoogle();
+                    },
+                    child: Image.asset("assets/images/facebook.png", width: 40),
+                  ),
                 ),
               ],
             ),
