@@ -23,71 +23,12 @@
 
 
 class DatosUsuarios {
-  int? _idUsuario,
-   _duracionUsual,
-    _frecuenciaRelacionesMes;
-  String? _nombre,
-   _correo, _clave, _createdAt, _birthday,
-   _inicioUltimoPeriodo, _finalizoUltimoPeriodo, _tomasMuchoLiquido;
+  int? idUsuario,
+   duracionUsual,
+    frecuenciaRelacionesMes;
+  String? nombre,
+   correo, clave, createdAt, birthday,
+   inicioUltimoPeriodo, finalizoUltimoPeriodo, tomasMuchoLiquido;
 
-  // Getters
-  int? get idUsuario => _idUsuario;
-  int? get duracionUsual => _duracionUsual;
-  int? get frecuenciaRelacionesMes => _frecuenciaRelacionesMes;
-  String? get nombre => _nombre;
-  String? get correo => _correo;
-  String? get clave => _clave;
-  String? get createdAt => _createdAt;
-  String? get birthday => _birthday;
-  String? get inicioUltimoPeriodo => _inicioUltimoPeriodo;
-  String? get finalizoUltimoPeriodo => _finalizoUltimoPeriodo;
-  String? get tomasMuchoLiquido => _tomasMuchoLiquido;
-
-  // Setters
-  set idUsuario(int? value) {
-    _idUsuario = value;
-  }
-
-  set duracionUsual(int? value) {
-    _duracionUsual = value;
-  }
-
-  set frecuenciaRelacionesMes(int? value) {
-    _frecuenciaRelacionesMes = value;
-  }
-
-  set nombre(String? value) {
-    _nombre = value;
-  }
-
-  set correo(String? value) {
-    _correo = value;
-  }
-
-  set clave(String? value) {
-    _clave = value;
-  }
-
-  set createdAt(String? value) {
-    _createdAt = value;
-  }
-
-  set birthday(String? value) {
-    _birthday = value;
-  }
-
-  set inicioUltimoPeriodo(String? value) {
-    _inicioUltimoPeriodo = value;
-  }
-
-  set finalizoUltimoPeriodo(String? value) {
-    _finalizoUltimoPeriodo = value;
-  }
-
-  set tomasMuchoLiquido(String? value) {
-    _tomasMuchoLiquido = value;
-  }
+ 
 }
-
-     
-

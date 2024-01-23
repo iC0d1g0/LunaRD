@@ -1,15 +1,16 @@
+
 import 'package:flutter/material.dart';
 
 //Screens
 import './views/screens/home_screen.dart';
 import 'views/screens/login_screen_form.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {  
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Luna',
@@ -24,4 +25,6 @@ class MyApp extends StatelessWidget {
       },
     );
   }
+
+ 
 }

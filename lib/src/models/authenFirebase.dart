@@ -12,7 +12,7 @@ class AuthService {
       User? user = result.user;
       return user;
     } catch (e) {
-      print("Error en el inicio de sesión: $e");
+     // print("Error en el inicio de sesión: $e");
       return null;
     }
   }
@@ -25,12 +25,11 @@ class AuthService {
       User? user = result.user;
       return user;
     } catch (e) {
-      print("Error en el registro: $e");
+     // print("Error en el registro: $e");
       return null;
     }
 
   // Otros métodos de autenticación, como signUpWithEmailAndPassword, signInWithGoogle, etc., se pueden agregar según sea necesario.
-
 
   
 }
