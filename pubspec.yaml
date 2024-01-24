@@ -45,6 +45,11 @@ dependencies:
   quantity_input: ^1.0.2
   percent_indicator: ^4.0.1
   google_sign_in: ^6.2.1
+  http: ^1.2.0
+  convert: ^3.1.1
+  io: ^1.0.4
+  cloud_firestore: ^4.14.0
+  flutter_facebook_auth: ^6.0.4
 
 dev_dependencies:
   flutter_launcher_icons: ^0.13.1 #Agregado por Carlos para general el icono.

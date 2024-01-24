@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -62,12 +64,12 @@ class AuthService {
 
       // Verifica si la autenticación fue exitosa
       if (user != null) {
-        print('Usuario autenticado con éxito: ${user.displayName}');
+        //print('Usuario autenticado con éxito: ${user.displayName}');
       }
 
       return user;
     } catch (e) {
-      print('Error al iniciar sesión con Google: $e');//Esto hay que manejarlo diferente. 
+      //print('Error al iniciar sesión con Google: $e');//Esto hay que manejarlo diferente. 
       return null;
     }
   }
@@ -97,12 +99,12 @@ class AuthService {
 
       // Verifica si el registro fue exitoso
       if (user != null) {
-        print('Usuario registrado con éxito: ${user.displayName}');
+        //print('Usuario registrado con éxito: ${user.displayName}');
       }
 
       return user;
     } catch (e) {
-      print('Error al registrar con Google: $e');
+      //print('Error al registrar con Google: $e');
       return null;
      }
   }
@@ -111,5 +113,39 @@ class AuthService {
   Future<void> signOut() async {
     await _auth.signOut();
     await googleSignIn.signOut();
+  }
+
+   Future<User?> signInWithFacebookandRegister() async {
+    try {
+      // Inicia el proceso de inicio de sesión con Facebook
+      final LoginResult result = await FacebookAuth.instance.login();
+
+      // Verifica si el proceso de inicio de sesión fue exitoso
+      if (result.status == LoginStatus.success) {
+        // Obtiene las credenciales de inicio de sesión de FacebookAuthProvider
+        final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(result.accessToken!.token);
+
+        // Inicia sesión con Firebase usando las credenciales de Facebook
+        final UserCredential authResult = await _auth.signInWithCredential(facebookAuthCredential);
+        final User? user = authResult.user;
+
+        // Verifica si la autenticación fue exitosa
+        if (user != null) {
+          //print('Usuario autenticado con éxito: ${user.displayName}');
+        }
+
+        return user;
+      } else if (result.status == LoginStatus.cancelled) {
+        // El usuario canceló el inicio de sesión con Facebook
+        return null;
+      } else {
+        // Ocurrió un error durante el inicio de sesión con Facebook
+        //print('Error durante el inicio de sesión con Facebook: ${result.message}');
+        return null;
+      }
+    } catch (e) {
+     // print('Error al autenticar con Facebook: $e');
+      return null;
+    }
   }
 }
