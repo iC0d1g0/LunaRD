@@ -9,6 +9,7 @@ import '../widgets/mytext.dart';
 
 //controllers
 import '../../controllers/register_controller.dart';
+import '../../controllers/main_controller.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -88,8 +89,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: GestureDetector(
-                    onTap: (){
-                      registrarConGoogle();
+                    onTap: () async{
+                      try {
+                        await registrarConGoogle();
+                      } catch (e) {
+                        // ignore: use_build_context_synchronously
+                        mensajeInferior(context, "Error al iniciar con Google", Colors.red);
+                      }
                     },
                     child: Image.asset("assets/images/goo.png", width: 40),
                   ),

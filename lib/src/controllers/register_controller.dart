@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:luna_rd/src/models/authen_firebase.dart';
 
-void registrarConGoogle() {
-  // ignore: unused_local_variable
+
+Future<User?> registrarConGoogle() async{
   AuthService auth = AuthService();
-  //auth.googleSignIn();
+  User? user = await auth.signInWithGoogle();
+  return user;
 }
 
 /*
