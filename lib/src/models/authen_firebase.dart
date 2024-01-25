@@ -17,8 +17,7 @@ class AuthService {
       User? user = result.user;
       return user;
     } catch (e) {
-      // print("Error en el inicio de sesión: $e");
-      return null;
+         throw Exception('signInWithEmailAndPassword: $e');
     }
   }
   //Registrar con EMAIL
@@ -32,13 +31,35 @@ class AuthService {
       User? user = result.user;
       return user;
     } catch (e) {
-      // print("Error en el registro: $e");
-      return null;
+      throw Exception('registerWithEmailAndPassword: $e');
     }
 
+  }
+
+    //Si olvido contrasenia 
+    Future<void> sendPasswordResetEmail(String userEmail) async {
+          try {
+            await _auth.sendPasswordResetEmail(email: userEmail);
+           // print('Correo de restablecimiento de contraseña enviado a $userEmail');
+          } catch (e) {
+            throw Exception('sendPasswordResetEmail: $e');//Si el correo no existe
+          }
+
+          
+  }
+  //Este metodo hay que usarlo al memomento de enviar el correo.
+  Future<void> confirmPasswordResets(String code,String newpassword)async{
+    try{
+       await _auth.confirmPasswordReset(code:code, newPassword:newpassword );
+
+    }catch(e){
+      throw Exception('Error al restablecer la contraseña: $e');
+  
+    }
+
+  }
     // Otros métodos de autenticación, como signUpWithEmailAndPassword, signInWithGoogle, etc., se pueden agregar según sea necesario.
   
-  }
   //Signin con GOOGLE
   Future<User?> signInWithGoogle() async {
     try {
@@ -46,7 +67,7 @@ class AuthService {
       final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
       if (googleSignInAccount == null) {
         // El usuario canceló el inicio de sesión con Google
-        return null;
+       throw Exception('Usuario cancelo la autenticacion');
       }
 
       // Obtiene las credenciales de inicio de sesión de Google
@@ -63,14 +84,18 @@ class AuthService {
       final User? user = authResult.user;
 
       // Verifica si la autenticación fue exitosa
-      if (user != null) {
+      if (user == null) {
         //print('Usuario autenticado con éxito: ${user.displayName}');
-      }
+        
+        throw Exception('Error de autenticacion');
+     }
+     return user;
 
-      return user;
+
+      
     } catch (e) {
-      //print('Error al iniciar sesión con Google: $e');//Esto hay que manejarlo diferente. 
-      return null;
+      throw Exception('Error al iniciar sesión con Google: $e');//Esto hay que manejarlo diferente. 
+      
     }
   }
  
@@ -81,7 +106,7 @@ class AuthService {
       final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
       if (googleSignInAccount == null) {
         
-        return null;
+        throw Exception('error de autenticacion: Google');
       }
 
       
@@ -98,14 +123,15 @@ class AuthService {
       final User? user = authResult.user;
 
       // Verifica si el registro fue exitoso
-      if (user != null) {
-        //print('Usuario registrado con éxito: ${user.displayName}');
+      if (user == null) {
+        throw Exception('proeblemas de atenticacion');
       }
+        //print('Usuario registrado con éxito: ${user.displayName}');
 
       return user;
     } catch (e) {
       //print('Error al registrar con Google: $e');
-      return null;
+      throw Exception(e);
      }
   }
 
@@ -137,15 +163,15 @@ class AuthService {
         return user;
       } else if (result.status == LoginStatus.cancelled) {
         // El usuario canceló el inicio de sesión con Facebook
-        return null;
+        throw Exception('Cancelado');
       } else {
         // Ocurrió un error durante el inicio de sesión con Facebook
         //print('Error durante el inicio de sesión con Facebook: ${result.message}');
-        return null;
+        throw Exception('Error durantel el inicio');
       }
     } catch (e) {
      // print('Error al autenticar con Facebook: $e');
-      return null;
+      throw Exception(e);
     }
   }
 }
