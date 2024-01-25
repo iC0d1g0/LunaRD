@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/menu_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/menu_screen.dart';
 import 'package:luna_rd/src/views/widgets/chat_context.dart';
 
 void main() {

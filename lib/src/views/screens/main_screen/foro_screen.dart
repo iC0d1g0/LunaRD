@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/menu_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/menu_screen.dart';
 
 class Foro extends StatelessWidget {
   const Foro({super.key});

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/calendario_screen.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/chat_ai_screen.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/configuration_screen.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/diagnostico_screen.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/foro_screen.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/historial_screen.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/notas_screen.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/preguntas_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/calendario_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/chat_ai_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/configuration_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/diagnostico_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/foro_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/historial_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/notas_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/preguntas_screen.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
