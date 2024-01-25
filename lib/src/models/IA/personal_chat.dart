@@ -30,8 +30,8 @@ class ChatGPT {
       
       return decodedResponse;
     } else {
-      print('Failed to call ChatGPT API: ${response.statusCode} ${response.reasonPhrase}');
-      print(response.body);
+      //print('Failed to call ChatGPT API: ${response.statusCode} ${response.reasonPhrase}');
+      //print(response.body);
       return null;
     }
   }
