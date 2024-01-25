@@ -1,15 +1,18 @@
+//import 'package:convert/convert.dart';
 import 'package:luna_rd/src/models/database/entidad_usuaria.dart';
 import 'package:sqflite/sqflite.dart' as sql;
-
+import 'databa_fire.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+//Este OBJETO ES PARA USO DEL CONTROLADOR, PUEDES LLAMAR TODAS LAS FUNCIONES 
 class SQLHelper {
-  static Future<void> createTableLogin(sql.Database database) async {
+ static Future<void> createTableLogin(sql.Database database) async {
     await database.execute("""CREATE TABLE  usuario_login(
       id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
       nombre VARCHAR(50),
       correo VARCHAR(50),
       clave VARCHAR(50),
       createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-    )""");
+    )"""); //Esta funcion es inecesaria 
   }
 
   static Future<int> createUsuario(String nombre, String? correo, String clave) async {
@@ -40,6 +43,7 @@ class SQLHelper {
       createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
     )
     """);
+    
   }
 
   static Future<int> createDatos(DatosUsuarios datos) async {
@@ -58,6 +62,22 @@ class SQLHelper {
 
     final id =
         await db.insert('Datos_user', data, conflictAlgorithm: sql.ConflictAlgorithm.replace);
+    Usuario nuevoUsuario = Usuario(
+    nombre: datos.nombre!,
+    correo: datos.correo!,
+    birthday: datos.birthday!,
+    inicioUltimoPeriodo:datos.inicioUltimoPeriodo!,
+    finalizoUltimoPeriodo: datos.finalizoUltimoPeriodo!,
+    duracionUsual: 7,
+    frecuenciaRelacionesMes: 2,
+    tomasMuchoLiquido: 'No',
+    createdAt: Timestamp.now(),
+  );
+ 
+ 
+     agregarUsuarioFirestore(nuevoUsuario);
+  
+
     return id;
   }
 
@@ -83,7 +103,7 @@ class SQLHelper {
       'ddbb.db',
       version: 1,
       onCreate: (sql.Database database, int version) async {
-        await createTableLogin(database);
+        //await createTableLogin(database);
         await createDatosPersonales(database);
       },
       onUpgrade: (sql.Database db, int oldVersion, int newVersion) async {
@@ -91,4 +111,33 @@ class SQLHelper {
       },
     );
   }
+
+  //Si el usuario ya existe, pues llamas esta funcion y le pasas por parametro el correo. 
+  static Future<void> sincronizaExistente(String correo)async{
+   
+              // Ejemplo de uso
+              String correoBuscado = correo;
+              Usuario? usuario = await obtenerUsuarioPorCorreo(correoBuscado);
+
+              if (usuario != null) {
+                // Accede a los datos del usuario
+                db();
+                DatosUsuarios datos = DatosUsuarios();
+                
+                datos.nombre = usuario.nombre;
+                datos.correo = usuario.correo;
+                datos.birthday = usuario.birthday;
+                datos.inicioUltimoPeriodo = usuario.inicioUltimoPeriodo;
+                datos.finalizoUltimoPeriodo = usuario.finalizoUltimoPeriodo;
+                datos.duracionUsual = usuario.duracionUsual;
+                datos.frecuenciaRelacionesMes = usuario.frecuenciaRelacionesMes;
+                datos.tomasMuchoLiquido = usuario.tomasMuchoLiquido;
+                datos.createdAt = usuario.createdAt as String?;
+                // Accede a otros campos según sea necesario...
+              } else {
+                throw Exception('Usuario no encontrado');
+              }
+        }
+
+  
 }

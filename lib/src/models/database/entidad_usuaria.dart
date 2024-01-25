@@ -3,8 +3,10 @@ class DatosUsuarios {
    duracionUsual,
     frecuenciaRelacionesMes;
   String? nombre,
-   correo, clave, createdAt, birthday,
-   inicioUltimoPeriodo, finalizoUltimoPeriodo, tomasMuchoLiquido;
+   correo, clave, createdAt,tomasMuchoLiquido;
 
- 
+   DateTime? birthday;
+   DateTime? inicioUltimoPeriodo;
+   DateTime? finalizoUltimoPeriodo;
+
 }
