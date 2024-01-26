@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/notas_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/notas_screen.dart';
 
 class AddNota extends StatelessWidget {
   const AddNota({super.key});

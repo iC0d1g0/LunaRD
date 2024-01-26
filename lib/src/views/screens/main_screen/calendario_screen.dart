@@ -29,7 +29,9 @@ class _CalendarioScreen extends State<CalendarioScreen>
     with TickerProviderStateMixin {
   final defaultPadding = 16.0;
   late TabController _tabController;
+  // ignore: unused_field
   late TabController _tabController2;
+  // ignore: unused_field
   final _tabs = [
     const Tab(text: 'Embarazo'),
     const Tab(text: 'Ovulacion'),
