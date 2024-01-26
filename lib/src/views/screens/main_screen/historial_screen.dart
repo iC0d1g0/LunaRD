@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luna_rd/src/views/screens/main_screen/menu_screen.dart';
+import 'package:luna_rd/src/app.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Historial extends StatelessWidget {
@@ -49,7 +49,7 @@ class _HistorialScreen extends State<HistorialScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Menu(),
+                            builder: (context) => const MyApp(),
                           ));
                     },
                     child: Container(

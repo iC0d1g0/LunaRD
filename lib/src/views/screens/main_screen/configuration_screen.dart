@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luna_rd/src/views/screens/login_screen_form.dart';
-import 'package:luna_rd/src/views/screens/main_screen/menu_screen.dart';
+import 'package:luna_rd/src/app.dart';
 
 class Config extends StatelessWidget {
   const Config({super.key});
@@ -52,7 +52,7 @@ class _ConfigScreen extends State<ConfigScreen> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => const Menu(),
+                                      builder: (context) => const MyApp(),
                                     ));
                               },
                               child: Container(

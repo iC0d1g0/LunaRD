@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luna_rd/src/views/screens/main_screen/menu_screen.dart';
+import 'package:luna_rd/src/app.dart';
 
 class Preguntas extends StatelessWidget {
   const Preguntas({super.key});
@@ -40,7 +40,7 @@ class _PreguntasScreen extends State<PreguntasScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Menu(),
+                            builder: (context) => const MyApp(),
                           ));
                     },
                     child: Container(

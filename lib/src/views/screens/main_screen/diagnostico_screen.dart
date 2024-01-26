@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luna_rd/src/views/screens/main_screen/menu_screen.dart';
+import 'package:luna_rd/src/app.dart';
 
 class Diagnostico extends StatelessWidget {
   const Diagnostico({super.key});
@@ -138,7 +138,7 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Menu(),
+                            builder: (context) => const MyApp(),
                           ));
                     },
                     child: Container(

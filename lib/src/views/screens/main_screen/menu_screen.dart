@@ -1,5 +1,8 @@
+// Dependencias
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+//import 'package:flutter/services.dart';
+
+// Screens
 import 'package:luna_rd/src/views/screens/main_screen/calendario_screen.dart';
 import 'package:luna_rd/src/views/screens/main_screen/chat_ai_screen.dart';
 import 'package:luna_rd/src/views/screens/main_screen/configuration_screen.dart';
@@ -9,11 +12,17 @@ import 'package:luna_rd/src/views/screens/main_screen/historial_screen.dart';
 import 'package:luna_rd/src/views/screens/main_screen/notas_screen.dart';
 import 'package:luna_rd/src/views/screens/main_screen/preguntas_screen.dart';
 
+// Controllers
+import 'package:luna_rd/src/controllers/main_controller.dart';
+
+/*
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Color.fromRGBO(255, 198, 187, 1)));
+    statusBarColor: Color.fromRGBO(255, 198, 187, 1))
+  );
   runApp(const Menu());
 }
+
 
 class Menu extends StatelessWidget {
   const Menu({super.key});
@@ -30,17 +39,38 @@ class Menu extends StatelessWidget {
     );
   }
 }
+*/
 
 class MenuBasico extends StatefulWidget {
   const MenuBasico({super.key});
+
+  static const String routeName = "/menu_basico";
 
   @override
   State<MenuBasico> createState() => _MenuBasicoState();
 }
 
 class _MenuBasicoState extends State<MenuBasico> {
+
+  @override
+  void initState() {
+    super.initState();
+    verificarLogiado();
+  }
+
+  Future<void> verificarLogiado() async {
+    bool logiado = await getLogiado();
+    if (!logiado) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.pushNamed(context, '/login');
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    setBarColor(const Color.fromRGBO(255, 198, 187, 1));
+
     return Scaffold(
       body: ListView(
         padding: EdgeInsets.zero,

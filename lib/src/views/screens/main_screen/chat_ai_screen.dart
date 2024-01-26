@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:luna_rd/src/views/screens/main_screen/menu_screen.dart';
+import 'package:luna_rd/src/app.dart';
 import 'package:luna_rd/src/views/widgets/chat_context.dart';
 
 void main() {
@@ -47,7 +47,7 @@ class _CharScreen extends State<CharScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const Menu(),
+                      builder: (context) => const MyApp(),
                     ));
               },
               child: Container(

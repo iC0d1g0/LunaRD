@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
+import 'package:luna_rd/src/controllers/main_controller.dart';
+
 class Carga extends StatefulWidget {
   const Carga({super.key});
 
@@ -16,25 +18,31 @@ class _CargaState extends State<Carga> {
       body: Center(
         // child: Padding(
         //   padding: const EdgeInsets.all(15.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
             CircularPercentIndicator(
-                  animation: true, 
-                  animationDuration: 1000,
-                  radius: 120.0,
-                  lineWidth: 25,
-                  percent: 1.0,
-                  center: const Text('100%',style: TextStyle(fontSize: 40),),
-                  progressColor: Colors.deepPurple,
-                  backgroundColor: Colors.deepPurple.shade100,
-                  circularStrokeCap: CircularStrokeCap.round,
-                )
-            ],
-          ),
-      //     ), 
-      // ),
-    ),
+              onAnimationEnd: () {
+                reiniciarApp(context);
+              },
+              animation: true,
+              animationDuration: 1000,
+              radius: 120.0,
+              lineWidth: 25,
+              percent: 1.0,
+              center: const Text(
+                '100%',
+                style: TextStyle(fontSize: 40),
+              ),
+              progressColor: Colors.deepPurple,
+              backgroundColor: Colors.deepPurple.shade100,
+              circularStrokeCap: CircularStrokeCap.round,
+            )
+          ],
+        ),
+        //     ),
+        // ),
+      ),
     );
   }
 }

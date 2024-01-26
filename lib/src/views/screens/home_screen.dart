@@ -9,7 +9,7 @@ import '../../controllers/main_controller.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
-  static const String routeName = "/";
+  static const String routeName = "/home";
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -22,7 +22,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    if (!getLogiado()) {
+    verificarLogiado();
+  }
+
+  Future<void> verificarLogiado() async {
+    bool logiado = await getLogiado();
+    if (!logiado) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Navigator.pushNamed(context, '/login');
       });

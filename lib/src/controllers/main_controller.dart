@@ -1,8 +1,25 @@
 //Here the main controller
 import 'package:flutter/material.dart';
+import 'package:luna_rd/src/app.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-bool getLogiado() {
-  return false;
+Color barColor = const Color.fromRGBO(255, 198, 187, 1);
+
+void setBarColor(Color color){
+  barColor = color;
+}
+
+void reiniciarApp(BuildContext context) {
+  Navigator.pushAndRemoveUntil( // Elimina todas las rutas anteriores y agrega la nueva
+    context,
+    MaterialPageRoute(builder: (BuildContext context) => const MyApp()),
+    (Route<dynamic> route) => false, // Elimina todas las rutas anteriores
+  );
+}
+
+Future<bool> getLogiado() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getBool('recordarme') ?? false;
 }
 
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> mensajeInferior(

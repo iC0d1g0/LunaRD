@@ -66,6 +66,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    setBarColor(const Color(0xFFFAE6E2));
+
     return Scaffold(
       backgroundColor: const Color(0xFFFAE6E2),
       body: SingleChildScrollView(
@@ -134,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 customColor: const Color(0xFFDA2B9E),
                 text: "Iniciar Sesión",
                 onTap: () async {
-                  bool loginSuccessful = await verificarLogin(checkTheBox, nombre, password);
+                  bool loginSuccessful = await verificarLogin(context, checkTheBox, nombre, password);
                   // ignore: use_build_context_synchronously
                   navigateIfLoginSuccessful(context, loginSuccessful);
                 }
