@@ -31,16 +31,19 @@ class MyText extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-            child: TextField(
-              onChanged: onChanged,
-              controller: TextEditingController(text: value),
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: hintText,
-                  hintStyle: TextStyle(
-                    color: Colors.black.withOpacity(0.5),
-                  )),
-              obscureText: obsecureText,
+            child: Directionality(
+              textDirection: TextDirection.ltr,
+              child: TextField(
+                onChanged: onChanged,
+                controller: TextEditingController(text: value),
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: hintText,
+                    hintStyle: TextStyle(
+                      color: Colors.black.withOpacity(0.5),
+                    )),
+                obscureText: obsecureText,
+              ),
             ),
           ),
           IconButton(onPressed: onPressed, icon: Icon(icon)),
