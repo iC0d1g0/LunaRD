@@ -92,7 +92,8 @@ class _ForoScreen extends State<ForoScreen> {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {}, //=> print('accion de publicar comentario.'),
+                  // ignore: avoid_print
+                  onPressed: () => print('accion de publicar comentario.'),
                   icon: const Icon(Icons.send),
                   color: Colors.black,
                 ),
@@ -102,7 +103,7 @@ class _ForoScreen extends State<ForoScreen> {
           const SizedBox(
             height: 20,
           ),
-          const Posting(
+          const posting(
             usuario: 'Usuario',
             descripcion:
                 'Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito',
@@ -116,14 +117,15 @@ class _ForoScreen extends State<ForoScreen> {
   }
 }
 
-class Posting extends StatelessWidget {
+// ignore: camel_case_types
+class posting extends StatelessWidget {
   final String usuario;
   final String descripcion;
-  const Posting({super.key, required this.usuario, required this.descripcion});
+  const posting({super.key, required this.usuario, required this.descripcion});
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -137,6 +139,7 @@ class Posting extends StatelessWidget {
             ),
             Row(
               children: [
+                const SizedBox(width: 10, height: 5),
                 Container(
                   height: 80,
                   width: 80,
@@ -146,8 +149,11 @@ class Posting extends StatelessWidget {
                       image: DecorationImage(
                           image: AssetImage('assets/images/perfil.png'))),
                 ),
+                const SizedBox(
+                  width: 15,
+                ),
                 Text(
-                  '   $usuario',
+                  usuario,
                   style: const TextStyle(
                       fontSize: 20,
                       color: Colors.black,
@@ -156,23 +162,29 @@ class Posting extends StatelessWidget {
               ],
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
-            Text(
-              descripcion,
-              style: const TextStyle(fontSize: 18, color: Colors.black),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                descripcion,
+                style: const TextStyle(fontSize: 18, color: Colors.black),
+              ),
             ),
             const SizedBox(
-              height: 40,
+              height: 20,
             ),
             Row(
               children: [
+                const SizedBox(
+                  width: 10,
+                ),
                 Text(
-                  '   Date  ${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}',
+                  'Fecha  ${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}',
                   style: const TextStyle(fontSize: 14, color: Colors.black),
                 ),
                 const SizedBox(
-                  width: 180,
+                  width: 140,
                 ),
                 Container(
                   height: 40,
@@ -193,13 +205,14 @@ class Posting extends StatelessWidget {
                   height: 40,
                   width: 40,
                   decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(20),
-                      color: const Color.fromARGB(255, 255, 196, 184),
-                      image: const DecorationImage(
-                        scale: 15,
-                        image: AssetImage('assets/images/comentario.png'),
-                      )),
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(20),
+                    color: const Color.fromARGB(255, 255, 196, 184),
+                    image: const DecorationImage(
+                      scale: 15,
+                      image: AssetImage('assets/images/comentario.png'),
+                    ),
+                  ),
                 ),
               ],
             ),

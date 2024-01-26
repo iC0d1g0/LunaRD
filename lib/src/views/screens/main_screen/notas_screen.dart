@@ -68,9 +68,7 @@ class _NotaScreen extends State<NotaScreen> {
                   ),
                 ]),
           ),
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
           const ItemNota(
             color: Color.fromRGBO(250, 230, 226, 1),
             dia: '20',
@@ -113,7 +111,7 @@ class ItemNota extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(20),
@@ -135,20 +133,14 @@ class ItemNota extends StatelessWidget {
               children: [
                 Text(mes,
                     style: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w800)),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(dia,
-                    style: const TextStyle(
                         fontSize: 20,
                         color: Colors.black,
                         fontWeight: FontWeight.w800)),
-                const SizedBox(
-                  height: 10,
-                ),
+                Text(dia,
+                    style: const TextStyle(
+                        fontSize: 30,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w800)),
                 Text(ciclo,
                     style: const TextStyle(
                         fontSize: 14,

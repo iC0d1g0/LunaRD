@@ -115,7 +115,8 @@ class _CharScreen extends State<CharScreen> {
               ),
             ),
             InkWell(
-              onTap: () {}, //=> print('Boton de enviar un mensaje x a la ai Eva'),
+              // ignore: avoid_print
+              onTap: () => print('Boton de enviar un mensaje x a la ai Eva'),
               child: const Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: Icon(Icons.send_rounded, color: Colors.black),

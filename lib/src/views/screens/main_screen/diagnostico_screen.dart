@@ -389,7 +389,8 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
                 Row(
                   children: [
                     InkWell(
-                      onTap: () {}, //=> print('hola mundo'),
+                      // ignore: avoid_print
+                      onTap: () => print('hola mundo'),
                       child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 15),
                         width: 60,
@@ -433,7 +434,8 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
                 Row(
                   children: [
                     InkWell(
-                      onTap: () {}, //=> print('hola mundo'),
+                      // ignore: avoid_print
+                      onTap: () => print('hola mundo'),
                       child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 15),
                         width: 60,
@@ -477,7 +479,8 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
                 Row(
                   children: [
                     InkWell(
-                      onTap: () {}, //=> print('hola mundo'),
+                      // ignore: avoid_print
+                      onTap: () => print('hola mundo'),
                       child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 15),
                         width: 60,
