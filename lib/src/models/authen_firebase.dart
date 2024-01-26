@@ -135,12 +135,12 @@ class AuthService {
      }
   }
 
-  // Método para cerrar sesión
+  // Metodo para cerrar sesión
   Future<void> signOut() async {
     await _auth.signOut();
     await googleSignIn.signOut();
   }
-
+    //Metodo para iniciar seccion y para registrar nuevos usuarios usando la api de facebook
    Future<User?> signInWithFacebookandRegister() async {
     try {
       // Inicia el proceso de inicio de sesión con Facebook
