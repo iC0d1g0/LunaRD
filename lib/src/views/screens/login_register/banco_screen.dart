@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:luna_rd/src/views/screens/banco2_screen.dart';
+import 'package:luna_rd/src/views/screens/login_register/banco2_screen.dart';
 import 'package:luna_rd/src/views/widgets/next.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 

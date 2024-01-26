@@ -12,7 +12,7 @@ void main() async {
   
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      statusBarColor: barColor,
+      statusBarColor: MainController.barColor,
     ),
   );
 

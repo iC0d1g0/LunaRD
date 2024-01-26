@@ -23,7 +23,7 @@ class _CargaState extends State<Carga> {
           children: [
             CircularPercentIndicator(
               onAnimationEnd: () {
-                reiniciarApp(context);
+                MainController.reiniciarApp(context);
               },
               animation: true,
               animationDuration: 1000,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 //import '../widgets/menu_inferior.dart';
 
 //Controllers
-import '../../controllers/main_controller.dart';
+import 'package:luna_rd/src/controllers/main_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> verificarLogiado() async {
-    bool logiado = await getLogiado();
+    bool logiado = await MainController.getLogiado();
     if (!logiado) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Navigator.pushNamed(context, '/login');

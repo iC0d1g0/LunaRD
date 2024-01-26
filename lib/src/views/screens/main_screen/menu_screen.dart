@@ -59,7 +59,7 @@ class _MenuBasicoState extends State<MenuBasico> {
   }
 
   Future<void> verificarLogiado() async {
-    bool logiado = await getLogiado();
+    bool logiado = await MainController.getLogiado();
     if (!logiado) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Navigator.pushNamed(context, '/login');
@@ -69,7 +69,7 @@ class _MenuBasicoState extends State<MenuBasico> {
 
   @override
   Widget build(BuildContext context) {
-    setBarColor(const Color.fromRGBO(255, 198, 187, 1));
+    MainController.barColor = const Color(0xFFFAE6E2);
 
     return Scaffold(
       body: ListView(

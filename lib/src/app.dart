@@ -5,7 +5,7 @@ import 'package:luna_rd/src/controllers/main_controller.dart';
 
 //Screens
 // import 'package:luna_rd/src/views/screens/home_screen.dart';
-import 'package:luna_rd/src/views/screens/login_screen_form.dart';
+import 'package:luna_rd/src/views/screens/login_register/login_screen_form.dart';
 import 'package:luna_rd/src/views/screens/main_screen/menu_screen.dart';
 
 class MyApp extends StatelessWidget {
@@ -14,13 +14,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<bool>(
-      future: getLogiado(),
+      future: MainController.getLogiado(),
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator(); // Muestra un indicador de carga mientras se espera la respuesta
         } else {
           if (snapshot.data == null) {
-            reiniciarApp(context);
+            MainController.reiniciarApp(context);
             return Container(
               color: Colors.white,
               child: const Column(

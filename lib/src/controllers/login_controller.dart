@@ -16,7 +16,7 @@ Future<bool> verificarLogin(context, recordarme, nombre, password) async {
   try{
     user = await auth.signInWithEmailAndPassword(nombre, password);
   } catch(e) {
-    mensajeInferior(context, "Debes llenar los campos", Colors.red);
+    MainController.mensajeInferior(context, "Debes llenar los campos", Colors.red);
   }
 
   if (user != null) {
