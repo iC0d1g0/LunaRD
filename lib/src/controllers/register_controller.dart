@@ -1,11 +1,36 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:luna_rd/src/controllers/main_controller.dart';
 import 'package:luna_rd/src/models/authen_firebase.dart';
 
+class RegisterController {
+  static Future<User?> registrarConGoogle() async {
+    AuthService auth = AuthService();
+    User? user = await auth.signInWithGoogle();
+    return user;
+  }
 
-Future<User?> registrarConGoogle() async{
-  AuthService auth = AuthService();
-  User? user = await auth.signInWithGoogle();
-  return user;
+  static Future<User?> registrarConFacebook() async {
+    AuthService auth = AuthService();
+    User? user = await auth.signInWithFacebookandRegister();
+    return user;
+  }
+
+  static Future<User?> registrarUsuario(context, nombre, correo, password, cPassword) async{
+    if (password == cPassword) {
+      try	{
+        AuthService auth = AuthService();
+        User? user = await auth.registerWithEmailAndPassword(correo, password);
+        return user;
+      } catch (e) {
+        MainController.mensajeInferior(context, "Debes llenar los campos", Colors.red);
+        return null;
+      }
+    } else {
+      MainController.mensajeInferior(context, "Las contraseñas no coinciden", Colors.red);
+      return null;
+    }
+  }
 }
 
 /*

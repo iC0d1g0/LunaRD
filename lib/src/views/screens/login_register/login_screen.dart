@@ -136,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 customColor: const Color(0xFFDA2B9E),
                 text: "Iniciar Sesión",
                 onTap: () async {
-                  bool loginSuccessful = await verificarLogin(context, checkTheBox, nombre, password);
+                  bool loginSuccessful = await LoginController.verificarLogin(context, checkTheBox, nombre, password);
                   // ignore: use_build_context_synchronously
                   navigateIfLoginSuccessful(context, loginSuccessful);
                 }

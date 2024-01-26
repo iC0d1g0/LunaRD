@@ -21,6 +21,35 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   bool showPass = false;
   bool showConfirm = false;
+  String nombre = '';
+  String correo = '';
+  String password = '';
+  String cPassword = '';
+
+  setNombre(String value) {
+    setState(() {
+      nombre = value;
+    });
+  }
+
+  setCorreo(String value) {
+    setState(() {
+      correo = value;
+    });
+  }
+
+  setCPassword(String value) {
+    setState(() {
+      cPassword = value;
+    });
+  }
+
+  setPassword(String value) {
+    setState(() {
+      password = value;
+    });
+  }
+
   showConfPass() {
     setState(() {
       showConfirm = !showConfirm;
@@ -42,12 +71,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 40),
-            const MyText(hintText: "Nombre"),
+            MyText(
+              onChanged: setNombre,
+              value: nombre,
+              hintText: "Nombre"
+              ),
             const SizedBox(height: 12),
-            const MyText(hintText: "Email"),
+            MyText(
+              onChanged: setCorreo,
+              value: correo,
+              hintText: "Email"
+              ),
             const SizedBox(height: 12),
             MyText(
               hintText: "Password",
+              onChanged: setPassword,
+              value: password,
               onPressed: showPassword,
               obsecureText: showPass ? false : true,
               icon: showPass ? Icons.visibility_off : Icons.visibility,
@@ -55,6 +94,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             const SizedBox(height: 12),
             MyText(
               hintText: "Confirmar Password",
+              onChanged: setCPassword,
+              value: cPassword,
               onPressed: showConfPass,
               obsecureText: showConfirm ? false : true,
               icon: showConfirm ? Icons.visibility_off : Icons.visibility,
@@ -65,7 +106,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             MyButtono(
                 customColor: const Color(0xFFDA2B9E),
                 text: "Register",
-                onTap: () {}),
+                onTap: () {
+                  RegisterController.registrarUsuario(context, nombre, correo, password, cPassword);
+                }),
             const SizedBox(
               height: 10,
             ),
@@ -91,7 +134,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: GestureDetector(
                     onTap: () async{
                       try {
-                        await registrarConGoogle();
+                        await RegisterController.registrarConGoogle();
                       } catch (e) {
                         // ignore: use_build_context_synchronously
                         MainController.mensajeInferior(context, "Error al iniciar con Google", Colors.red);
@@ -108,7 +151,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   child: GestureDetector(
                     onTap: (){
-                      registrarConGoogle();
+                      RegisterController.registrarConFacebook();
                     },
                     child: Image.asset("assets/images/facebook.png", width: 40),
                   ),

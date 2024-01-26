@@ -11,15 +11,16 @@ import 'package:luna_rd/src/models/database/database_services.dart';
 //Controllers
 import 'package:luna_rd/src/controllers/main_controller.dart';
 
-Future<bool> verificarLogin(context, recordarme, nombre, password) async {
-  
-  AuthService auth = AuthService();
-  User? user;
-  try{
-    user = await auth.signInWithEmailAndPassword(nombre, password);
-  } catch(e) {
-    MainController.mensajeInferior(context, "Debes llenar los campos", Colors.red);
-  }
+class LoginController {
+  static Future<bool> verificarLogin(context, recordarme, nombre, password) async {
+    AuthService auth = AuthService();
+    User? user;
+    try {
+      user = await auth.signInWithEmailAndPassword(nombre, password);
+    } catch (e) {
+      MainController.mensajeInferior(
+          context, "Debes llenar los campos", Colors.red);
+    }
 
     /*
   // Guardar datos en la tabla de usuarios
@@ -40,13 +41,12 @@ Future<bool> verificarLogin(context, recordarme, nombre, password) async {
   usuaria.birthday = null;
     */
 
-
-
-  if (user != null) {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('recordarme', recordarme);
-    return true;
-  } else {
-    return false;
+    if (user != null) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool('recordarme', recordarme);
+      return true;
+    } else {
+      return false;
+    }
   }
 }
