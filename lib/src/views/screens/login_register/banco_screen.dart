@@ -47,75 +47,79 @@ class _BonoPageState extends State<BonoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      backgroundColor: const Color(0xFFFAE6E2),
-      // navigationBar: const CupertinoNavigationBar(
-      //   middle: Text('Seleccionar Fecha'),
-      // ),
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            children: <Widget>[
-              LinearPercentIndicator(
-                width: MediaQuery.of(context).size.width - 50,
-                animation: true,
-                animationDuration: 1000,
-                lineHeight: 10,
-                percent: 0.2,
-                progressColor: Colors.deepPurple,
-                barRadius: const Radius.circular(10),
-                // ignore: deprecated_member_use
-                linearStrokeCap: LinearStrokeCap.roundAll,
+    return ListView(
+      children: [
+        CupertinoPageScaffold(
+          backgroundColor: const Color(0xFFFAE6E2),
+          // navigationBar: const CupertinoNavigationBar(
+          //   middle: Text('Seleccionar Fecha'),
+          // ),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                children: <Widget>[
+                  LinearPercentIndicator(
+                    width: MediaQuery.of(context).size.width - 50,
+                    animation: true,
+                    animationDuration: 1000,
+                    lineHeight: 10,
+                    percent: 0.2,
+                    progressColor: Colors.deepPurple,
+                    barRadius: const Radius.circular(10),
+                    // ignore: deprecated_member_use
+                    linearStrokeCap: LinearStrokeCap.roundAll,
+                  ),
+                  const SizedBox(height: 250.0),
+                  const Text(
+                    'Fecha De Nacimiento',
+                    style: TextStyle(
+                        fontSize: 22.0,
+                        color: Colors.black,
+                        decoration: TextDecoration.none),
+                  ),
+                  const SizedBox(height: 20.0),
+                  Text(
+                    '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
+                    style: const TextStyle(
+                        fontSize: 30.0,
+                        color: Color(0xFFDA2B9E),
+                        decoration: TextDecoration.none),
+                  ),
+                  const SizedBox(height: 20.0),
+                  CupertinoButton(
+                    onPressed: () => _selectDate(context),
+                    child: const Text(
+                      'Seleccionar Fecha',
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFDA2B9E),
+                          decoration: TextDecoration.none),
+                    ),
+                  ),
+                  const SizedBox(height: 200),
+                  MyNext(
+                    customColor: const Color(0xFFDA2B9E).withOpacity(0.7),
+                    text: "Siguiente",
+                    onTap: () {
+                      /* if ( DateTime.now().year - selectedDate.year < 18) {
+                        return; // mostrar mensaje de error
+                      } */
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MyBanco2(),
+                          ));
+                    },
+                    icon: null,
+                  ),
+                ],
               ),
-              const SizedBox(height: 250.0),
-              const Text(
-                'Fecha De Nacimiento',
-                style: TextStyle(
-                    fontSize: 22.0,
-                    color: Colors.black,
-                    decoration: TextDecoration.none),
-              ),
-              const SizedBox(height: 20.0),
-              Text(
-                '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
-                style: const TextStyle(
-                    fontSize: 30.0,
-                    color: Color(0xFFDA2B9E),
-                    decoration: TextDecoration.none),
-              ),
-              const SizedBox(height: 20.0),
-              CupertinoButton(
-                onPressed: () => _selectDate(context),
-                child: const Text(
-                  'Seleccionar Fecha',
-                  style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFDA2B9E),
-                      decoration: TextDecoration.none),
-                ),
-              ),
-              const SizedBox(height: 200),
-              MyNext(
-                customColor: const Color(0xFFDA2B9E).withOpacity(0.7),
-                text: "Siguiente",
-                onTap: () {
-                  /* if ( DateTime.now().year - selectedDate.year < 18) {
-                    return; // mostrar mensaje de error
-                  } */
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const MyBanco2(),
-                      ));
-                },
-                icon: null,
-              ),
-            ],
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 }
