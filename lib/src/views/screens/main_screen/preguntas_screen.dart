@@ -67,12 +67,10 @@ class _PreguntasScreen extends State<PreguntasScreen> {
                   ),
                 ]),
           ),
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
           const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              SizedBox(width: 10),
               Text(
                 'Sucesos normales',
                 style: TextStyle(
@@ -82,11 +80,9 @@ class _PreguntasScreen extends State<PreguntasScreen> {
               ),
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          const SizedBox(height: 10),
           Container(
-            padding: const EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: const Color.fromRGBO(250, 230, 226, 1),
@@ -100,25 +96,19 @@ class _PreguntasScreen extends State<PreguntasScreen> {
                       color: Colors.black,
                       fontWeight: FontWeight.w800),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: 20),
                 Text(
                   'En las mujeres mayores en edad reproductiva, los sangrados menstruales abundantes suelen deberse a problemas uterinos. Entre ellos se incluyen los fibromas, los pólipos y la adenomiosis. Pero también hay otros problemas que pueden causar sangrados menstruales abundantes.',
                   style: TextStyle(fontSize: 18, color: Colors.black),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                SizedBox(height: 10),
               ],
             ),
           ),
-          const SizedBox(
-            height: 40,
-          ),
+          const SizedBox(height: 40),
           const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              SizedBox(width: 10),
               Text(
                 'Sucesos Anormales (Asistencia medica)',
                 style: TextStyle(
@@ -128,11 +118,9 @@ class _PreguntasScreen extends State<PreguntasScreen> {
               ),
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          const SizedBox(height: 10),
           Container(
-            padding: const EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: const Color.fromRGBO(250, 230, 226, 1),
@@ -146,16 +134,12 @@ class _PreguntasScreen extends State<PreguntasScreen> {
                       color: Colors.black,
                       fontWeight: FontWeight.w800),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: 20),
                 Text(
                   'Si notas la sangre menstrual marrón al comienzo o al final de la regla es porque la sangre es más antigua y ha tardado más en salir del útero. El revestimiento del útero se oscurece cuanto más tiempo tarde en salir del cuerpo.',
                   style: TextStyle(fontSize: 18, color: Colors.black),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                SizedBox(height: 10),
               ],
             ),
           ),
