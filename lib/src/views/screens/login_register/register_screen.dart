@@ -4,8 +4,12 @@ import 'package:flutter/material.dart';
 import 'login_screen.dart';
 
 //Widgets
-import '../widgets/mybuttondos.dart';
-import '../widgets/mytext.dart';
+import 'package:luna_rd/src/views/widgets/mybuttondos.dart';
+import 'package:luna_rd/src/views/widgets/mytext.dart';
+
+//controllers
+import 'package:luna_rd/src/controllers/register_controller.dart';
+import 'package:luna_rd/src/controllers/main_controller.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -84,7 +88,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Image.asset("assets/images/goo.png", width: 40),
+                  child: GestureDetector(
+                    onTap: () async{
+                      try {
+                        await registrarConGoogle();
+                      } catch (e) {
+                        // ignore: use_build_context_synchronously
+                        MainController.mensajeInferior(context, "Error al iniciar con Google", Colors.red);
+                      }
+                    },
+                    child: Image.asset("assets/images/goo.png", width: 40),
+                  ),
                 ),
                 const SizedBox(width: 10),
                 Container(
@@ -92,7 +106,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Image.asset("assets/images/facebook.png", width: 40),
+                  child: GestureDetector(
+                    onTap: (){
+                      registrarConGoogle();
+                    },
+                    child: Image.asset("assets/images/facebook.png", width: 40),
+                  ),
                 ),
               ],
             ),

@@ -5,9 +5,8 @@ import 'register_screen.dart';
 import 'login_screen.dart';
 
 //Widgets
-
-import '../widgets/mybutton.dart';
-import '../widgets/mybuttondos.dart';
+import 'package:luna_rd/src/views/widgets/mybutton.dart';
+import 'package:luna_rd/src/views/widgets/mybuttondos.dart';
 
 class LoginScreenFormDos extends StatefulWidget {
   const LoginScreenFormDos({super.key});
