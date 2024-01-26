@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:luna_rd/src/views/screens/banco_screen.dart';
+import 'package:luna_rd/src/views/screens/login_register/banco_screen.dart';
 import 'package:luna_rd/src/views/widgets/mybuttondos.dart';
 
 //Screens
 import 'register_screen.dart';
 
 //Widgets
-import '../widgets/mytext.dart';
+import 'package:luna_rd/src/views/widgets/mytext.dart';
 
 //controllers
-import '../../controllers/login_controller.dart';
+import 'package:luna_rd/src/controllers/login_controller.dart';
 import 'package:luna_rd/src/controllers/main_controller.dart';
 
 // ignore: camel_case_types
@@ -60,12 +60,14 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
     } else {
-      mensajeInferior(context, "Usuario o contraseña incorrecta", Colors.red);
+      MainController.mensajeInferior(context, "Usuario o contraseña incorrecta", Colors.red);
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    MainController.barColor = const Color(0xFFFAE6E2);
+
     return Scaffold(
       backgroundColor: const Color(0xFFFAE6E2),
       body: SingleChildScrollView(
@@ -134,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 customColor: const Color(0xFFDA2B9E),
                 text: "Iniciar Sesión",
                 onTap: () async {
-                  bool loginSuccessful = await verificarLogin(checkTheBox, nombre, password);
+                  bool loginSuccessful = await verificarLogin(context, checkTheBox, nombre, password);
                   // ignore: use_build_context_synchronously
                   navigateIfLoginSuccessful(context, loginSuccessful);
                 }

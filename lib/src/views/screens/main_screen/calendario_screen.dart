@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/menu_screen.dart';
+import 'package:luna_rd/src/app.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -60,7 +60,7 @@ class _CalendarioScreen extends State<CalendarioScreen>
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const Menu(),
+                          builder: (context) => const MyApp(),
                         ));
                   },
                   child: Container(

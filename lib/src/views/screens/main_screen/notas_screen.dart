@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/addnota_screen.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/menu_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/addnota_screen.dart';
+import 'package:luna_rd/src/app.dart';
 
 class Nota extends StatelessWidget {
   const Nota({super.key});
@@ -41,7 +41,7 @@ class _NotaScreen extends State<NotaScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Menu(),
+                            builder: (context) => const MyApp(),
                           ));
                     },
                     child: Container(

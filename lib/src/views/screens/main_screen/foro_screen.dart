@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/menu_screen.dart';
+import 'package:luna_rd/src/app.dart';
 
 class Foro extends StatelessWidget {
   const Foro({super.key});
@@ -40,7 +40,7 @@ class _ForoScreen extends State<ForoScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Menu(),
+                            builder: (context) => const MyApp(),
                           ));
                     },
                     child: Container(

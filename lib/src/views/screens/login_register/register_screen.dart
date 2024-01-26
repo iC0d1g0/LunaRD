@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'login_screen.dart';
 
 //Widgets
-import '../widgets/mybuttondos.dart';
-import '../widgets/mytext.dart';
+import 'package:luna_rd/src/views/widgets/mybuttondos.dart';
+import 'package:luna_rd/src/views/widgets/mytext.dart';
 
 //controllers
-import '../../controllers/register_controller.dart';
-import '../../controllers/main_controller.dart';
+import 'package:luna_rd/src/controllers/register_controller.dart';
+import 'package:luna_rd/src/controllers/main_controller.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -94,7 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         await registrarConGoogle();
                       } catch (e) {
                         // ignore: use_build_context_synchronously
-                        mensajeInferior(context, "Error al iniciar con Google", Colors.red);
+                        MainController.mensajeInferior(context, "Error al iniciar con Google", Colors.red);
                       }
                     },
                     child: Image.asset("assets/images/goo.png", width: 40),

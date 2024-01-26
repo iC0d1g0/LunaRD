@@ -1,19 +1,28 @@
+// Dependencias
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/calendario_screen.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/chat_ai_screen.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/configuration_screen.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/diagnostico_screen.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/foro_screen.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/historial_screen.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/notas_screen.dart';
-import 'package:luna_rd/src/views/screens/main%20screen/preguntas_screen.dart';
+//import 'package:flutter/services.dart';
 
+// Screens
+import 'package:luna_rd/src/views/screens/main_screen/calendario_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/chat_ai_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/configuration_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/diagnostico_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/foro_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/historial_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/notas_screen.dart';
+import 'package:luna_rd/src/views/screens/main_screen/preguntas_screen.dart';
+
+// Controllers
+import 'package:luna_rd/src/controllers/main_controller.dart';
+
+/*
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Color.fromRGBO(255, 198, 187, 1)));
+    statusBarColor: Color.fromRGBO(255, 198, 187, 1))
+  );
   runApp(const Menu());
 }
+
 
 class Menu extends StatelessWidget {
   const Menu({super.key});
@@ -30,17 +39,38 @@ class Menu extends StatelessWidget {
     );
   }
 }
+*/
 
 class MenuBasico extends StatefulWidget {
   const MenuBasico({super.key});
+
+  static const String routeName = "/menu_basico";
 
   @override
   State<MenuBasico> createState() => _MenuBasicoState();
 }
 
 class _MenuBasicoState extends State<MenuBasico> {
+
+  @override
+  void initState() {
+    super.initState();
+    verificarLogiado();
+  }
+
+  Future<void> verificarLogiado() async {
+    bool logiado = await MainController.getLogiado();
+    if (!logiado) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.pushNamed(context, '/login');
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    MainController.barColor = const Color(0xFFFAE6E2);
+
     return Scaffold(
       body: ListView(
         padding: EdgeInsets.zero,

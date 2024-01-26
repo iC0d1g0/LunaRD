@@ -56,6 +56,9 @@ dependencies:
   table_calendar: ^3.0.3
   custom_clippers: ^2.0.0
 
+  # Carlos
+  shared_preferences: ^2.2.2
+
 dev_dependencies:
   flutter_launcher_icons: ^0.13.1 #Agregado por Carlos para general el icono.
   flutter_test:

@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:luna_rd/src/views/screens/quizpregunta_screen.dart';
+import 'package:luna_rd/src/views/screens/login_register/quizpregunta_screen.dart';
 import 'package:luna_rd/src/views/widgets/next.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:quantity_input/quantity_input.dart';
