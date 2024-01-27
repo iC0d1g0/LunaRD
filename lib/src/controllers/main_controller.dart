@@ -3,7 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:luna_rd/src/app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+class MyClass extends StatefulWidget {
+  const MyClass({super.key});
+
+  @override
+  State<MyClass> createState() => _MyClassState();
+}
+
+class _MyClassState extends State<MyClass> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
 class MainController {
+  //mySetState es una funcion que se puede llamar desde cualquier lugar
+  static State<MyClass> mySetState  = const MyClass().createState();
+
   static Color barColor = const Color.fromRGBO(255, 198, 187, 1);
 
   static void reiniciarApp(BuildContext context) {
