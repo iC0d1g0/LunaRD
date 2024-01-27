@@ -9,12 +9,14 @@ import './src/app.dart';
 import 'package:luna_rd/src/controllers/main_controller.dart';
 
 void main() async {
-  
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      statusBarColor: MainController.barColor,
-    ),
-  );
+
+  MainController.mySetState = () {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: MainController.barColor,
+      ),
+    );  
+  } as State<MyClass>;
 
   runApp(const MyApp());
 

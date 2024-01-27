@@ -4,8 +4,28 @@ import 'package:luna_rd/src/app.dart';
 import 'package:luna_rd/src/models/database/entidad_usuaria.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+class MyClass extends StatefulWidget {
+  const MyClass({super.key});
+
+  @override
+  State<MyClass> createState() => _MyClassState();
+}
+
+class _MyClassState extends State<MyClass> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
 class MainController {
+<<<<<<< HEAD
   static DatosUsuarios? usuaria;
+=======
+  //mySetState es una funcion que se puede llamar desde cualquier lugar
+  static State<MyClass> mySetState  = const MyClass().createState();
+>>>>>>> 5702ccfea957f325a12a460862c269509a62740f
 
   static Color barColor = const Color.fromRGBO(255, 198, 187, 1);
 
