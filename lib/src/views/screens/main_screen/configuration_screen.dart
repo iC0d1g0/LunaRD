@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:luna_rd/src/views/screens/login_register/login_screen_form.dart';
 import 'package:luna_rd/src/app.dart';
+import 'package:luna_rd/src/controllers/login_controller.dart';
+
 
 class Config extends StatelessWidget {
   const Config({super.key});
@@ -208,12 +209,7 @@ class _ConfigScreen extends State<ConfigScreen> {
                           ),
                           InkWell(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const LoginScreenForm(),
-                                  ));
+                              LoginController.cerrarSesion(context);
                             },
                             child: Container(
                               height: 40,

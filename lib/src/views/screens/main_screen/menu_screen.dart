@@ -69,8 +69,6 @@ class _MenuBasicoState extends State<MenuBasico> {
 
   @override
   Widget build(BuildContext context) {
-    MainController.barColor = const Color(0xFFFAE6E2);
-
     return Scaffold(
       body: ListView(
         padding: EdgeInsets.zero,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 //Controllers
 import 'package:luna_rd/src/controllers/main_controller.dart';
 // import 'package:firebase_analytics/firebase_analytics.dart';
@@ -40,21 +41,45 @@ class MyApp extends StatelessWidget {
               ),
             );
           } else {
-            return MaterialApp(
+            if (snapshot.data == true) {
+              SystemChrome.setSystemUIOverlayStyle(
+                const SystemUiOverlayStyle(
+                  statusBarColor: Color(0xFFFAE6E2),
+                ),
+              );  
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'Luna',
+                theme: ThemeData(
+                  colorSchemeSeed: const Color(0xFFFF8692),
+                  fontFamily: "Inter",
+                ),
+                initialRoute: MenuBasico.routeName,
+                routes: {
+                  MenuBasico.routeName: (context) => const MenuBasico(),
+                  LoginScreenForm.routeName: (context) => const LoginScreenForm(),
+                },
+              );
+            } else {
+              SystemChrome.setSystemUIOverlayStyle(
+                const SystemUiOverlayStyle(
+                  statusBarColor: Color(0xFFFAE6E2),
+                ),
+              );  
+              return MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Luna',
               theme: ThemeData(
                 colorSchemeSeed: const Color(0xFFFF8692),
                 fontFamily: "Inter",
               ),
-              initialRoute: snapshot.data == true
-                  ? MenuBasico.routeName
-                  : LoginScreenForm.routeName,
+              initialRoute: LoginScreenForm.routeName,
               routes: {
                 MenuBasico.routeName: (context) => const MenuBasico(),
                 LoginScreenForm.routeName: (context) => const LoginScreenForm(),
               },
             );
+            }
           }
         }
       },

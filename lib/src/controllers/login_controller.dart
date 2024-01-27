@@ -49,4 +49,13 @@ class LoginController {
       return false;
     }
   }
+
+  static void cerrarSesion(context) async {
+    AuthService auth = AuthService();
+    await auth.signOut();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('recordarme'); 
+    Navigator.pushNamedAndRemoveUntil(
+      context, '/login', (Route<dynamic> route) => false);
+  }
 }

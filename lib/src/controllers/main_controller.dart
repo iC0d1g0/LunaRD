@@ -20,12 +20,9 @@ class _MyClassState extends State<MyClass> {
 }
 
 class MainController {
-<<<<<<< HEAD
   static DatosUsuarios? usuaria;
-=======
-  //mySetState es una funcion que se puede llamar desde cualquier lugar
+  //mySetState es una variable que se usa para actualizar el estado de un widget desde otra clase
   static State<MyClass> mySetState  = const MyClass().createState();
->>>>>>> 5702ccfea957f325a12a460862c269509a62740f
 
   static Color barColor = const Color.fromRGBO(255, 198, 187, 1);
 
