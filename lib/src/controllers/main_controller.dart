@@ -1,10 +1,18 @@
 //Here the main controller
 import 'package:flutter/material.dart';
 import 'package:luna_rd/src/app.dart';
+import 'package:luna_rd/src/models/database/entidad_usuaria.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MainController {
+  static DatosUsuarios? usuaria;
+
   static Color barColor = const Color.fromRGBO(255, 198, 187, 1);
+
+  static String moverLetra(String p){
+    return p.isNotEmpty ? p.substring(0, 1).toUpperCase() + p.substring(1) : '';
+
+  }
 
   static void reiniciarApp(BuildContext context) {
     Navigator.pushAndRemoveUntil(

@@ -25,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   String? nombre = '';
   setNombre(String value) {
+    MainController.moverLetra(value);
     setState(() {
       nombre = value;
     });
@@ -32,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   String? password = '';
   setPassword(String value) {
+    MainController.moverLetra(value);
     setState(() {
       password = value;
     });

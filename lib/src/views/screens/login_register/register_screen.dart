@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 //Screens
@@ -28,24 +29,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   setNombre(String value) {
     setState(() {
+      MainController.moverLetra(value);
       nombre = value;
     });
   }
 
   setCorreo(String value) {
     setState(() {
+      MainController.moverLetra(value);
       correo = value;
     });
   }
 
   setCPassword(String value) {
     setState(() {
+      MainController.moverLetra(value);
       cPassword = value;
     });
   }
 
   setPassword(String value) {
     setState(() {
+      MainController.moverLetra(value);
       password = value;
     });
   }
@@ -74,7 +79,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             MyText(
               onChanged: setNombre,
               value: nombre,
-              hintText: "Nombre"
+              hintText: "Nombre",
               ),
             const SizedBox(height: 12),
             MyText(
@@ -106,8 +111,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             MyButtono(
                 customColor: const Color(0xFFDA2B9E),
                 text: "Register",
-                onTap: () {
-                  RegisterController.registrarUsuario(context, nombre, correo, password, cPassword);
+                onTap: () async{
+                  User? userRegisted = await RegisterController.registrarUsuario(context, nombre, correo, password, cPassword);
+                  MainController.usuaria!.nombre = userRegisted!.displayName;
+                  MainController.usuaria!.correo = userRegisted.email;
                 }),
             const SizedBox(
               height: 10,

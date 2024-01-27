@@ -21,10 +21,16 @@ class RegisterController {
       try	{
         AuthService auth = AuthService();
         User? user = await auth.registerWithEmailAndPassword(correo, password);
+        MainController.reiniciarApp(context);
         return user;
       } catch (e) {
-        MainController.mensajeInferior(context, "Debes llenar los campos", Colors.red);
-        return null;
+        if (e.toString().contains("email-already-in-use")) {
+          MainController.mensajeInferior(context, "El correo ya está en uso", Colors.red);
+          return null;
+        } else {
+          MainController.mensajeInferior(context, "Por favor, llene todos los campos", Colors.red);
+          return null;
+        }
       }
     } else {
       MainController.mensajeInferior(context, "Las contraseñas no coinciden", Colors.red);

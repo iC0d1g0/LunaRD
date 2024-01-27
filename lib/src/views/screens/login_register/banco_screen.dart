@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:luna_rd/src/controllers/main_controller.dart';
 import 'package:luna_rd/src/views/screens/login_register/banco2_screen.dart';
 import 'package:luna_rd/src/views/widgets/next.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -103,9 +104,7 @@ class _BonoPageState extends State<BonoPage> {
                     customColor: const Color(0xFFDA2B9E).withOpacity(0.7),
                     text: "Siguiente",
                     onTap: () {
-                      /* if ( DateTime.now().year - selectedDate.year < 18) {
-                        return; // mostrar mensaje de error
-                      } */
+                      MainController.usuaria!.birthday = selectedDate;
                       Navigator.push(
                           context,
                           MaterialPageRoute(
