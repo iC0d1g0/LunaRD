@@ -28,6 +28,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  # Agrego el paquete de Facebook
+  flutter_facebook_auth: ^6.0.4
   flutter:
     sdk: flutter
   # Agrego SQlite Adderlis
@@ -49,7 +51,9 @@ dependencies:
   convert: ^3.1.1
   io: ^1.0.4
   cloud_firestore: ^4.14.0
-  flutter_facebook_auth: ^6.0.4
+  firebase_storage: 11.6.0
+
+
   
   # Maxwell
   syncfusion_flutter_charts: ^21.2.4
@@ -93,7 +97,7 @@ flutter:
   assets:
     - assets/images/
   #   - images/a_dot_ham.jpeg
-
+  
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

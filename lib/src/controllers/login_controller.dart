@@ -50,6 +50,32 @@ class LoginController {
     }
   }
 
+  static Future<User?> iniciarConGoogle(context) async{
+    AuthService auth = AuthService();
+    User? user;
+    try {
+      user = await auth.signInWithGoogle();
+    } catch (e) {
+      MainController.mensajeInferior(
+          context, "Hubo un Error!", Colors.red,
+      );
+    }
+    return user;
+  }
+
+  static Future<User?> iniciarConFacebook(context) async{
+    AuthService auth = AuthService();
+    
+    try {
+      return  await auth.signInWithFacebookandRegister();
+    } catch (e) {
+      MainController.mensajeInferior(
+          context, "Hubo un Error: $e", Colors.red,
+      );
+    }
+    return null;
+  }
+
   static void cerrarSesion(context) async {
     AuthService auth = AuthService();
     await auth.signOut();

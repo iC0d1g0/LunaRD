@@ -150,7 +150,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Image.asset("assets/images/goo.png", width: 40),
+                    child: GestureDetector(
+                      onTap: () async{
+                        try {
+                          await LoginController.iniciarConGoogle(context);
+                        } catch (e) {
+                          // ignore: use_build_context_synchronously
+                          MainController.mensajeInferior(context, "Error al iniciar con Google", Colors.red);
+                        }
+                      },
+                      child: Image.asset("assets/images/goo.png", width: 40)
+                    ),
                   ),
                   const SizedBox(width: 10),
                   Container(
@@ -158,7 +168,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Image.asset("assets/images/facebook.png", width: 40),
+                    child: GestureDetector(
+                      onTap: () async{
+                        try {
+                          await LoginController.iniciarConFacebook(context);
+                        } catch (e) {
+                          // ignore: use_build_context_synchronously
+                          MainController.mensajeInferior(context, "Error al iniciar con Facebook", Colors.red);
+                        }
+                      },
+                      child: Image.asset("assets/images/facebook.png", width: 40),
+                    ),
                   ),
                 ],
               ),
