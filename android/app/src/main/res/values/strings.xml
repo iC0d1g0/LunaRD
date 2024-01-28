@@ -1,0 +1,12 @@
+<resources>
+    <!-- Facebook App ID -->
+    <string name="facebook_app_id">934870124244367</string>
+
+    <!-- Facebook Login Protocol Scheme -->
+    <string name="fb_login_protocol_scheme">fb934870124244367</string>
+
+    <!-- Facebook Client Token -->
+    <string name="facebook_client_token">58beda2019b567134b21fa0edf57a071</string>
+    <string name="app_name">Luna rd</string>
+</resources>
+    

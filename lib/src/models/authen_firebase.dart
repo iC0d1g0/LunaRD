@@ -20,6 +20,15 @@ class AuthService {
          throw Exception('signInWithEmailAndPassword: $e');
     }
   }
+    Future<User?> signInWithCredencial(AuthCredential facebook) async {
+    try {
+      UserCredential result = await _auth.signInWithCredential(facebook);
+      User? user = result.user;
+      return user;
+    } catch (e) {
+         throw Exception('signInWithEmailAndPassword: $e');
+    }
+  }
   //Registrar con EMAIL
   Future<User?> registerWithEmailAndPassword(
       String email, String password) async {
@@ -142,6 +151,7 @@ class AuthService {
   }
     //Metodo para iniciar seccion y para registrar nuevos usuarios usando la api de facebook
    Future<User?> signInWithFacebookandRegister() async {
+    
     try {
       // Inicia el proceso de inicio de sesión con Facebook
       final LoginResult result = await FacebookAuth.instance.login();
