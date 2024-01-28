@@ -26,8 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> verificarLogiado() async {
-    bool logiado = await MainController.getLogiado();
-    if (!logiado) {
+    bool logiadoOInicializado = await MainController.getLogiadoOInicializado();
+    if (!logiadoOInicializado) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Navigator.pushNamed(context, '/login');
       });

@@ -13,19 +13,22 @@ import 'package:luna_rd/src/models/authen_firebase.dart';
 import 'package:luna_rd/src/controllers/main_controller.dart';
 
 class LoginController {
-  static Future<bool> verificarLogin(context, recordarme, nombre, password) async {
+  static Future<bool> verificarLogin(
+      context, recordarme, nombre, password) async {
     AuthService auth = AuthService();
     User? user;
     try {
       user = await auth.signInWithEmailAndPassword(nombre, password);
     } catch (e) {
-      MainController.mensajeInferior(
-          context, "Hubo un Error!", Colors.red);
+      MainController.mensajeInferior(context, "Hubo un Error: $e", Colors.red);
     }
 
-     if (user != null) {
+      if (user != null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setBool('recordarme', recordarme);
+      prefs.setBool('started', true);
+      MainController.notificacionVariableTemporal(context, 10000, 'started',
+          'Su sesión ha expirará. Si desea mantener la sesión activa, favor de marcar la casilla "Recordarme" al iniciar sesión.');
       return true;
     } else {
       return false;
@@ -84,7 +87,7 @@ class LoginController {
   usuaria.birthday = null;
     */
 
- 
+
   }
 
   static Future<User?> iniciarConGoogle(context) async{
@@ -117,7 +120,7 @@ class LoginController {
     AuthService auth = AuthService();
     await auth.signOut();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove('recordarme'); 
+    prefs.remove('recordarme');
     MainController.reiniciarApp(context);
   }
 }

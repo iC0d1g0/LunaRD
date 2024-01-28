@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:luna_rd/src/views/screens/login_register/banco_screen.dart';
 import 'package:luna_rd/src/views/widgets/mybuttondos.dart';
 
 //Screens
@@ -42,12 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void navigateIfLoginSuccessful(BuildContext context, bool loginSuccessful) {
     if (loginSuccessful) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const BonoPage(),
-        ),
-      );
+      MainController.reiniciarApp(context);
     } else {
       MainController.mensajeInferior(context, "Usuario o contraseña incorrecta", Colors.red);
     }
