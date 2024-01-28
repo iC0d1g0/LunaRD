@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<bool>(
-      future: MainController.getLogiado(),
+      future: MainController.getLogiadoOInicializado(),
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator(); // Muestra un indicador de carga mientras se espera la respuesta

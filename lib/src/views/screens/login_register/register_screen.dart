@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:luna_rd/src/views/screens/login_register/banco_screen.dart';
 
 //Screens
 import 'login_screen.dart';
@@ -85,6 +86,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   if (MainController.usuaria != null && userRegisted != null) {
                     MainController.usuaria!.nombre = userRegisted.displayName;
                     MainController.usuaria!.correo = userRegisted.email;
+                    Navigator.push(
+                      // ignore: use_build_context_synchronously
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const BonoPage(),
+                      ),
+                    );
                   } else {
                     // ignore: use_build_context_synchronously
                     MainController.mensajeInferior(context, "Error al registrar", Colors.red);
