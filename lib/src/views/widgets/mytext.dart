@@ -5,8 +5,7 @@ class MyText extends StatelessWidget {
   final IconData? icon;
   final void Function()? onPressed;
   final bool obsecureText;
-  final void Function(String value)? onChanged;
-  final String? value;
+  final TextEditingController controller;
 
   const MyText({
     super.key,
@@ -14,8 +13,7 @@ class MyText extends StatelessWidget {
     this.icon,
     this.onPressed,
     this.obsecureText = false,
-    this.onChanged,
-    this.value,
+    required this.controller,
   });
 
   @override
@@ -34,8 +32,7 @@ class MyText extends StatelessWidget {
             child: Directionality(
               textDirection: TextDirection.ltr,
               child: TextField(
-                onChanged: onChanged,
-                controller: TextEditingController(text: value),
+                controller: controller,
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: hintText,

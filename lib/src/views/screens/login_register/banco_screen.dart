@@ -104,12 +104,17 @@ class _BonoPageState extends State<BonoPage> {
                     customColor: const Color(0xFFDA2B9E).withOpacity(0.7),
                     text: "Siguiente",
                     onTap: () {
-                      MainController.usuaria!.birthday = selectedDate;
-                      Navigator.push(
+                      if (MainController.usuaria != null) { // de por sí es nulo, hay que darle valores por defecto
+                        MainController.usuaria!.birthday = selectedDate;
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const MyBanco2(),
-                          ));
+                          )
+                        );
+                      } else {
+                        MainController.mensajeInferior(context, "Error: La fecha o la usaria es nula", Colors.red);
+                      }
                     },
                     icon: null,
                   ),

@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
             if (snapshot.data == true) {
               SystemChrome.setSystemUIOverlayStyle(
                 const SystemUiOverlayStyle(
-                  statusBarColor: Color(0xFFFAE6E2),
+                  statusBarColor: Color.fromRGBO(250, 230, 226, 1),
                 ),
               );  
               return MaterialApp(

@@ -23,21 +23,8 @@ class LoginScreen extends StatefulWidget {
 // ignore: camel_case_types
 class _LoginScreenState extends State<LoginScreen> {
 
-  String? nombre = '';
-  setNombre(String value) {
-    MainController.moverLetra(value);
-    setState(() {
-      nombre = value;
-    });
-  }
-
-  String? password = '';
-  setPassword(String value) {
-    MainController.moverLetra(value);
-    setState(() {
-      password = value;
-    });
-  }
+  final nombreController = TextEditingController();
+  final passwordController = TextEditingController();
 
   bool showPass = false;
   showPassword() {
@@ -84,15 +71,13 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 10),
               MyText(
-                onChanged: setNombre,
-                value: nombre,
+                controller: nombreController,
                 hintText: "Correo o Usuario",
               ),
               const SizedBox(height: 20),
               MyText(
                 hintText: "Contraseña",
-                onChanged: setPassword,
-                value: password,
+                controller: passwordController,
                 onPressed: showPassword,
                 obsecureText: showPass ? false : true,
                 icon: showPass ? Icons.visibility_off : Icons.visibility,
@@ -138,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 customColor: const Color(0xFFDA2B9E),
                 text: "Iniciar Sesión",
                 onTap: () async {
-                  bool loginSuccessful = await LoginController.verificarLogin(context, checkTheBox, nombre, password);
+                  bool loginSuccessful = await LoginController.verificarLogin(context, checkTheBox, nombreController.text, passwordController.text);
                   // ignore: use_build_context_synchronously
                   navigateIfLoginSuccessful(context, loginSuccessful);
                 }

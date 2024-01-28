@@ -5,8 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 //models
 import 'package:luna_rd/src/models/authen_firebase.dart';
-import 'package:luna_rd/src/models/database/entidad_usuaria.dart';
-import 'package:luna_rd/src/models/database/database_services.dart';
+//import 'package:luna_rd/src/models/database/entidad_usuaria.dart';
+//import 'package:luna_rd/src/models/database/database_services.dart';
 
 //Controllers
 import 'package:luna_rd/src/controllers/main_controller.dart';
@@ -19,7 +19,7 @@ class LoginController {
       user = await auth.signInWithEmailAndPassword(nombre, password);
     } catch (e) {
       MainController.mensajeInferior(
-          context, "Debes llenar los campos", Colors.red);
+          context, "Hubo un Error!", Colors.red);
     }
 
     /*
@@ -55,7 +55,6 @@ class LoginController {
     await auth.signOut();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove('recordarme'); 
-    Navigator.pushNamedAndRemoveUntil(
-      context, '/login', (Route<dynamic> route) => false);
+    MainController.reiniciarApp(context);
   }
 }

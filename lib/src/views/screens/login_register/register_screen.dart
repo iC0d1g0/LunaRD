@@ -22,38 +22,11 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   bool showPass = false;
   bool showConfirm = false;
-  String nombre = '';
-  String correo = '';
-  String password = '';
-  String cPassword = '';
 
-  setNombre(String value) {
-    setState(() {
-      MainController.moverLetra(value);
-      nombre = value;
-    });
-  }
-
-  setCorreo(String value) {
-    setState(() {
-      MainController.moverLetra(value);
-      correo = value;
-    });
-  }
-
-  setCPassword(String value) {
-    setState(() {
-      MainController.moverLetra(value);
-      cPassword = value;
-    });
-  }
-
-  setPassword(String value) {
-    setState(() {
-      MainController.moverLetra(value);
-      password = value;
-    });
-  }
+  final nombreController = TextEditingController();
+  final correoController = TextEditingController();
+  final passwordController = TextEditingController();
+  final cPasswordController = TextEditingController();
 
   showConfPass() {
     setState(() {
@@ -77,30 +50,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
           children: [
             const SizedBox(height: 40),
             MyText(
-              onChanged: setNombre,
-              value: nombre,
+              controller: nombreController,
               hintText: "Nombre",
               ),
             const SizedBox(height: 12),
             MyText(
-              onChanged: setCorreo,
-              value: correo,
+              controller: correoController,
               hintText: "Email"
               ),
             const SizedBox(height: 12),
             MyText(
-              hintText: "Password",
-              onChanged: setPassword,
-              value: password,
+              controller: passwordController,
+              hintText: "Contraseña",
               onPressed: showPassword,
               obsecureText: showPass ? false : true,
               icon: showPass ? Icons.visibility_off : Icons.visibility,
             ),
             const SizedBox(height: 12),
             MyText(
-              hintText: "Confirmar Password",
-              onChanged: setCPassword,
-              value: cPassword,
+              controller: cPasswordController,
+              hintText: "Confirmar Contraseña",
               onPressed: showConfPass,
               obsecureText: showConfirm ? false : true,
               icon: showConfirm ? Icons.visibility_off : Icons.visibility,
@@ -112,9 +81,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 customColor: const Color(0xFFDA2B9E),
                 text: "Register",
                 onTap: () async{
-                  User? userRegisted = await RegisterController.registrarUsuario(context, nombre, correo, password, cPassword);
-                  MainController.usuaria!.nombre = userRegisted!.displayName;
-                  MainController.usuaria!.correo = userRegisted.email;
+                  User? userRegisted = await RegisterController.registrarUsuario(context, nombreController.text, correoController.text, passwordController.text, cPasswordController.text);
+                  if (MainController.usuaria != null && userRegisted != null) {
+                    MainController.usuaria!.nombre = userRegisted.displayName;
+                    MainController.usuaria!.correo = userRegisted.email;
+                  } else {
+                    // ignore: use_build_context_synchronously
+                    MainController.mensajeInferior(context, "Error al registrar", Colors.red);
+                  }
                 }),
             const SizedBox(
               height: 10,
