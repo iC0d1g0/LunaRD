@@ -36,9 +36,9 @@ class SQLHelper {
       id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
       nombre VARCHAR(50),
       correo VARCHAR(50),
-      birthday DATE, 
-      inicio_ultimo_preriodo DATE,
-      finalizo_ultimo_periodo DATE,
+      birthday DATETIME, 
+      inicio_ultimo_preriodo DATETIME,
+      finalizo_ultimo_periodo DATETIME,
       duracion_usual INT, 
       frecuencia_relaciones_mes INT,
       tomas_mucho_liquido VARCHAR(50),
@@ -47,24 +47,25 @@ class SQLHelper {
     """);
     
   }
- // Si la usuaria es nueva pues solo tienes que llamar este unico metodo. 
+ // Si la usuaria es nueva, pues solo tienes que llamar este unico metodo. 
+ //Metodo con exteroides. 
   static Future<int> createDatos(DatosUsuarios datos) async {
     final db = await SQLHelper.db();
     final data = {
-      ' nombre': datos.nombre,
+      'nombre': datos.nombre,
       'correo': datos.correo,
-      'birthday': datos.birthday,
+      'birthday': DateTime.now(),
       'clave': datos.clave,
-      'inicio_ultimo_preriodo': datos.inicioUltimoPeriodo,
-      'finalizo_ultimo_periodo': datos.finalizoUltimoPeriodo,
+      'inicio_ultimo_preriodo':DateTime.now(),
+      'finalizo_ultimo_periodo': DateTime.now(),
       'duracion_usual': datos.duracionUsual,
       'frecuencia_relaciones_mes': datos.frecuenciaRelacionesMes,
       'tomas_mucho_liquido': datos.tomasMuchoLiquido,
       'createdAt': datos.createdAt,
+
     };
 
-    final id =
-        await db.insert('Datos_user', data, conflictAlgorithm: sql.ConflictAlgorithm.replace);
+    //final id = await db.insert('Datos_user', data, conflictAlgorithm: sql.ConflictAlgorithm.replace);
     Usuario nuevoUsuario = Usuario(
     nombre: datos.nombre!,
     correo: datos.correo!,
@@ -81,7 +82,7 @@ class SQLHelper {
      agregarUsuarioFirestore(nuevoUsuario);
   
 
-    return id;
+    return 0;
   }
 
   //Para actualizar los datos

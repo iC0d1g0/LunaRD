@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luna_rd/src/controllers/main_controller.dart';
 import 'package:luna_rd/src/views/screens/login_register/banco4_screen.dart';
 import 'package:luna_rd/src/views/widgets/botontrue.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -60,6 +61,7 @@ class _MyBanco2State extends State<MyBono3> {
                 const Color(0x00ffcec5).withOpacity(0.7), 
                 text: "No, no tengo", 
                 onTap: () {
+                  MainController.usuaria.frecuenciaRelacionesMes = 0;
                    Navigator.push(context, 
                       MaterialPageRoute(
                       builder: (context) =>const MyBono4() , 
@@ -72,6 +74,7 @@ class _MyBanco2State extends State<MyBono3> {
                 const Color(0x00ffcec5).withOpacity(0.7), 
                 text: "Si, tengo pocas", 
                 onTap: () {
+                  MainController.usuaria.frecuenciaRelacionesMes = 1;
                    Navigator.push(context, 
                       MaterialPageRoute(
                       builder: (context) =>const MyBono4() , 
@@ -85,6 +88,7 @@ class _MyBanco2State extends State<MyBono3> {
                 const Color(0x00ffcec5).withOpacity(0.7), 
                 text: "Si, tengo muchas", 
                 onTap: () {
+                  MainController.usuaria.frecuenciaRelacionesMes = 2;
                    Navigator.push(context, 
                       MaterialPageRoute(
                       builder: (context) =>const MyBono4() , 

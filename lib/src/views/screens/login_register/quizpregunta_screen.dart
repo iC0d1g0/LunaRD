@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luna_rd/src/controllers/main_controller.dart';
 import 'package:luna_rd/src/views/screens/login_register/banco3_screen.dart';
 import 'package:luna_rd/src/views/widgets/botontrue.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -58,8 +59,9 @@ class _MyBanco2State extends State<MyAhh> {
                MyButtonTrue(
                 customColor:
                 const Color(0x00ffcec5).withOpacity(0.7), 
-                text: "Mas de 30 dias", 
+                text: "Más de 30 días", 
                 onTap: () {
+                  MainController.usuaria.duracionUsual = 1;
                    Navigator.push(context, 
                       MaterialPageRoute(
                       builder: (context) =>const  MyBono3()  , 
@@ -69,9 +71,10 @@ class _MyBanco2State extends State<MyAhh> {
               const SizedBox(height: 20),
                 MyButtonTrue(
                 customColor:
-                const Color(0x00ffcec5).withOpacity(0.7), 
-                text: "Menos de 24 dias", 
+                const Color(0x00ffcec5).withOpacity(0.7),
+                text: "Menos de 24 días", 
                 onTap: () {
+                  MainController.usuaria.duracionUsual = -1;
                    Navigator.push(context, 
                       MaterialPageRoute(
                       builder: (context) =>const  MyBono3()  , 
@@ -83,8 +86,9 @@ class _MyBanco2State extends State<MyAhh> {
                 MyButtonTrue(
                 customColor:
                 const Color(0x00ffcec5).withOpacity(0.7), 
-                text: "Entre 24 y 30 dias", 
+                text: "Entre 24 y 30 días", 
                 onTap: () {
+                  MainController.usuaria.duracionUsual = 0;
                    Navigator.push(context, 
                       MaterialPageRoute(
                       builder: (context) =>const MyBono3() , 

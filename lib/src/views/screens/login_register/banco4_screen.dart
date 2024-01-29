@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luna_rd/src/controllers/main_controller.dart';
 import 'package:luna_rd/src/views/screens/login_register/carga_screen.dart';
 import 'package:luna_rd/src/views/widgets/botontrue.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -60,6 +61,7 @@ class _MyBanco2State extends State<MyBono4> {
                 const Color(0x00ffcec5).withOpacity(0.7), 
                 text: "Entre 2 y 4 veces", 
                 onTap: () {
+                  MainController.usuaria.tomasMuchoLiquido = "Entre 2 y 4 veces";
                     Navigator.push(context, 
                     MaterialPageRoute(
                     builder: (context) => const Carga(), 
@@ -72,6 +74,7 @@ class _MyBanco2State extends State<MyBono4> {
                 const Color(0x00ffcec5).withOpacity(0.7), 
                 text: "Entre 5 y 7 veces", 
                 onTap: () {
+                  MainController.usuaria.tomasMuchoLiquido = "Entre 5 y 7 veces";
                     Navigator.push(context, 
                     MaterialPageRoute(
                     builder: (context) => const Carga(), 
@@ -85,6 +88,7 @@ class _MyBanco2State extends State<MyBono4> {
                 const Color(0x00ffcec5).withOpacity(0.7), 
                 text: "Mas de 8 veces", 
                 onTap: () {  
+                  MainController.usuaria.tomasMuchoLiquido = "Mas de 8 veces";
                     Navigator.push(context, 
                     MaterialPageRoute(
                     builder: (context) => const Carga(), 

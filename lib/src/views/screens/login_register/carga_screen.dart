@@ -3,6 +3,8 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import 'package:luna_rd/src/controllers/main_controller.dart';
 
+import'package:luna_rd/src/models/database/database_services.dart';
+
 class Carga extends StatefulWidget {
   const Carga({super.key});
 
@@ -22,7 +24,17 @@ class _CargaState extends State<Carga> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             CircularPercentIndicator(
-              onAnimationEnd: () {
+              onAnimationEnd: () async{
+                //MainController.reiniciarApp(context);
+                await SQLHelper.createDatos(
+                  MainController.usuaria
+                );
+
+                // ignore: use_build_context_synchronously
+                MainController.mensajeInferior(context, "Usuaria Creada Satisfactoriamente", const Color.fromARGB(255, 26, 139, 30));
+                await Future.delayed(const Duration(seconds: 3));
+
+                // ignore: use_build_context_synchronously
                 MainController.reiniciarApp(context);
               },
               animation: true,

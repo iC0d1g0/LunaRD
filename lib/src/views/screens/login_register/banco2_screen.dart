@@ -1,5 +1,7 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:luna_rd/src/controllers/main_controller.dart';
 import 'package:luna_rd/src/views/screens/login_register/quizpregunta_screen.dart';
 import 'package:luna_rd/src/views/widgets/next.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -13,10 +15,70 @@ class MyBanco2 extends StatefulWidget {
 }
 
 class _MyBanco2State extends State<MyBanco2> {
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showCupertinoModalPopup(
+      context: context,
+      builder: (BuildContext builder) {
+        return Center(
+        // ignore: sized_box_for_whitespace
+          child: Container(
+            color: const Color(0xFFFAE6E2),
+            height: 300.0,
+            child: CupertinoDatePicker(
+              mode: CupertinoDatePickerMode.date,
+              initialDateTime: selectedDate,
+              onDateTimeChanged: (DateTime newDate) {
+                setState(() {
+                  selectedDate = newDate;
+                });
+              },
+            ),
+          ),
+        );
+      },
+    );
+
+    if (picked != selectedDate && picked != null) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
+  DateTime selectedDate2 = DateTime.now();
+
+  Future<void> _selectDate2(BuildContext context) async {
+    final DateTime? picked = await showCupertinoModalPopup(
+      context: context,
+      builder: (BuildContext builder) {
+        return Center(
+        // ignore: sized_box_for_whitespace
+          child: Container(
+            color: const Color(0xFFFAE6E2),
+            height: 300.0,
+            child: CupertinoDatePicker(
+              mode: CupertinoDatePickerMode.date,
+              initialDateTime: selectedDate,
+              onDateTimeChanged: (DateTime newDate) {
+                setState(() {
+                  selectedDate = newDate;
+                });
+              },
+            ),
+          ),
+        );
+      },
+    );
+
+    if (picked != selectedDate && picked != null) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
 
 int simpleIntInput = 0;
-int simpleIntInput2 = 0;
-int simpleIntInput3 = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +117,25 @@ int simpleIntInput3 = 0;
                   ),
               ),
               const SizedBox(height: 10),
-                QuantityInput(
-                  // ignore: prefer_const_constructors    
-                  value: simpleIntInput,
-                  onChanged: (value) => setState(() => simpleIntInput = int.parse(value.replaceAll(',', 'dias')))
-                ),
+                CupertinoButton(
+                    onPressed: () => _selectDate(context),
+                    child: const Text(
+                      'Seleccionar Fecha',
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFDA2B9E),
+                          decoration: TextDecoration.none),
+                    ),
+                  ),
+                const SizedBox(height: 40),
+                Text(
+                    '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
+                    style: const TextStyle(
+                        fontSize: 30.0,
+                        color: Color(0xFFDA2B9E),
+                        decoration: TextDecoration.none),
+                  ),
                 const SizedBox(height: 40),
                    const Text("¿Cuando finalizo tu ultimo periodo menstrual?",
                     textAlign: TextAlign.center,
@@ -70,11 +146,25 @@ int simpleIntInput3 = 0;
                   ),
                    ),
                    const SizedBox(height: 10),
-                QuantityInput(
-                  // ignore: prefer_const_constructors    
-                  value: simpleIntInput2,
-                  onChanged: (value) => setState(() => simpleIntInput2 = int.parse(value.replaceAll(',', 'dias')))
-                ),
+                CupertinoButton(
+                    onPressed: () => _selectDate2(context),
+                    child: const Text(
+                      'Seleccionar Fecha',
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFDA2B9E),
+                          decoration: TextDecoration.none),
+                    ),
+                  ),
+                const SizedBox(height: 40),
+                Text(
+                    '${selectedDate2.day}/${selectedDate2.month}/${selectedDate2.year}',
+                    style: const TextStyle(
+                        fontSize: 30.0,
+                        color: Color(0xFFDA2B9E),
+                        decoration: TextDecoration.none),
+                  ),
                 const SizedBox(height: 40),  
                   const Text("¿cuantos dias suele durar sualmente?",
                     textAlign: TextAlign.center,
@@ -87,14 +177,17 @@ int simpleIntInput3 = 0;
                   const SizedBox(height: 10),
                 QuantityInput(
                   // ignore: prefer_const_constructors    
-                  value: simpleIntInput3,
-                  onChanged: (value) => setState(() => simpleIntInput3 = int.parse(value.replaceAll(',', 'dias')))
+                  value: simpleIntInput,
+                  onChanged: (value) => setState(() => simpleIntInput = int.parse(value.replaceAll(',', 'dias')))
                 ),
                 const SizedBox(height: 70),  
                 MyNext(
                    customColor: const Color(0xFFDA2B9E).withOpacity(0.7),
                      text:"Siguiente",
                      onTap: () {
+                      MainController.usuaria.inicioUltimoPeriodo = selectedDate;
+                      MainController.usuaria.finalizoUltimoPeriodo = selectedDate2;
+                      MainController.usuaria.duracionUsual = simpleIntInput;
                       Navigator.push(context, 
                       MaterialPageRoute(
                       builder: (context) => const MyAhh(), 

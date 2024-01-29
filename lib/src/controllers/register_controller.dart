@@ -21,7 +21,7 @@ class RegisterController {
       try	{
         AuthService auth = AuthService();
         User? user = await auth.registerWithEmailAndPassword(correo, password);
-        MainController.reiniciarApp(context);
+        //MainController.reiniciarApp(context);
         return user;
       } catch (e) {
         if (e.toString().contains("email-already-in-use")) {

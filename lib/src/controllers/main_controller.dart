@@ -21,7 +21,7 @@ class _MyClassState extends State<MyClass> {
 }
 
 class MainController {
-  static DatosUsuarios? usuaria;
+  static DatosUsuarios usuaria = DatosUsuarios();
   //mySetState es una variable que se usa para actualizar el estado de un widget desde otra clase
   static State<MyClass> mySetState = const MyClass().createState();
 
