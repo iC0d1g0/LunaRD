@@ -4,7 +4,53 @@ import 'package:sqflite/sqflite.dart' as sql;
 import 'databa_fire.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 //Este OBJETO ES PARA USO DEL CONTROLADOR, PUEDES LLAMAR TODAS LAS FUNCIONES 
+class ManageDatos{
+
+  String formatDateHora2(Timestamp timestamp){
+  //TimeStamp es el objeto que traemos de firebase
+  //para usarlo, vamos convertirlo a String
+
+  DateTime dateTime = timestamp.toDate();
+
+  //obtener el año 
+  String year = dateTime.year.toString();
+  //la hora
+  String mouth = dateTime.month.toString();
+  //el dia
+  String day = dateTime.day.toString();
+  //hora
+  String hora = dateTime.hour.toString();
+  //formato final
+  
+  String formarttedData = '$day/$mouth/$year';
+
+  return formarttedData;
+
+}
+  String formatDateHora(Timestamp timestamp){
+  //TimeStamp es el objeto que traemos de firebase
+  //para usarlo, vamos convertirlo a String
+
+  DateTime dateTime = timestamp.toDate();
+
+  //obtener el año 
+  String year = dateTime.year.toString();
+  //la hora
+  String mouth = dateTime.month.toString();
+  //el dia
+  String day = dateTime.day.toString();
+  //hora
+  String hora = dateTime.hour.toString();
+  //formato final
+  
+  String formarttedData = '$day/$mouth/$year/$hora';
+
+  return formarttedData;
+
+}
+}
 class SQLHelper {
+ static ManageDatos manageDatos = ManageDatos();
   //ESTOS METODOS NO SE UTILIZARAN PORQUE SON REMPLAZADOS POR FIREBASE AUTHENTICATION
  /*static Future<void> createTableLogin(sql.Database database) async {
     await database.execute("""CREATE TABLE  usuario_login(
@@ -15,7 +61,6 @@ class SQLHelper {
       createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
     )"""); //Esta funcion es inecesaria 
   }
-
   static Future<int> createUsuario(String nombre, String? correo, String clave) async {
     final db = await SQLHelper.db();
     final data = {'nombre': nombre, 'correo': correo, 'clave': clave};
@@ -36,9 +81,10 @@ class SQLHelper {
       id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
       nombre VARCHAR(50),
       correo VARCHAR(50),
-      birthday DATETIME, 
-      inicio_ultimo_preriodo DATETIME,
-      finalizo_ultimo_periodo DATETIME,
+
+      birthday DATE, 
+      inicio_ultimo_preriodo DATE,
+      finalizo_ultimo_periodo DATE,
       duracion_usual INT, 
       frecuencia_relaciones_mes INT,
       tomas_mucho_liquido VARCHAR(50),
@@ -49,23 +95,36 @@ class SQLHelper {
   }
  // Si la usuaria es nueva, pues solo tienes que llamar este unico metodo. 
  //Metodo con exteroides. 
-  static Future<int> createDatos(DatosUsuarios datos) async {
+  static String formateaFecha(DateTime fecha){
+    String day=fecha.day.toString();
+    String month=fecha.month.toString();
+    String year=fecha.year.toString();
+    String fechaFormateada=day+'/'+month+'/'+year;
+    return fechaFormateada;
+ }
+  static Future<int> createDatos(DatosUsuarios datoss) async {
+    DatosUsuarios datos =DatosUsuarios();
+    datos=datoss;
+
     final db = await SQLHelper.db();
+
     final data = {
       'nombre': datos.nombre,
       'correo': datos.correo,
-      'birthday': DateTime.now(),
-      'clave': datos.clave,
-      'inicio_ultimo_preriodo':DateTime.now(),
-      'finalizo_ultimo_periodo': DateTime.now(),
+      'birthday': formateaFecha(datos.birthday!),      
+      'inicio_ultimo_preriodo':formateaFecha(datos.inicioUltimoPeriodo!),
+      'finalizo_ultimo_periodo': formateaFecha(datos.finalizoUltimoPeriodo!),
       'duracion_usual': datos.duracionUsual,
       'frecuencia_relaciones_mes': datos.frecuenciaRelacionesMes,
       'tomas_mucho_liquido': datos.tomasMuchoLiquido,
-      'createdAt': datos.createdAt,
+      
 
     };
-
-    //final id = await db.insert('Datos_user', data, conflictAlgorithm: sql.ConflictAlgorithm.replace);
+    datos.birthday=formateaFecha(datos.birthday!) as DateTime?;
+    datos.inicioUltimoPeriodo=formateaFecha(datos.inicioUltimoPeriodo!) as DateTime?;
+    datos.finalizoUltimoPeriodo=formateaFecha(datos.finalizoUltimoPeriodo!) as DateTime?;
+    
+    await db.insert('Datos_user', data, conflictAlgorithm: sql.ConflictAlgorithm.replace);
     Usuario nuevoUsuario = Usuario(
     nombre: datos.nombre!,
     correo: datos.correo!,
@@ -76,7 +135,7 @@ class SQLHelper {
     frecuenciaRelacionesMes: 2,
     tomasMuchoLiquido: 'No',
     createdAt: Timestamp.now(),
-  );
+    );
  
  
      agregarUsuarioFirestore(nuevoUsuario);
@@ -92,8 +151,7 @@ class SQLHelper {
     final data = {
       ' nombre': datos.nombre,
       'correo': datos.correo,
-      'birthday': datos.birthday,
-      'clave': datos.clave,
+      'birthday': datos.birthday,     
       'inicio_ultimo_preriodo': datos.inicioUltimoPeriodo,
       'finalizo_ultimo_periodo': datos.finalizoUltimoPeriodo,
       'duracion_usual': datos.duracionUsual,
