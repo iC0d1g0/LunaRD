@@ -14,7 +14,7 @@ import 'package:luna_rd/src/controllers/main_controller.dart';
 
 class LoginController {
   static Future<bool> verificarLogin(
-      context, recordarme, nombre, password) async {
+      context, nombre, password) async {
     AuthService auth = AuthService();
     User? user;
     try {
@@ -25,10 +25,7 @@ class LoginController {
 
       if (user != null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setBool('recordarme', recordarme);
-      prefs.setBool('started', true);
-      MainController.notificacionVariableTemporal(context, 10000, 'started',
-          'Su sesión ha expirará. Si desea mantener la sesión activa, favor de marcar la casilla "Recordarme" al iniciar sesión.');
+      prefs.setBool('logiado', true);
       return true;
     } else {
       return false;
