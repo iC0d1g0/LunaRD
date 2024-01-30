@@ -52,19 +52,12 @@ class MenuBasico extends StatefulWidget {
 
 class _MenuBasicoState extends State<MenuBasico> {
 
+  Future<void> verificarLogiado() async => !(await MainController.getStarted()) ? WidgetsBinding.instance.addPostFrameCallback((_) => Navigator.pushNamed(context, '/login')) : null;
+
   @override
   void initState() {
     super.initState();
     verificarLogiado();
-  }
-
-  Future<void> verificarLogiado() async {
-    bool logiadoOInicializado = await MainController.getStarted();
-    if (!logiadoOInicializado) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        Navigator.pushNamed(context, '/login');
-      });
-    }
   }
 
   @override
