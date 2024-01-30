@@ -40,12 +40,7 @@ class MainController {
     );
   }
 
-  static Future<bool> getLogiadoOInicializado() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool started = prefs.getBool('started') ?? false;
-    bool recordarme = prefs.getBool('recordarme') ?? false;
-    return started || recordarme;
-  }
+  static Future<bool> getStarted() async => (await SharedPreferences.getInstance()).getBool('started') ?? false;
 
   static ScaffoldFeatureController<SnackBar, SnackBarClosedReason>
       mensajeInferior(
@@ -69,7 +64,7 @@ class MainController {
     );
   }
 
-  static void notificacionVariableTemporal(
+  static void a(
       BuildContext context, int tiempo, String clave, String mensaje) async {
     try {
       // Programar una notificación local que se ejecute después de X segundos

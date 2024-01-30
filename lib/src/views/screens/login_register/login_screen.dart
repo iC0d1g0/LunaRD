@@ -31,13 +31,14 @@ class _LoginScreenState extends State<LoginScreen> {
       showPass = !showPass;
     });
   }
-
+  /*
   bool checkTheBox = false;
   check() {
     setState(() {
       checkTheBox = !checkTheBox;
     });
   }
+  */
 
   void navigateIfLoginSuccessful(BuildContext context, bool loginSuccessful) {
     if (loginSuccessful) {
@@ -79,35 +80,12 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 12),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 25),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Theme(
-                          data: ThemeData(unselectedWidgetColor: Colors.red),
-                          child: Checkbox(
-                            checkColor: Colors.white,
-                            value: checkTheBox ? true : false,
-                            onChanged: (value) {
-                              check();
-                            },
-                          ),
-                        ),
-                        const Text(
-                          "Mantenerme conectada",
-                          style: TextStyle(color: Colors.black),
-                        )
-                      ],
-                    ),
-                    const Text(
-                      "Olvide mi contraseña",
-                      style: TextStyle(
-                        color: Color(0xFFDA2B9E),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+                child: const Text(
+                  "Olvide mi contraseña",
+                  style: TextStyle(
+                    color: Color(0xFFDA2B9E),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               const SizedBox(
@@ -117,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 customColor: const Color(0xFFDA2B9E),
                 text: "Iniciar Sesión",
                 onTap: () async {
-                  bool loginSuccessful = await LoginController.verificarLogin(context, checkTheBox, nombreController.text, passwordController.text);
+                  bool loginSuccessful = await LoginController.verificarLogin(context, nombreController.text, passwordController.text);
                   // ignore: use_build_context_synchronously
                   navigateIfLoginSuccessful(context, loginSuccessful);
                 }
