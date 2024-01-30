@@ -99,7 +99,7 @@ class SQLHelper {
     String day=fecha.day.toString();
     String month=fecha.month.toString();
     String year=fecha.year.toString();
-    String fechaFormateada=day+'/'+month+'/'+year;
+    String fechaFormateada='$day/$month/$year';
     return fechaFormateada;
  }
   static Future<int> createDatos(DatosUsuarios datoss) async {
@@ -120,10 +120,7 @@ class SQLHelper {
       
 
     };
-    datos.birthday=formateaFecha(datos.birthday!) as DateTime?;
-    datos.inicioUltimoPeriodo=formateaFecha(datos.inicioUltimoPeriodo!) as DateTime?;
-    datos.finalizoUltimoPeriodo=formateaFecha(datos.finalizoUltimoPeriodo!) as DateTime?;
-    
+ 
     await db.insert('Datos_user', data, conflictAlgorithm: sql.ConflictAlgorithm.replace);
     Usuario nuevoUsuario = Usuario(
     nombre: datos.nombre!,
