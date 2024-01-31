@@ -38,7 +38,7 @@ class _CharScreen extends State<CharScreen> {
   List<Widget> convertirListaChatAWidget(List<String> listaChat) {
     List<Widget> listaWidgetChat = [];
     for (var i = 0; i < listaChat.length; i++) {
-      if (listaChat[i].contains('ai/')) {
+      if (listaChat[i].contains('ia/')) {
         listaWidgetChat.add(ChatAI(mensaje: listaChat[i].substring(3)));
       } else {
         listaWidgetChat.add(ChatPerson(mensaje: listaChat[i]));
