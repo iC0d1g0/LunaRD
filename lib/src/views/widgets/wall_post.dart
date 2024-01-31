@@ -16,10 +16,6 @@ class WallPost extends StatefulWidget {
   final String postId;
   final List<String> likes;
 
- 
-
- 
-
   const WallPost({
     super.key,
     required this.message,

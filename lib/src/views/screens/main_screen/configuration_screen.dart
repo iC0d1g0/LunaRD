@@ -35,6 +35,7 @@ Future<String?> retonrnaNombre( )async{
     // Y así sucesivamente, puedes acceder a las demás propiedades
      return nombre;
   }
+    return null;
 }
      
    
