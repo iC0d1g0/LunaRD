@@ -117,7 +117,7 @@ class LoginController {
     AuthService auth = AuthService();
     await auth.signOut();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove('recordarme');
+    prefs.remove('started');
     MainController.reiniciarApp(context);
   }
 }
