@@ -9,15 +9,25 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+void main() async{
+  //final String respuesta = await MainController.respuestaChatGPT('Hola');
+  // ignore: avoid_print
+  final String respuesta = "hola";
+  print(respuesta);
+}
+
 class MainController {
   static DatosUsuarios usuaria = DatosUsuarios();
   static Color barColor = const Color.fromRGBO(255, 198, 187, 1);
-  static String respuestaChatInicial = 'ai/Hola, ¿Cómo estás hoy?';
+  static String respuestaChatInicial = 'ia/Hola, ¿Cómo estás hoy?';
   static ChatGPT chatGPT = ChatGPT();
     //Error de compilacion no estaba debolbiendo un psobile null
   static Future<String?> respuestaChatGPT(String mensaje) async {  
     String? respuesta = await chatGPT.callAPI(mensaje);
-    final jsonResponse = json.decode(respuesta!);
+    if (respuesta == null) {
+      return 'ia/Lo siento, no puedo responder en este momento. ¿Podrías intentarlo más tarde?';
+    }
+    final jsonResponse = json.decode(respuesta);
     final resp = jsonResponse['choices'][0]['message']['content'];
     MainController.respuestaChatInicial = 'ia/$resp';
     return respuesta;
