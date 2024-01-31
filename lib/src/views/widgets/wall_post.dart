@@ -154,10 +154,13 @@ void showCommentDialogComments() {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text("Agrega un comentario"),
-        content: TextField(
+        title: const Text("Agrega un comentario",style: TextStyle
+                      (fontWeight: FontWeight.bold,
+                      color:Color.fromARGB(255, 86, 47,92))),
+        content: TextField(maxLines: null,
           controller: _commentTextController,
-          decoration: const InputDecoration(hintText: "escribe un comentario"),
+          decoration: const InputDecoration(hintText: "escribe un comentario",hintStyle: TextStyle
+                      (color:Color.fromARGB(255, 86, 47,92))),
         ),
         actions: [
           //cancelar
@@ -167,9 +170,9 @@ void showCommentDialogComments() {
                 //clear controller
                 _commentTextController.clear();
               } ,
-              child: const Text("cancelar")
+              child: const Text("cancelar",style: TextStyle(color:Color.fromARGB(255, 86, 47,92))),
               
-              ),
+      ),
 
           //post
           TextButton(
@@ -183,7 +186,8 @@ void showCommentDialogComments() {
                 Navigator.pop(context);
 
                 },
-              child: const Text("post")),
+              child: const Text("post",style: TextStyle
+                      (color:Color.fromARGB(255, 86, 47,92)))),
         ],
       ),
     );
@@ -215,7 +219,6 @@ void showCommentDialogComments() {
               .doc(doc.id)
               .delete();
               //luego se elimina el post
-             
             }
             FirebaseFirestore.instance
             .collection('foro_luna')
@@ -238,8 +241,8 @@ void showCommentDialogComments() {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
+        color: const Color.fromARGB(220,251,225,242),
+        borderRadius: BorderRadius.circular(20),
       ),
       margin: const EdgeInsets.only(top: 25, left: 25, right: 25),
       padding: const EdgeInsets.all(25),
@@ -252,21 +255,25 @@ void showCommentDialogComments() {
             crossAxisAlignment: CrossAxisAlignment.start,
             //el grupo de texto
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  //messeague
-                  Text(widget.message),
-              
-                    const SizedBox(height: 5),
-                  //user
-                  
-                  Text(
-                    widget.user,
-                    style: TextStyle(color: Colors.grey[500]),
-                  ),
-              
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    //messeague
+                    Text(widget.message,style: const TextStyle
+                        (fontWeight: FontWeight.bold,
+                        color:Color.fromARGB(255, 86, 47,92))),
+                
+                      const SizedBox(height: 2),
+                    //user
+                    
+                    Text(
+                      widget.user,
+                      style: const TextStyle(color:Color.fromARGB(220, 63,7,43)),
+                    ),
+                
+                  ],
+                ),
               ),
               if(widget.user == currentUSer.email)
               DeleteBoutton(onTap: deletePost),
@@ -293,7 +300,7 @@ void showCommentDialogComments() {
                   //contador de likes
                   Text(
                     widget.likes.length.toString(),
-                    style: const TextStyle(color: Colors.grey),
+                    style: const TextStyle(color: Color.fromARGB(220, 63,7,43)),
                   ),
                 ],
                 ),
@@ -308,7 +315,7 @@ void showCommentDialogComments() {
                   //contador de comentarios
                   const Text(
                    '0' ,
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color:  Color.fromARGB(220, 63,7,43)),
                   ),
                   
                 ],
@@ -325,7 +332,7 @@ void showCommentDialogComments() {
             .collection("foro_luna")
             .doc(widget.postId)
             .collection("Comments")
-            .orderBy("CommentTime", descending: true)
+            .orderBy("CommentTime", descending: false)
             .snapshots(),
             builder:(context, snapshot) {
 
@@ -335,10 +342,11 @@ void showCommentDialogComments() {
            shrinkWrap: true, //para listas anidadas
             physics: const NeverScrollableScrollPhysics(),
                   
-            children: snapshot.data!.docs.map((doc) {
-                    
-            //obteniendo el comentario desde firebase
-            final commentData = doc.data() as Map<String,dynamic>;
+            children: snapshot.data != null
+                    ? snapshot.data!.docs.map((doc) {
+                        //obteniendo el comentario desde firebase
+                        final commentData = doc.data() as Map<String, dynamic>;
+
                     
             //y retornar el comentario en ui
               return Comments(
@@ -348,7 +356,7 @@ void showCommentDialogComments() {
               
                        
               );
-              }).toList(),
+              }).toList() :[],
               
               
 

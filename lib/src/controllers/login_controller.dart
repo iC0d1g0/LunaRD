@@ -25,7 +25,7 @@ class LoginController {
 
       if (user != null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setBool('logiado', true);
+      prefs.setBool('started', true);
       return true;
     } else {
       return false;

@@ -19,7 +19,7 @@ class Config extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'ConfiguracionoMenu',
       theme: ThemeData(
-        primaryColor: const Color.fromRGBO(255, 244, 242, 1),
+        primaryColor: const Color(0x00ffe6f4),
       ),
       home: const ConfigScreen(),
     );

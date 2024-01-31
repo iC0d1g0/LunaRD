@@ -13,7 +13,7 @@ class AuthService {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
         email: email,
-        password: password, 
+        password: password,
       );
       postMessage(_auth.currentUser!.email!, "Mi primera prueba, iCodigo");
       User? user = result.user;

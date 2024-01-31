@@ -8,7 +8,7 @@ class MytextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextField(maxLines: null,
       controller: controller,
       obscureText: obscureText,
       decoration: InputDecoration(

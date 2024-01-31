@@ -47,9 +47,10 @@ class _CharScreen extends State<CharScreen> {
     return listaWidgetChat;
   }
 
-  void agregarMensaje(String mensaje) {
+  void agregarMensaje(String? mensaje) {
+    String nonull = (mensaje != null) ? mensaje : "Hola"; 
     setState(() {
-      listaChat.add(mensaje);
+      listaChat.add(nonull);
       listaWidgetChat = convertirListaChatAWidget(listaChat);
     });
   }
@@ -135,7 +136,7 @@ class _CharScreen extends State<CharScreen> {
               onTap: () async{
                 agregarMensaje(mensajeController.text);
                 final respuesta = await MainController.respuestaChatGPT(mensajeController.text);
-                agregarMensaje(respuesta);
+                agregarMensaje(respuesta!);
               },
               child: const Padding(
                 padding: EdgeInsets.only(left: 10),

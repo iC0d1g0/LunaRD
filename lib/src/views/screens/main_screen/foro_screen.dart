@@ -47,14 +47,14 @@ class _ForoState extends State<Foro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.white,
 
       appBar: AppBar(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         title: const Center(
-          child: Text("FORO LUNA",style: TextStyle
+          child: Text("FORO          ",style: TextStyle
                       (fontWeight: FontWeight.bold,
-                      color:Colors.grey)),
+                      color:Color.fromARGB(255, 86, 47,92))),
           
           
           ),
@@ -71,7 +71,7 @@ class _ForoState extends State<Foro> {
                 .collection('foro_luna')
                 .orderBy(
                   "TimeStamp",
-                  descending: false)
+                  descending: true)
                 .snapshots(),
                 builder: (context, snapshot) {
                   if(snapshot.hasData){
@@ -117,7 +117,7 @@ class _ForoState extends State<Foro> {
                   ),
                   //post boton
                   IconButton(onPressed: postMessage,
-                   icon: const Icon(Icons.arrow_circle_up)),
+                   icon: const Icon(Icons.arrow_circle_up),color:const Color.fromARGB(220, 63,7,43)),
               
                 ],
               
@@ -125,7 +125,7 @@ class _ForoState extends State<Foro> {
             ),
 
             // usuario actual
-            Text("Usuario: ${currentUser.email!}"),
+           
             
             const SizedBox(
               height: 10,

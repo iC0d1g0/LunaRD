@@ -76,7 +76,7 @@ class _MenuBasicoState extends State<MenuBasico> {
           Container(
             height: 160,
             decoration: const BoxDecoration(
-                color: Color.fromRGBO(250, 230, 226, 1),
+                color: Color(0xFFFFFFFF),
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(50),
                     bottomRight: Radius.circular(50))),
@@ -112,7 +112,7 @@ class _MenuBasicoState extends State<MenuBasico> {
                 trailing: const CircleAvatar(
                   radius: 50,
                   backgroundImage: AssetImage('assets/images/perfil.png'),
-                  backgroundColor: Color.fromRGBO(255, 198, 187, 1),
+                  backgroundColor: Color.fromRGBO(255, 255, 255, 1),
                 ),
               ),
               const SizedBox(height: 20),
@@ -228,7 +228,7 @@ class _MenuBasicoState extends State<MenuBasico> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          MainController.respuestaChatInicial = await MainController.respuestaChatGPT('Hola, como estas?');
+          MainController.respuestaChatInicial = (await MainController.respuestaChatGPT('Hola, como estas?'))!;
           // ignore: use_build_context_synchronously
           Navigator.push(
               context,
