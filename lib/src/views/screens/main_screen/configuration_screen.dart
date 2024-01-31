@@ -1,11 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luna_rd/src/app.dart';
 import 'package:luna_rd/src/controllers/login_controller.dart';
+import 'package:luna_rd/src/models/database/databa_fire.dart';
+import 'package:luna_rd/src/models/database/database_services.dart';
 
 
 class Config extends StatelessWidget {
   const Config({super.key});
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +25,19 @@ class Config extends StatelessWidget {
     );
   }
 }
-
+Future<String?> retonrnaNombre( )async{
+   List<Usuario> datosUsuariosList = await SQLHelper.getDatos();
+    String nombre ='Adderlis';
+    for (Usuario usuario in datosUsuariosList) {
+    nombre= usuario.nombre;
+    String Correo=usuario.correo;
+    DateTime birthday=usuario.birthday;
+    // Y así sucesivamente, puedes acceder a las demás propiedades
+     return nombre;
+  }
+}
+     
+   
 class ConfigScreen extends StatefulWidget {
   const ConfigScreen({super.key});
   @override
@@ -28,6 +46,9 @@ class ConfigScreen extends StatefulWidget {
 
 class _ConfigScreen extends State<ConfigScreen> {
   final defaultPadding = 16.0;
+   final currentUSer = FirebaseAuth.instance.currentUser!.email;
+
+ 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -103,9 +124,10 @@ class _ConfigScreen extends State<ConfigScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      const Center(
+                       Center(
                         child: Text(
-                          'Usuario nombre',
+                          currentUSer.toString(),
+                          // ignore: prefer_const_constructors
                           style: TextStyle(
                               fontSize: 20,
                               color: Colors.black,
@@ -175,10 +197,11 @@ class _ConfigScreen extends State<ConfigScreen> {
                                 color: Colors.black,
                                 fontWeight: FontWeight.w800),
                           ),
-                          const SizedBox(
+                          const SizedBox( 
                             height: 20,
                           ),
-                          lastUpdates('Nombre', 'Gmail', 'Contraseña'),
+                         
+                          lastUpdates('Nombre:', 'Gmail :  $currentUSer', 'Contraseña: ********'),
                           const SizedBox(
                             height: 40,
                           ),
