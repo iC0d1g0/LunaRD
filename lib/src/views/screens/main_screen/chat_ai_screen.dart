@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:luna_rd/src/app.dart';
+import 'package:luna_rd/src/controllers/main_controller.dart';
 import 'package:luna_rd/src/views/widgets/chat_context.dart';
-
-void main() {
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Color.fromRGBO(255, 198, 187, 1)));
-  runApp(const Chat());
-}
 
 class Chat extends StatelessWidget {
   const Chat({super.key});
@@ -16,7 +10,7 @@ class Chat extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'ChatScreen',
+      title: 'Chat con Eva',
       theme: ThemeData(
         primaryColor: const Color.fromRGBO(255, 244, 242, 1),
       ),
@@ -33,6 +27,33 @@ class CharScreen extends StatefulWidget {
 }
 
 class _CharScreen extends State<CharScreen> {
+  
+  final mensajeController = TextEditingController();
+
+  List<Widget> listaWidgetChat = [];
+  List<String> listaChat = [
+    MainController.respuestaChatInicial,
+  ];
+
+  List<Widget> convertirListaChatAWidget(List<String> listaChat) {
+    List<Widget> listaWidgetChat = [];
+    for (var i = 0; i < listaChat.length; i++) {
+      if (listaChat[i].contains('ai/')) {
+        listaWidgetChat.add(ChatAI(mensaje: listaChat[i].substring(3)));
+      } else {
+        listaWidgetChat.add(ChatPerson(mensaje: listaChat[i]));
+      }
+    }
+    return listaWidgetChat;
+  }
+
+  void agregarMensaje(String mensaje) {
+    setState(() {
+      listaChat.add(mensaje);
+      listaWidgetChat = convertirListaChatAWidget(listaChat);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,16 +97,10 @@ class _CharScreen extends State<CharScreen> {
         ),
       ),
       body: ListView(
-          padding:
-              const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 80),
-          children: const [
-            ChatAI(mensaje: 'puto el que lo lea.'),
-            ChatPerson(mensaje: 'te vas a hacer el que no lo leio.'),
-            ChatPerson(mensaje: 'te vas a hacer el que no lo leio.'),
-            ChatAI(mensaje: 'puto el que lo lea.'),
-            ChatPerson(mensaje: 'te vas a hacer el que no lo leio.'),
-            ChatAI(mensaje: 'puto el que lo lea.'),
-          ]),
+        padding:
+            const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 80),
+        children: listaWidgetChat,
+      ),
       bottomSheet: Container(
         height: 65,
         decoration: BoxDecoration(
@@ -110,13 +125,18 @@ class _CharScreen extends State<CharScreen> {
                 alignment: Alignment.centerRight,
                 width: 300,
                 child: TextFormField(
+                    controller: mensajeController,
                     decoration: const InputDecoration(
                         hintText: 'Escribiendo...', border: InputBorder.none)),
               ),
             ),
             InkWell(
               // ignore: avoid_print
-              onTap: () => print('Boton de enviar un mensaje x a la ai Eva'),
+              onTap: () async{
+                agregarMensaje(mensajeController.text);
+                final respuesta = await MainController.respuestaChatGPT(mensajeController.text);
+                agregarMensaje(respuesta);
+              },
               child: const Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: Icon(Icons.send_rounded, color: Colors.black),

@@ -19,6 +19,7 @@ class ManageDatos{
   //el dia
   String day = dateTime.day.toString();
   //hora
+  // ignore: unused_local_variable
   String hora = dateTime.hour.toString();
   //formato final
   
@@ -146,15 +147,15 @@ class SQLHelper {
     final db = await SQLHelper.db();
     
     final data = {
-      ' nombre': datos.nombre,
+      'nombre': datos.nombre,
       'correo': datos.correo,
-      'birthday': datos.birthday,     
-      'inicio_ultimo_preriodo': datos.inicioUltimoPeriodo,
-      'finalizo_ultimo_periodo': datos.finalizoUltimoPeriodo,
+      'birthday': formateaFecha(datos.birthday!),      
+      'inicio_ultimo_preriodo':formateaFecha(datos.inicioUltimoPeriodo!),
+      'finalizo_ultimo_periodo': formateaFecha(datos.finalizoUltimoPeriodo!),
       'duracion_usual': datos.duracionUsual,
       'frecuencia_relaciones_mes': datos.frecuenciaRelacionesMes,
       'tomas_mucho_liquido': datos.tomasMuchoLiquido,
-      'createdAt': datos.createdAt,
+      
     };
     final result = await db.update('Datos_user', data, where: "correo = ?", whereArgs: [datos.correo]);
     
@@ -200,7 +201,7 @@ class SQLHelper {
                 
                 datos.nombre = usuario.nombre;
                 datos.correo = usuario.correo;
-                datos.birthday = usuario.birthday;
+                datos.birthday = formateaFecha(usuario.birthday) as DateTime?;
                 datos.inicioUltimoPeriodo = usuario.inicioUltimoPeriodo;
                 datos.finalizoUltimoPeriodo = usuario.finalizoUltimoPeriodo;
                 datos.duracionUsual = usuario.duracionUsual;
@@ -232,7 +233,7 @@ class SQLHelper {
                tomasMuchoLiquido: map['tomasMuchoLiquido'],
                createdAt: map['createdAt']);
             }).cast<Usuario>().toList();
-            
+          
             return datosUsuariosList;
         }
        

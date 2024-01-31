@@ -227,7 +227,9 @@ class _MenuBasicoState extends State<MenuBasico> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
+          MainController.respuestaChatInicial = await MainController.respuestaChatGPT('Hola, como estas?');
+          // ignore: use_build_context_synchronously
           Navigator.push(
               context,
               MaterialPageRoute(

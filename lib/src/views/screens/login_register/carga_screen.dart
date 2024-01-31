@@ -29,8 +29,8 @@ class _CargaState extends State<Carga> {
                 //MainController.reiniciarApp(context);
                 await SQLHelper.createDatos(MainController.usuaria);
 
+                // ignore: use_build_context_synchronously
                 MainController.mensajeInferior(
-                  // ignore: use_build_context_synchronously
                     context,
                     "Usuaria Creada Satisfactoriamente",
                     const Color.fromARGB(255, 26, 139, 30));
