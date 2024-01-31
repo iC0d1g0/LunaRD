@@ -51,7 +51,6 @@ class MenuBasico extends StatefulWidget {
 }
 
 class _MenuBasicoState extends State<MenuBasico> {
-
   @override
   void initState() {
     super.initState();
@@ -228,9 +227,8 @@ class _MenuBasicoState extends State<MenuBasico> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          MainController.respuestaChatInicial = await MainController.respuestaChatGPT('Hola, como estas?');
-          // ignore: use_build_context_synchronously
           Navigator.push(
+              // ignore: use_build_context_synchronously
               context,
               MaterialPageRoute(
                 builder: (context) => const Chat(),
