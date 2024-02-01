@@ -69,7 +69,7 @@ class _MenuBasicoState extends State<MenuBasico> {
           Container(
             height: 160,
             decoration: const BoxDecoration(
-                color: Color.fromRGBO(250, 230, 226, 1),
+                color: Color(0xFFFFFFFF),
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(50),
                     bottomRight: Radius.circular(50))),
@@ -83,7 +83,7 @@ class _MenuBasicoState extends State<MenuBasico> {
                     style: Theme.of(context)
                         .textTheme
                         .headlineSmall
-                        ?.copyWith(color: Colors.black),
+                        ?.copyWith(color: Color.fromARGB(220, 63,7,43)),
                   ),
                 ),
                 subtitle: Center(
@@ -92,7 +92,7 @@ class _MenuBasicoState extends State<MenuBasico> {
                     style: Theme.of(context)
                         .textTheme
                         .titleMedium
-                        ?.copyWith(color: Colors.black),
+                        ?.copyWith(color:const Color.fromARGB(220, 63,7,43)),
                   ),
                 ),
                 onTap: () {
@@ -105,7 +105,7 @@ class _MenuBasicoState extends State<MenuBasico> {
                 trailing: const CircleAvatar(
                   radius: 50,
                   backgroundImage: AssetImage('assets/images/perfil.png'),
-                  backgroundColor: Color.fromRGBO(255, 198, 187, 1),
+                  backgroundColor: Color.fromRGBO(255, 255, 255, 1),
                 ),
               ),
               const SizedBox(height: 20),
@@ -135,7 +135,7 @@ class _MenuBasicoState extends State<MenuBasico> {
                         const DecorationImage(
                             image: AssetImage('assets/images/calendario_.png'),
                             scale: 7),
-                        const Color.fromRGBO(255, 198, 187, 1)),
+                        const Color(0xDFF59DD7)),
                   ),
                   InkWell(
                     onTap: () {
@@ -150,7 +150,7 @@ class _MenuBasicoState extends State<MenuBasico> {
                         const DecorationImage(
                             image: AssetImage('assets/images/foro_.png'),
                             scale: 7),
-                        const Color.fromRGBO(255, 198, 187, 1)),
+                        const Color(0xDFF59DD7)),
                   ),
                   InkWell(
                     onTap: () {
@@ -165,7 +165,7 @@ class _MenuBasicoState extends State<MenuBasico> {
                         const DecorationImage(
                             image: AssetImage('assets/images/consulta.png'),
                             scale: 6),
-                        const Color.fromRGBO(255, 198, 187, 1)),
+                        const Color(0xDFF59DD7)),
                   ),
                   InkWell(
                     onTap: () {
@@ -180,7 +180,7 @@ class _MenuBasicoState extends State<MenuBasico> {
                         const DecorationImage(
                             image: AssetImage('assets/images/historial.png'),
                             scale: 6),
-                        const Color.fromRGBO(255, 198, 187, 1)),
+                        const Color(0xDFF59DD7)),
                   ),
                   InkWell(
                     onTap: () {
@@ -195,7 +195,7 @@ class _MenuBasicoState extends State<MenuBasico> {
                         const DecorationImage(
                             image: AssetImage('assets/images/notas.png'),
                             scale: 6),
-                        const Color.fromRGBO(255, 198, 187, 1)),
+                       const Color(0xDFF59DD7)),
                   ),
                   InkWell(
                     onTap: () {
@@ -210,7 +210,7 @@ class _MenuBasicoState extends State<MenuBasico> {
                         const DecorationImage(
                             image: AssetImage('assets/images/pregunta.png'),
                             scale: 6),
-                        const Color.fromRGBO(255, 198, 187, 1)),
+                       const Color(0xDFF59DD7)),
                   ),
                 ],
               ),
@@ -220,7 +220,9 @@ class _MenuBasicoState extends State<MenuBasico> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
+          MainController.respuestaChatInicial = (await MainController.respuestaChatGPT('Hola, como estas?'))!;
+          // ignore: use_build_context_synchronously
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -229,7 +231,7 @@ class _MenuBasicoState extends State<MenuBasico> {
         },
         elevation: 10,
         highlightElevation: 10,
-        backgroundColor: const Color.fromRGBO(255, 198, 187, 1),
+        backgroundColor: const Color(0xDFEFC2E0),
         child: const Icon(Icons.chat_rounded),
       ),
     );
@@ -238,7 +240,7 @@ class _MenuBasicoState extends State<MenuBasico> {
   itemDashboard(String title, DecorationImage icondata, Color background) =>
       Container(
         decoration: BoxDecoration(
-            color: const Color.fromRGBO(250, 230, 226, 1),
+            color: const Color.fromARGB(220, 251,225,242),
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(

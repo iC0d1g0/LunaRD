@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:luna_rd/src/models/database/databa_fire.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -12,8 +13,9 @@ class AuthService {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
         email: email,
-        password: password, 
+        password: password,
       );
+      postMessage(_auth.currentUser!.email!, "Mi primera prueba, iCodigo");
       User? user = result.user;
       return user;
     } catch (e) {
@@ -23,6 +25,7 @@ class AuthService {
     Future<User?> signInWithCredencial(AuthCredential facebook) async {
     try {
       UserCredential result = await _auth.signInWithCredential(facebook);
+      
       User? user = result.user;
       return user;
     } catch (e) {

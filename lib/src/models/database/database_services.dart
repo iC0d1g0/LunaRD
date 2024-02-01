@@ -19,6 +19,7 @@ class ManageDatos{
   //el dia
   String day = dateTime.day.toString();
   //hora
+  // ignore: unused_local_variable
   String hora = dateTime.hour.toString();
   //formato final
   
@@ -99,7 +100,7 @@ class SQLHelper {
     String day=fecha.day.toString();
     String month=fecha.month.toString();
     String year=fecha.year.toString();
-    String fechaFormateada=day+'/'+month+'/'+year;
+    String fechaFormateada='$day/$month/$year';
     return fechaFormateada;
  }
   static Future<int> createDatos(DatosUsuarios datoss) async {
@@ -120,10 +121,7 @@ class SQLHelper {
       
 
     };
-    datos.birthday=formateaFecha(datos.birthday!) as DateTime?;
-    datos.inicioUltimoPeriodo=formateaFecha(datos.inicioUltimoPeriodo!) as DateTime?;
-    datos.finalizoUltimoPeriodo=formateaFecha(datos.finalizoUltimoPeriodo!) as DateTime?;
-    
+ 
     await db.insert('Datos_user', data, conflictAlgorithm: sql.ConflictAlgorithm.replace);
     Usuario nuevoUsuario = Usuario(
     nombre: datos.nombre!,
@@ -149,15 +147,15 @@ class SQLHelper {
     final db = await SQLHelper.db();
     
     final data = {
-      ' nombre': datos.nombre,
+      'nombre': datos.nombre,
       'correo': datos.correo,
-      'birthday': datos.birthday,     
-      'inicio_ultimo_preriodo': datos.inicioUltimoPeriodo,
-      'finalizo_ultimo_periodo': datos.finalizoUltimoPeriodo,
+      'birthday': formateaFecha(datos.birthday!),      
+      'inicio_ultimo_preriodo':formateaFecha(datos.inicioUltimoPeriodo!),
+      'finalizo_ultimo_periodo': formateaFecha(datos.finalizoUltimoPeriodo!),
       'duracion_usual': datos.duracionUsual,
       'frecuencia_relaciones_mes': datos.frecuenciaRelacionesMes,
       'tomas_mucho_liquido': datos.tomasMuchoLiquido,
-      'createdAt': datos.createdAt,
+      
     };
     final result = await db.update('Datos_user', data, where: "correo = ?", whereArgs: [datos.correo]);
     
@@ -203,7 +201,7 @@ class SQLHelper {
                 
                 datos.nombre = usuario.nombre;
                 datos.correo = usuario.correo;
-                datos.birthday = usuario.birthday;
+                datos.birthday = formateaFecha(usuario.birthday) as DateTime?;
                 datos.inicioUltimoPeriodo = usuario.inicioUltimoPeriodo;
                 datos.finalizoUltimoPeriodo = usuario.finalizoUltimoPeriodo;
                 datos.duracionUsual = usuario.duracionUsual;
@@ -235,7 +233,7 @@ class SQLHelper {
                tomasMuchoLiquido: map['tomasMuchoLiquido'],
                createdAt: map['createdAt']);
             }).cast<Usuario>().toList();
-            
+          
             return datosUsuariosList;
         }
        

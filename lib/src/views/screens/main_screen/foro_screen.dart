@@ -1,224 +1,135 @@
-import 'package:flutter/material.dart';
-import 'package:luna_rd/src/app.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import  'package:flutter/material.dart';
+import 'package:luna_rd/src/views/widgets/text_field.dart';
+import 'package:luna_rd/src/views/widgets/wall_post.dart';
 
-class Foro extends StatelessWidget {
+
+
+class Foro extends StatefulWidget {
   const Foro({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'ForoMenu',
-      theme: ThemeData(
-        primaryColor: const Color.fromRGBO(255, 244, 242, 1),
-      ),
-      home: const ForoScreen(),
-    );
+  State<Foro> createState() => _ForoState();
+}
+
+class _ForoState extends State<Foro> {
+  //user
+  final currentUser = FirebaseAuth.instance.currentUser!;
+  //controlador de texto
+  final textController = TextEditingController();
+  void signOut(){
+    FirebaseAuth.instance.signOut();
+
   }
-}
 
-class ForoScreen extends StatefulWidget {
-  const ForoScreen({super.key});
+  //post Message 
+  void postMessage(){
+    //solo postear si hay algo en el TextField
+    if(textController.text.isNotEmpty){
+        //subir a firebase
+        FirebaseFirestore.instance.collection('foro_luna').add({
+          'UserEmail':currentUser.email,
+          'Message' : textController.text,
+          'TimeStamp': Timestamp.now(),
+          'Likes': [],
+        });
+    }
 
-  @override
-  State<ForoScreen> createState() => _ForoScreen();
-}
+    //limpiar el textFiled
+    setState(() {
+      textController.clear();
+    });
 
-class _ForoScreen extends State<ForoScreen> {
+  }
+ 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MyApp(),
-                          ));
-                    },
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: const Color.fromRGBO(250, 230, 226, 1),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  const Center(
-                    child: Text(
-                      'Foro',
-                      style: TextStyle(
-                          fontSize: 22,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w800),
-                    ),
-                  ),
-                ]),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 25),
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-            decoration: BoxDecoration(
-              color: const Color(0x00ffcec5).withOpacity(0.5),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Escribe tus vivencias',
-                        hintStyle: TextStyle(
-                          color: Colors.black.withOpacity(0.5),
-                        )),
-                    obscureText: false,
-                  ),
-                ),
-                IconButton(
-                  // ignore: avoid_print
-                  onPressed: () => print('accion de publicar comentario.'),
-                  icon: const Icon(Icons.send),
-                  color: Colors.black,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const posting(
-            usuario: 'Usuario',
-            descripcion:
-                'Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito Pito',
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-        ],
-      ),
-    );
-  }
-}
+      backgroundColor: Colors.white,
 
-// ignore: camel_case_types
-class posting extends StatelessWidget {
-  final String usuario;
-  final String descripcion;
-  const posting({super.key, required this.usuario, required this.descripcion});
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: const Color.fromRGBO(250, 230, 226, 1),
-        ),
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        title: const Center(
+          child: Text("FORO          ",style: TextStyle
+                      (fontWeight: FontWeight.bold,
+                      color:Color.fromARGB(255, 86, 47,92))),
+          
+          
+          ),
+        
+      ),
+      
+     body: Center(
         child: Column(
           children: [
-            const SizedBox(
-              height: 10,
-              width: 10,
+            //the wall
+            Expanded(
+              child: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                .collection('foro_luna')
+                .orderBy(
+                  "TimeStamp",
+                  descending: true)
+                .snapshots(),
+                builder: (context, snapshot) {
+                  if(snapshot.hasData){
+                    return ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder:(context, index) {
+                        //get MSGS
+                        final post = snapshot.data!.docs[index]; 
+                        return WallPost(
+                          message: post['Message'],
+                         user: post['UserEmail'],
+                         postId: post.id,
+                         likes: List<String>.from(post['Likes'] ?? []),
+                         
+                         );
+
+                      },
+                    );
+                  }else if(snapshot.hasError){
+                      return Center(
+                        child: Text('ERROR: ${snapshot.error}'
+                        ),
+                      );
+                  }
+                  return const Center(child: CircularProgressIndicator(),
+                  );
+                },
+              ), 
             ),
-            Row(
-              children: [
-                const SizedBox(width: 10, height: 5),
-                Container(
-                  height: 80,
-                  width: 80,
-                  decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color.fromRGBO(255, 196, 184, 1),
-                      image: DecorationImage(
-                          image: AssetImage('assets/images/perfil.png'))),
-                ),
-                const SizedBox(
-                  width: 15,
-                ),
-                Text(
-                  usuario,
-                  style: const TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w800),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
+            //post msg
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                descripcion,
-                style: const TextStyle(fontSize: 18, color: Colors.black),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  'Fecha  ${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}',
-                  style: const TextStyle(fontSize: 14, color: Colors.black),
-                ),
-                const SizedBox(
-                  width: 140,
-                ),
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(20),
-                      color: const Color.fromARGB(255, 255, 196, 184),
-                      image: const DecorationImage(
-                        scale: 20,
-                        image: AssetImage('assets/images/me_gusta.png'),
-                      )),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color.fromARGB(255, 255, 196, 184),
-                    image: const DecorationImage(
-                      scale: 15,
-                      image: AssetImage('assets/images/comentario.png'),
+              child: Row(
+                children: [
+                  //textfield
+              
+                  Expanded
+                  (child: MytextField(
+                    controller: textController,
+                    hintText: 'Escribe algo en el foro..',
+                    obscureText: false,
                     ),
                   ),
-                ),
-              ],
+                  //post boton
+                  IconButton(onPressed: postMessage,
+                   icon: const Icon(Icons.arrow_circle_up),color:const Color.fromARGB(220, 63,7,43)),
+              
+                ],
+              
+              ),
             ),
+
+            // usuario actual
+           
+            
             const SizedBox(
               height: 10,
-            ),
+            )
           ],
         ),
       ),

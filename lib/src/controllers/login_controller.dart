@@ -25,7 +25,7 @@ class LoginController {
 
       if (user != null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setBool('logiado', true);
+      prefs.setBool('started', true);
       return true;
     } else {
       return false;
@@ -117,7 +117,7 @@ class LoginController {
     AuthService auth = AuthService();
     await auth.signOut();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove('recordarme');
+    prefs.remove('started');
     MainController.reiniciarApp(context);
   }
 }
