@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:luna_rd/src/app.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Calendario extends StatelessWidget {
@@ -19,38 +18,51 @@ class Calendario extends StatelessWidget {
   }
 }
 
+
+
+
 class CalendarioScreen extends StatefulWidget {
   const CalendarioScreen({super.key});
   @override
   State<CalendarioScreen> createState() => _CalendarioScreen();
 }
 
-class _CalendarioScreen extends State<CalendarioScreen>
-    with TickerProviderStateMixin {
-  final defaultPadding = 16.0;
-  late TabController _tabController;
-  // ignore: unused_field
-  late TabController _tabController2;
-  // ignore: unused_field
-  final _tabs = [
-    const Tab(text: 'Embarazo'),
-    const Tab(text: 'Ovulacion'),
-    const Tab(text: 'Menstruacion'),
-    const Tab(text: 'Dia fertil'),
-    const Tab(text: 'Dia infertil')
-  ];
+class _CalendarioScreen extends State<CalendarioScreen>{
+    final CalendarFormat _calendarFormat = CalendarFormat.month;
+    DateTime _focusedDay = DateTime.now();
+    DateTime? _selectedDay;
+
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
-    _tabController2 = TabController(length: 3, vsync: this);
-    _tabController.index = 2;
+    _selectedDay = _focusedDay;
+  }
+
+  void _onDaySelected(DateTime selectedDay, DateTime focusedDay){
+    if(!isSameDay(_selectedDay, selectedDay)){
+      setState(() {
+        _selectedDay = selectedDay;
+        _focusedDay = focusedDay;
+      });
+    }
+  }
+
+  void _onRangeSelectd(DateTime? start, DateTime? end, DateTime focusedDay){
+    setState(() {
+      _selectedDay = null;
+      _focusedDay = focusedDay;
+  
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+     DateTime now = DateTime.now();
+     String mesActual = obtenerMesActual(now.month);
+
     return Scaffold(
       body: ListView(
+       
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
@@ -69,12 +81,12 @@ class _CalendarioScreen extends State<CalendarioScreen>
                     width: 50,
                     height: 50,
                     decoration: BoxDecoration(
-                      color: const Color.fromRGBO(250, 230, 226, 1),
+                      color: const Color.fromARGB(220, 251, 225,242),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: const Icon(
                       Icons.arrow_back,
-                      color: Colors.black,
+                      color: Color.fromARGB(255, 86, 47,92),
                     ),
                   ),
                 ),
@@ -83,7 +95,7 @@ class _CalendarioScreen extends State<CalendarioScreen>
                     'Calendario',
                     style: TextStyle(
                         fontSize: 22,
-                        color: Colors.black,
+                        color: Color.fromARGB(255, 86, 47,92),
                         fontWeight: FontWeight.w800),
                   ),
                 ),
@@ -104,26 +116,11 @@ class _CalendarioScreen extends State<CalendarioScreen>
                           horizontal: 10, vertical: 10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: const Color.fromARGB(255, 255, 215, 207),
+                        color:const  Color.fromARGB(255, 239, 209, 203),
                       ),
                       child: const Text(
-                        'Ovulacion',
-                        style: TextStyle(fontSize: 14, color: Colors.black),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: const Color.fromARGB(255, 255, 124, 98),
-                      ),
-                      child: const Text(
-                        'Embarazo',
-                        style: TextStyle(fontSize: 14, color: Colors.black),
+                        'Mestruacion',
+                        style: TextStyle(fontSize: 14, color: Color.fromARGB(255, 86, 47,92)),
                       ),
                     ),
                   ),
@@ -134,107 +131,139 @@ class _CalendarioScreen extends State<CalendarioScreen>
                           horizontal: 10, vertical: 10),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: const Color.fromRGBO(250, 230, 226, 1)),
+                          color: const Color.fromARGB(220, 251, 225,242)),
                       child: const Text(
-                        'Menstruacion',
-                        style: TextStyle(fontSize: 14, color: Colors.black),
+                        'Ovulacion',
+                        style: TextStyle(fontSize: 14, color: Color.fromARGB(255, 86, 47,92)),
                       ),
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: const Color.fromARGB(255, 255, 180, 165),
-                      ),
-                      child: const Text(
-                        'Dia Fertil',
-                        style: TextStyle(fontSize: 14, color: Colors.black),
-                      ),
-                    ),
-                  ),
-                  Container(
+                    Container(
                     padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 10),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: const Color.fromARGB(255, 255, 154, 134),
-                      ),
+                          borderRadius: BorderRadius.circular(20),
+                          color: const Color.fromARGB(220, 251, 225,242)),
                       child: const Text(
-                        'Dia Infertil',
-                        style: TextStyle(fontSize: 14, color: Colors.black),
+                        'Fertil',
+                        style: TextStyle(fontSize: 14, color: Color.fromARGB(255, 86, 47,92)),
+                      ),
+                    ),
+                  ),
+                       Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color:const Color.fromARGB(220, 251, 225,242)),
+                      child: const Text(
+                        'Infertil',
+                        style: TextStyle(fontSize: 14, color: Color.fromARGB(255, 86, 47,92)),
                       ),
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
-          Expanded(
-            child: SfCircularChart(
-                onDataLabelRender: (DataLabelRenderArgs args) {
-                  return activate();
-                },
-                series: <CircularSeries>[
-                  DoughnutSeries<ChartData, String>(
-                    dataLabelSettings: const DataLabelSettings(isVisible: true),
-                    dataSource: chartData,
-                    radius: "130",
-                    innerRadius: "50%",
-                    startAngle: 350,
-                    endAngle: 350,
-                    pointColorMapper: (ChartData data, _) => data.color,
-                    xValueMapper: (ChartData data, _) => data.x,
-                    yValueMapper: (ChartData data, _) => data.y,
-                  )
-                ]),
+          const SizedBox(
+                height: 100,
+              ),
+Column(
+  children: [
+    Stack(
+      alignment: Alignment.center,
+      children: [
+        Container(
+          width: 230.0,
+          height: 230.0,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: Color.fromARGB(220, 251, 225,242),
           ),
+        ),
+        Text(
+          '${now.day} $mesActual',
+          style: const TextStyle(fontSize: 34, color: Color.fromARGB(255, 86, 47,92)),
+        ),
+        
+      ],
+    ),
+  ],
+),
+            
+  // 
+
+ const SizedBox(height: 60),
+        
           TableCalendar(
-            focusedDay: DateTime.now(),
+            
             firstDay: DateTime.utc(2010, 10, 20),
             lastDay: DateTime.utc(2040, 10, 20),
-            headerVisible: true,
-            availableGestures: AvailableGestures.all,
-            headerStyle: const HeaderStyle(
-                formatButtonVisible: false,
-                titleCentered: true,
-                titleTextStyle: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w800)),
+            focusedDay: DateTime.now(),
+            selectedDayPredicate: (day) => isSameDay(_selectedDay, day),            
+            calendarFormat: _calendarFormat,
+            startingDayOfWeek: StartingDayOfWeek.monday,
+            onDaySelected: _onDaySelected,
+            rangeStartDay: DateTime(2024, 02, 5),
+            rangeSelectionMode: RangeSelectionMode.toggledOn,
+            onRangeSelected: _onRangeSelectd,
+            rangeEndDay: DateTime(2024, 02, 20),
             calendarStyle: const CalendarStyle(
-                todayTextStyle: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold)),
+              outsideDaysVisible: false, 
+            ),
+            onFormatChanged: (format) {
+              if(_calendarFormat != format){
+                 setState(() {
+                   _calendarFormat;
+                 }); 
+              }
+            },
+            onPageChanged: ((focusedDay) {
+              _focusedDay = focusedDay;
+            }
+            ),
+            
+          
           ),
         ],
       ),
     );
   }
+  String obtenerMesActual(int numeroMes) {
+    switch (numeroMes) {
+      case 1:
+        return 'Enero';
+      case 2:
+        return 'Febr';
+      case 3:
+        return 'Marzo';
+      case 4:
+        return 'Abril';
+      case 5:
+        return 'Mayo';
+      case 6:
+        return 'Jun';
+      case 7:
+        return 'Jul';
+      case 8:
+        return 'Agos';
+      case 9:
+        return 'Sept';
+      case 10:
+        return 'Oct';
+      case 11:
+        return 'Nov';
+      case 12:
+        return 'Dic';
+      default:
+        return '';
+    }
+  }
 }
 
-final List<ChartData> chartData = [
-  ChartData("Ovulacion", 28, const Color.fromARGB(255, 255, 215, 207)),
-  ChartData("Menstruacion", 7, const Color.fromRGBO(250, 230, 226, 1)),
-  ChartData("Dia Fertil", 35, const Color.fromARGB(255, 255, 180, 165)),
-  ChartData("Dia Infertil", 12, const Color.fromARGB(255, 255, 154, 134)),
-  ChartData("Embarazo", 2, const Color.fromARGB(255, 255, 124, 98))
-];
 
-class ChartData {
-  ChartData(this.x, this.y, this.color);
-  final String x;
-  final double y;
-  final Color color;
-}
