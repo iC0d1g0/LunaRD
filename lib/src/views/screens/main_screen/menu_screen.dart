@@ -142,7 +142,7 @@ class _MenuBasicoState extends State<MenuBasico> {
                         const DecorationImage(
                             image: AssetImage('assets/images/calendario_.png'),
                             scale: 7),
-                        const Color(0xDFEFC2E0)),
+                        const Color(0xDFF59DD7)),
                   ),
                   InkWell(
                     onTap: () {
@@ -157,7 +157,7 @@ class _MenuBasicoState extends State<MenuBasico> {
                         const DecorationImage(
                             image: AssetImage('assets/images/foro_.png'),
                             scale: 7),
-                        const Color(0xDFEFC2E0)),
+                        const Color(0xDFF59DD7)),
                   ),
                   InkWell(
                     onTap: () {
@@ -172,7 +172,7 @@ class _MenuBasicoState extends State<MenuBasico> {
                         const DecorationImage(
                             image: AssetImage('assets/images/consulta.png'),
                             scale: 6),
-                        const Color(0xDFEFC2E0)),
+                        const Color(0xDFF59DD7)),
                   ),
                   InkWell(
                     onTap: () {
@@ -187,7 +187,7 @@ class _MenuBasicoState extends State<MenuBasico> {
                         const DecorationImage(
                             image: AssetImage('assets/images/historial.png'),
                             scale: 6),
-                        const Color(0xDFEFC2E0)),
+                        const Color(0xDFF59DD7)),
                   ),
                   InkWell(
                     onTap: () {
@@ -202,7 +202,7 @@ class _MenuBasicoState extends State<MenuBasico> {
                         const DecorationImage(
                             image: AssetImage('assets/images/notas.png'),
                             scale: 6),
-                        const Color(0xDFEFC2E0)),
+                       const Color(0xDFF59DD7)),
                   ),
                   InkWell(
                     onTap: () {
@@ -217,7 +217,7 @@ class _MenuBasicoState extends State<MenuBasico> {
                         const DecorationImage(
                             image: AssetImage('assets/images/pregunta.png'),
                             scale: 6),
-                        const Color(0xDFEFC2E0)),
+                       const Color(0xDFF59DD7)),
                   ),
                 ],
               ),

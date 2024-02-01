@@ -44,14 +44,14 @@ class MyApp extends StatelessWidget {
             if (snapshot.data == true) {
               SystemChrome.setSystemUIOverlayStyle(
                 const SystemUiOverlayStyle(
-                  statusBarColor: Color.fromRGBO(250, 230, 226, 1),
+                  statusBarColor: Color.fromRGBO(20, 19, 18, 1),
                 ),
               );  
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: 'Luna',
                 theme: ThemeData(
-                  colorSchemeSeed: const Color(0xFFFF8692),
+                  colorSchemeSeed: const Color.fromARGB(255,250,204,244),
                   fontFamily: "Inter",
                 ),
                 initialRoute: MenuBasico.routeName,
