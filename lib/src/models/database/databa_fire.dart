@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 // ESTE METODO ES SOLO PARA USO EXCLUSIVO DEL BACKEND oSEA YO ICODIGO. 
 class Usuario {
   String nombre;
@@ -92,65 +92,3 @@ Future<bool> existenciaUsuario({required String email})async{
     return false;
 }
 
-//FORO DE LUNA, METODOS
- //post Message 
- 
-  Future<void> postMessage(String currentUsers,String post)async {
-    //final currentUser = FirebaseAuth.instance.currentUser!;
-    //solo postear si hay algo en el TextField
-    if(post.isNotEmpty){
-        //subir a firebase
-         await FirebaseFirestore.instance.collection('foro_luna').add({
-          'UserEmail':currentUsers,
-          'Message' : post,
-          'TimeStamp': Timestamp.now(),
-          'Likes': [],
-        });
-    }
-
-  }
-  //agregar comentarios
-    Future<void> addComments(String commentText, String email, String postId) async {
-    //escribir el comentario a firestore bajo los comentaris para este post
-    await FirebaseFirestore.instance
-    .collection("User Post")
-    .doc(postId)
-    .collection("Comments")
-    .add({
-    "CommentText": commentText,
-    "CommentBy": email,
-    "CommentTime": Timestamp.now() //recodar darle formato para usar
-    });
-
-  }
-     Future<void>  addCommentstoComments(String commentToCommentText, String postId, String email)async {
-      
-            //primero eliminar comentario de firestire(si solo elimnas el post los comentarios seguiran en la base de datos)
-            await FirebaseFirestore.instance
-            .collection('User Post')
-            .doc(postId)
-            .collection('Comments').add({
-              "CommentText": commentToCommentText,
-              "CommentBy": email,
-              "CommentTime": Timestamp.now() //recodar darle formato para usar
-            });
-         
-  }
-
-/*void main() {
-  // Ejemplo de uso
-  Usuario nuevoUsuario = Usuario(
-    nombre: 'Nombre Usuario',
-    correo: 'correo@example.com',
-    birthday: DateTime.now(),
-    inicioUltimoPeriodo: DateTime.now(),
-    finalizoUltimoPeriodo: DateTime.now(),
-    duracionUsual: 7,
-    frecuenciaRelacionesMes: 2,
-    tomasMuchoLiquido: 'No',
-    createdAt: Timestamp.now(),
-  );
-
-  agregarUsuarioFirestore(nuevoUsuario);
-}
-*/

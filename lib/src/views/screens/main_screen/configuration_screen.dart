@@ -49,7 +49,6 @@ class _ConfigScreen extends State<ConfigScreen> {
   final defaultPadding = 16.0;
    final currentUSer = FirebaseAuth.instance.currentUser!.email;
 
- 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
