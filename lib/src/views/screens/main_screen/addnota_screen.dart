@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:luna_rd/src/views/screens/main_screen/notas_screen.dart';
-import 'package:luna_rd/src/views/widgets/MyCosita.dart';
-import 'package:luna_rd/src/views/widgets/mybutton.dart';
+import 'package:luna_rd/src/views/widgets/my_cosita.dart';
+//import 'package:luna_rd/src/views/widgets/mybutton.dart';
 
 class AddNota extends StatelessWidget {
   const AddNota({super.key});
@@ -143,9 +143,9 @@ class _AddNotaScreen extends State<AddNotaScreen> {
           margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: MyCosita(
             text: 'Guardar Accion',
-            ColorText: const Color.fromRGBO(255, 230, 244, 1),
+            colorText: const Color.fromRGBO(255, 230, 244, 1),
             customColor: const Color.fromRGBO(100, 16, 70, 1),
-            onTap: () => print("Accion de guardar las notificaciones creadas."),
+            onTap: () => {}, //print("Accion de guardar las notificaciones creadas."),
           )),
     );
   }

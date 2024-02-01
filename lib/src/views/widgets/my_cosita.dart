@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class MyCosita extends StatelessWidget {
   final Color customColor;
-  // ignore: non_constant_identifier_names
-  final Color ColorText;
+  final Color colorText;
   final String text;
   final void Function()? onTap;
 
@@ -11,9 +10,8 @@ class MyCosita extends StatelessWidget {
     super.key,
     required this.customColor,
     required this.text,
-    // ignore: non_constant_identifier_names
     required this.onTap,
-    required this.ColorText,
+    required this.colorText,
   });
 
   @override
@@ -32,7 +30,7 @@ class MyCosita extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-              color: ColorText,
+              color: colorText,
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),

@@ -104,7 +104,7 @@ class _CalendarioScreen extends State<CalendarioScreen> {
               Row(
                 children: [
                   InkWell(
-                    onTap: () => print("hola johan"),
+                    onTap: () => {}, //print("hola johan"),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 10,
@@ -126,7 +126,7 @@ class _CalendarioScreen extends State<CalendarioScreen> {
                     ),
                   ),
                   InkWell(
-                    onTap: () => print("hola"),
+                    onTap: () => {}, //print("hola"),
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: Container(
@@ -145,7 +145,7 @@ class _CalendarioScreen extends State<CalendarioScreen> {
                     ),
                   ),
                   InkWell(
-                    onTap: () => print("hola"),
+                    onTap: () => {}, //print("hola"),
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: Container(
@@ -164,7 +164,7 @@ class _CalendarioScreen extends State<CalendarioScreen> {
                     ),
                   ),
                   InkWell(
-                    onTap: () => print("hola"),
+                    onTap: () => {}, //print("hola"),
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: Container(
