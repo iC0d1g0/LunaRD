@@ -139,9 +139,11 @@ class _CharScreen extends State<CharScreen> {
             InkWell(
               // ignore: avoid_print
               onTap: () async{
-                agregarMensaje(mensajeController.text);
-                agregarMensaje(await MainController.respuestaChatGPT(mensajeController.text));
-                mensajeController.clear();
+                if(mensajeController.text.isEmpty) {
+                  agregarMensaje(mensajeController.text);
+                  agregarMensaje(await MainController.respuestaChatGPT(mensajeController.text));
+                  mensajeController.clear();
+                }
               },
               child: const Padding(
                 padding: EdgeInsets.only(left: 10),

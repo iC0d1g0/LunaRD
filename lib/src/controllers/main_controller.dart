@@ -14,7 +14,7 @@ class MainController {
   static Color barColor = const Color.fromRGBO(255, 198, 187, 1);
   static String respuestaChatInicial = 'ia/Hola soy Eva, ¿Cómo estás hoy?';
   static ChatGPT chatGPT = ChatGPT();
-
+    //Error de compilacion no estaba debolbiendo un psobile null
   static Future<String> respuestaChatGPT(String mensaje) async {  
     String? respuesta = await chatGPT.callAPI(mensaje);
     if (respuesta == null) {

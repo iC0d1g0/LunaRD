@@ -20,8 +20,8 @@ class Comments extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey[300],
-        borderRadius: BorderRadius.circular(4),  
+        color:const Color(0xDFEFC2E0),
+        borderRadius: BorderRadius.circular(10),  
       ),
       margin: const EdgeInsets.only(bottom: 5),
       padding: const EdgeInsets.all(15),
@@ -34,9 +34,9 @@ class Comments extends StatelessWidget {
           //user,time
           Row(
             children: [
-              Text(user,style: const TextStyle(color: Colors.grey),),
-              const Text(" . ", style: TextStyle(color: Colors.grey),),
-              Text(time, style: const TextStyle(color: Colors.grey),),
+              Text(user,style: const TextStyle(color: Color.fromARGB(220, 63,7,43)),),
+              const Text(" . ", style: TextStyle(color: Color.fromARGB(220, 63,7,43)),),
+              Text(time, style: const TextStyle(color: Color.fromARGB(220, 63,7,43)),),
             ],
           ),
           

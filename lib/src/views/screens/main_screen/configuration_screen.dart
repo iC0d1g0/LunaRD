@@ -19,7 +19,7 @@ class Config extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'ConfiguracionoMenu',
       theme: ThemeData(
-        primaryColor: const Color.fromRGBO(255, 244, 242, 1),
+        primaryColor: Color.fromARGB(0, 255, 230, 244),
       ),
       home: const ConfigScreen(),
     );
@@ -35,6 +35,7 @@ Future<String?> retonrnaNombre( )async{
     // Y así sucesivamente, puedes acceder a las demás propiedades
      return nombre;
   }
+    return null;
 }
      
    
