@@ -132,8 +132,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       if (userRegisted != null && userRegisted.displayName != null && userRegisted.email != null) {
                         MainController.usuaria.nombre = userRegisted.displayName;
                         MainController.usuaria.correo = userRegisted.email;
+                        // ignore: use_build_context_synchronously
                         Navigator.push(
-                          // ignore: use_build_context_synchronously
                           context,
                           MaterialPageRoute(
                             builder: (context) => const BonoPage(),
