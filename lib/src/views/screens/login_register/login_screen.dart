@@ -124,12 +124,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     child: GestureDetector(
                       onTap: () async{
-                        try {
-                          await LoginController.iniciarConGoogle(context);
-                        } catch (e) {
-                          // ignore: use_build_context_synchronously
-                          MainController.mensajeInferior(context, "Error al iniciar con Google", Colors.red);
-                        }
+                        bool loginSuccessful = await LoginController.iniciarConGoogle(context);
+                        // ignore: use_build_context_synchronously
+                        navigateIfLoginSuccessful(context, loginSuccessful);
                       },
                       child: Image.asset("assets/images/goo.png", width: 40)
                     ),
