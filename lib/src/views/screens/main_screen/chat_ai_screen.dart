@@ -47,12 +47,16 @@ class _CharScreen extends State<CharScreen> {
     return listaWidgetChat;
   }
 
-  void agregarMensaje(String? mensaje) {
-    String nonull = (mensaje != null) ? mensaje : "Hola"; 
-    setState(() {
-      listaChat.add(nonull);
-      listaWidgetChat = convertirListaChatAWidget(listaChat);
-    });
+  void agregarMensaje(String mensaje) {
+    listaChat.add(mensaje);
+    listaWidgetChat = convertirListaChatAWidget(listaChat);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    agregarMensaje(MainController.respuestaChatInicial);
   }
 
   @override
@@ -126,6 +130,7 @@ class _CharScreen extends State<CharScreen> {
                 alignment: Alignment.centerRight,
                 width: 300,
                 child: TextFormField(
+                    maxLines: null,
                     controller: mensajeController,
                     decoration: const InputDecoration(
                         hintText: 'Escribiendo...', border: InputBorder.none)),
@@ -134,9 +139,11 @@ class _CharScreen extends State<CharScreen> {
             InkWell(
               // ignore: avoid_print
               onTap: () async{
-                agregarMensaje(mensajeController.text);
-                final respuesta = await MainController.respuestaChatGPT(mensajeController.text);
-                agregarMensaje(respuesta!);
+                if(mensajeController.text == ''){
+                  agregarMensaje(mensajeController.text);
+                  agregarMensaje(await MainController.respuestaChatGPT(mensajeController.text));
+                  mensajeController.clear();
+                }
               },
               child: const Padding(
                 padding: EdgeInsets.only(left: 10),

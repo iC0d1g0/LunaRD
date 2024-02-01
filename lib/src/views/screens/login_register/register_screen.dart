@@ -125,11 +125,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   child: GestureDetector(
                     onTap: () async{
-                      try {
-                        await RegisterController.registrarConGoogle();
-                      } catch (e) {
+                      User? userRegisted = await RegisterController.registrarConGoogle();
+                      if (userRegisted != null && userRegisted.displayName != null && userRegisted.email != null) {
+                        MainController.usuaria.nombre = userRegisted.displayName;
+                        MainController.usuaria.correo = userRegisted.email;
+                        Navigator.push(
+                          // ignore: use_build_context_synchronously
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const BonoPage(),
+                          ),
+                        );
+                      } else {
                         // ignore: use_build_context_synchronously
-                        MainController.mensajeInferior(context, "Error al iniciar con Google", Colors.red);
+                        MainController.mensajeInferior(context, "Error al registrar con Google", Colors.red);
                       }
                     },
                     child: Image.asset("assets/images/goo.png", width: 40),
