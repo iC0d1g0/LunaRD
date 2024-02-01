@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:luna_rd/src/views/screens/main_screen/notas_screen.dart';
+import 'package:luna_rd/src/views/widgets/MyCosita.dart';
+import 'package:luna_rd/src/views/widgets/mybutton.dart';
 
 class AddNota extends StatelessWidget {
   const AddNota({super.key});
@@ -29,6 +31,7 @@ class _AddNotaScreen extends State<AddNotaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(255, 230, 244, 1),
       body: ListView(
         padding: const EdgeInsets.all(15),
         children: [
@@ -40,30 +43,31 @@ class _AddNotaScreen extends State<AddNotaScreen> {
                   InkWell(
                     onTap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Nota(),
-                          ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Nota(),
+                        ),
+                      );
                     },
                     child: Container(
                       width: 50,
                       height: 50,
                       decoration: BoxDecoration(
-                        color: const Color.fromRGBO(250, 230, 226, 1),
+                        color: const Color.fromRGBO(100, 16, 70, 1),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Icon(
                         Icons.arrow_back,
-                        color: Colors.black,
+                        color: Color.fromRGBO(255, 230, 244, 1),
                       ),
                     ),
                   ),
                   const Center(
                     child: Text(
-                      'Notas',
+                      'Agregar Nota',
                       style: TextStyle(
                           fontSize: 22,
-                          color: Colors.black,
+                          color: Color.fromRGBO(100, 16, 70, 1),
                           fontWeight: FontWeight.w800),
                     ),
                   ),
@@ -109,7 +113,7 @@ class _AddNotaScreen extends State<AddNotaScreen> {
           ),
           const SizedBox(height: 10),
           MaterialButton(
-            color: const Color.fromRGBO(250, 230, 226, 1),
+            color: const Color.fromRGBO(100, 16, 70, 1),
             onPressed: () => showDatePicker(
                     context: context,
                     firstDate: DateTime(2000),
@@ -123,7 +127,7 @@ class _AddNotaScreen extends State<AddNotaScreen> {
             child: const Text('Selecciona Fecha',
                 style: TextStyle(
                     fontSize: 18,
-                    color: Colors.black,
+                    color: Color.fromRGBO(255, 230, 244, 1),
                     fontWeight: FontWeight.w800)),
           ),
           const SizedBox(height: 5),
@@ -135,21 +139,14 @@ class _AddNotaScreen extends State<AddNotaScreen> {
         ],
       ),
       bottomSheet: Container(
-        width: double.infinity,
-        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        child: ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.all(5),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10))),
-          child: const Text(
-            'Guardar',
-            style: TextStyle(
-                fontSize: 22, color: Colors.black, fontWeight: FontWeight.w800),
-          ),
-        ),
-      ),
+          width: double.infinity,
+          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          child: MyCosita(
+            text: 'Guardar Accion',
+            ColorText: const Color.fromRGBO(255, 230, 244, 1),
+            customColor: const Color.fromRGBO(100, 16, 70, 1),
+            onTap: () => print("Accion de guardar las notificaciones creadas."),
+          )),
     );
   }
 }

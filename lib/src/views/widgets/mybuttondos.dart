@@ -28,7 +28,7 @@ class MyButtono extends StatelessWidget {
           child: Text(
             text,
             style: const TextStyle(
-              color: Colors.white,
+              color: Color.fromRGBO(255, 230, 244, 1),
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),

@@ -1,5 +1,3 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +20,6 @@ class WallPost extends StatefulWidget {
     required this.user,
     required this.postId,
     required this.likes,
-    
-   
   });
 
   @override
@@ -31,17 +27,14 @@ class WallPost extends StatefulWidget {
 }
 
 class _WallPostState extends State<WallPost> {
-
   //documetos de los comments
-  
+
   //current user
   final currentUSer = FirebaseAuth.instance.currentUser!;
   bool isLiked = false;
   final _commentTextController = TextEditingController();
   final _commenttoCommentTextController = TextEditingController();
-  ManageDatos formatea=ManageDatos();
-  
-
+  ManageDatos formatea = ManageDatos();
 
   @override
   void initState() {
@@ -71,42 +64,38 @@ class _WallPostState extends State<WallPost> {
     }
   }
 
- 
   //agregar comentarios
   void addComments(String commentText) {
     //escribir el comentario a firestore bajo los comentaris para este post
     FirebaseFirestore.instance
-    .collection('foro_luna')
-    .doc(widget.postId)
-    .collection("Comments")
-    .add({
-    "CommentText": commentText,
-    "CommentBy": currentUSer.email,
-    "CommentTime": Timestamp.now() //recodar darle formato para usar
+        .collection('foro_luna')
+        .doc(widget.postId)
+        .collection("Comments")
+        .add({
+      "CommentText": commentText,
+      "CommentBy": currentUSer.email,
+      "CommentTime": Timestamp.now() //recodar darle formato para usar
     });
-
   }
 
-   void addCommentstoComments(String commentToCommentText) {
-      
-            //primero eliminar comentario de firestire(si solo elimnas el post los comentarios seguiran en la base de datos)
-            FirebaseFirestore.instance
-            .collection('foro_luna')
-            .doc(widget.postId)
-            .collection('Comments').add({
-              "CommentText": commentToCommentText,
-              "CommentBy": currentUSer.email,
-              "CommentTime": Timestamp.now() //recodar darle formato para usar
-            });
-         
+  void addCommentstoComments(String commentToCommentText) {
+    //primero eliminar comentario de firestire(si solo elimnas el post los comentarios seguiran en la base de datos)
+    FirebaseFirestore.instance
+        .collection('foro_luna')
+        .doc(widget.postId)
+        .collection('Comments')
+        .add({
+      "CommentText": commentToCommentText,
+      "CommentBy": currentUSer.email,
+      "CommentTime": Timestamp.now() //recodar darle formato para usar
+    });
   }
-  
 
-  
-void showCommentDialogComments() {
+  void showCommentDialogComments() {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
+        backgroundColor: const Color.fromRGBO(255, 230, 244, 1),
         title: const Text("Agrega un comentario"),
         content: TextField(
           controller: _commenttoCommentTextController,
@@ -115,14 +104,12 @@ void showCommentDialogComments() {
         actions: [
           //cancelar
           TextButton(
-              onPressed: () { 
+              onPressed: () {
                 Navigator.pop(context);
                 //clear controller
                 _commenttoCommentTextController.clear();
-              } ,
-              child: const Text("cancelar")
-              
-              ),
+              },
+              child: const Text("cancelar")),
 
           //post
           TextButton(
@@ -134,41 +121,44 @@ void showCommentDialogComments() {
                 _commenttoCommentTextController.clear();
                 //pop box tambien
                 Navigator.pop(context);
-
-                },
+              },
               child: const Text("post")),
         ],
       ),
     );
   }
- 
-
-
 
   //mostrar dialogo para comentar
   void showCommentDialog() {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text("Agrega un comentario",style: TextStyle
-                      (fontWeight: FontWeight.bold,
-                      color:Color.fromARGB(255, 86, 47,92))),
-        content: TextField(maxLines: null,
+        backgroundColor: const Color.fromRGBO(255, 230, 244, 1),
+        title: const Text(
+          "Agrega un comentario",
+          style: TextStyle(
+              fontSize: 22,
+              color: Color.fromRGBO(100, 16, 70, 1),
+              fontWeight: FontWeight.w800),
+        ),
+        content: TextField(
+          maxLines: null,
           controller: _commentTextController,
-          decoration: const InputDecoration(hintText: "escribe un comentario",hintStyle: TextStyle
-                      (color:Color.fromARGB(255, 86, 47,92))),
+          decoration: const InputDecoration(
+              hintText: "escribe un comentario",
+              hintStyle: TextStyle(color: Color.fromARGB(255, 86, 47, 92))),
         ),
         actions: [
           //cancelar
           TextButton(
-              onPressed: () { 
-                Navigator.pop(context);
-                //clear controller
-                _commentTextController.clear();
-              } ,
-              child: const Text("cancelar",style: TextStyle(color:Color.fromARGB(255, 86, 47,92))),
-              
-      ),
+            onPressed: () {
+              Navigator.pop(context);
+              //clear controller
+              _commentTextController.clear();
+            },
+            child: const Text("cancelar",
+                style: TextStyle(color: Color.fromRGBO(100, 16, 70, 1))),
+          ),
 
           //post
           TextButton(
@@ -180,25 +170,32 @@ void showCommentDialogComments() {
                 _commentTextController.clear();
                 //pop box tambien
                 Navigator.pop(context);
-
-                },
-              child: const Text("post",style: TextStyle
-                      (color:Color.fromARGB(255, 86, 47,92)))),
+              },
+              child: const Text("post",
+                  style: TextStyle(color: Color.fromRGBO(100, 16, 70, 1)))),
         ],
       ),
     );
   }
 
-  void deletePost(){
+  void deletePost() {
     //Dialog para solicitar informacion
-      showDialog(context: context, builder:(context) => AlertDialog(
-        title: const Text('Delete Post'),
-        content: const Text('Seguro que desea eliminar este post'),
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: const Color.fromRGBO(255, 230, 244, 1),
+        title: const Text(
+          'Eliminar Post',
+          style: TextStyle(
+              fontSize: 22,
+              color: Color.fromRGBO(100, 16, 70, 1),
+              fontWeight: FontWeight.w800),
+        ),
+        content: const Text(
+          '¿Seguro que desea eliminar este post?',
+          style: TextStyle(fontSize: 18, color: Color.fromRGBO(100, 16, 70, 1)),
+        ),
         actions: [
-          TextButton(onPressed:() => Navigator.pop(context),
-          child: const Text("cancel"),
-          ),
-
           TextButton(
           onPressed:() async {
             //primero eliminar comentario de firestire(si solo elimnas el post los comentarios seguiran en la base de datos)
@@ -225,18 +222,45 @@ void showCommentDialogComments() {
           },
           child: const Text("Eliminar"),
           ),
+          TextButton(
+            onPressed: () async {
+              //primero eliminar comentario de firestire(si solo elimnas el post los comentarios seguiran en la base de datos)
+              // ignore: non_constant_identifier_names
+              final CommentsDocs = await FirebaseFirestore.instance
+                  .collection('foro_luna')
+                  .doc(widget.postId)
+                  .collection('Comments')
+                  .get();
 
+              for (var doc in CommentsDocs.docs) {
+                await FirebaseFirestore.instance
+                    .collection('foro_luna')
+                    .doc(widget.postId)
+                    .collection('Comments')
+                    .doc(doc.id)
+                    .delete();
+                //luego se elimina el post
+              }
+              FirebaseFirestore.instance
+                  .collection('foro_luna')
+                  .doc(widget.postId)
+                  .delete();
+              //dismiss the dialog
+              // ignore: use_build_context_synchronously
+              Navigator.pop(context);
+            },
+            child: const Text("Eliminar"),
+          ),
         ],
       ),
     );
-
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color.fromARGB(220,251,225,242),
+        color: const Color.fromRGBO(100, 16, 70, 1),
         borderRadius: BorderRadius.circular(20),
       ),
       margin: const EdgeInsets.only(top: 25, left: 25, right: 25),
@@ -255,26 +279,28 @@ void showCommentDialogComments() {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     //messeague
-                    Text(widget.message,style: const TextStyle
-                        (fontWeight: FontWeight.bold,
-                        color:Color.fromARGB(255, 86, 47,92))),
-                
-                      const SizedBox(height: 2),
+                    Text(
+                      widget.message,
+                      style: const TextStyle(
+                          fontSize: 16,
+                          color: Color.fromRGBO(255, 230, 244, 1),
+                          fontWeight: FontWeight.w800),
+                    ),
+
+                    const SizedBox(height: 2),
                     //user
-                    
+
                     Text(
                       widget.user,
-                      style: const TextStyle(color:Color.fromARGB(220, 63,7,43)),
+                      style: const TextStyle(
+                          fontSize: 14,
+                          color: Color.fromRGBO(255, 230, 244, 1)),
                     ),
-                
                   ],
                 ),
               ),
-              if(widget.user == currentUSer.email)
-              DeleteBoutton(onTap: deletePost),
-
-              
-
+              if (widget.user == currentUSer.email)
+                DeleteBoutton(onTap: deletePost),
             ],
           ),
 
@@ -282,91 +308,74 @@ void showCommentDialogComments() {
 
           //botones
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               //like
-              Column(
+              Row(
                 children: [
-                  LikeButton(
-                    isLiked: isLiked,
-                    onTap: toggleLike),
+                  LikeButton(isLiked: isLiked, onTap: toggleLike),
 
-                  const SizedBox(height: 5),
+                  const SizedBox(width: 10),
                   //contador de likes
                   Text(
                     widget.likes.length.toString(),
-                    style: const TextStyle(color: Color.fromARGB(220, 63,7,43)),
+                    style: const TextStyle(
+                        color: Color.fromRGBO(255, 230, 244, 1)),
                   ),
-                ],
-                ),
-                const SizedBox(width: 10),
-                //Comments
-                Column(
-                children: [
-                  
-                  CommentBoutton(onTap: showCommentDialog),
-
-                  const SizedBox(height: 5),
-                  //contador de comentarios
-                  const Text(
-                   '0' ,
-                    style: TextStyle(color:  Color.fromARGB(220, 63,7,43)),
-                  ),
-                  
                 ],
               ),
-              
+              const SizedBox(width: 20),
+              //Comments
+              Row(
+                children: [
+                  CommentBoutton(onTap: showCommentDialog),
+
+                  const SizedBox(width: 10),
+                  //contador de comentarios
+                  const Text(
+                    '0',
+                    style: TextStyle(color: Color.fromRGBO(255, 230, 244, 1)),
+                  ),
+                ],
+              ),
             ],
-              
           ),
-          
+          const SizedBox(height: 10),
           //comments under the post
           StreamBuilder<QuerySnapshot>(
-            
             stream: FirebaseFirestore.instance
-            .collection("foro_luna")
-            .doc(widget.postId)
-            .collection("Comments")
-            .orderBy("CommentTime", descending: false)
-            .snapshots(),
-            builder:(context, snapshot) {
+                .collection("foro_luna")
+                .doc(widget.postId)
+                .collection("Comments")
+                .orderBy("CommentTime", descending: false)
+                .snapshots(),
+            builder: (context, snapshot) {
+              //mostrar un circular si no hay datos
 
-            //mostrar un circular si no hay datos 
-            
-           return ListView(
-           shrinkWrap: true, //para listas anidadas
-            physics: const NeverScrollableScrollPhysics(),
-                  
-            children: snapshot.data != null
+              return ListView(
+                shrinkWrap: true, //para listas anidadas
+                physics: const NeverScrollableScrollPhysics(),
+
+                children: snapshot.data != null
                     ? snapshot.data!.docs.map((doc) {
                         //obteniendo el comentario desde firebase
                         final commentData = doc.data() as Map<String, dynamic>;
 
-                    
-            //y retornar el comentario en ui
-              return Comments(
-              text: commentData["CommentText"], 
-              user: commentData["CommentBy"],
-              time: formatea.formatDateHora2(commentData["CommentTime"],),
-              
-                       
+                        //y retornar el comentario en ui
+                        return Comments(
+                          text: commentData["CommentText"],
+                          user: commentData["CommentBy"],
+                          time: formatea.formatDateHora2(
+                            commentData["CommentTime"],
+                          ),
+                        );
+                      }).toList()
+                    : [],
               );
-              }).toList() :[],
-              
-              
-
-              );
-              
-          },
-
-          
-        ),
-        
+            },
+          ),
         ],
       ),
-      
-      
     );
-    
   }
 }
