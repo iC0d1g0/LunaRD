@@ -12,7 +12,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 void main() async{
   //final String respuesta = await MainController.respuestaChatGPT('Hola');
   // ignore: avoid_print
-  final String respuesta = "hola";
+  const String respuesta = "hola";
   print(respuesta);
 }
 

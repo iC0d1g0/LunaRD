@@ -7,12 +7,11 @@ class CommentBoutton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap ,
+      onTap: onTap,
       child: const Icon(
         Icons.comment,
-        color: Color.fromARGB(220,63,7,43),
+        color: Color.fromRGBO(255, 230, 244, 1),
       ),
     );
-    
   }
 }

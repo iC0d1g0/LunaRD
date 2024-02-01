@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 // ESTE METODO ES SOLO PARA USO EXCLUSIVO DEL BACKEND oSEA YO ICODIGO. 
 class Usuario {
   String nombre;

@@ -27,7 +27,6 @@ class CharScreen extends StatefulWidget {
 }
 
 class _CharScreen extends State<CharScreen> {
-  
   final mensajeController = TextEditingController();
 
   List<Widget> listaWidgetChat = [];
@@ -48,7 +47,7 @@ class _CharScreen extends State<CharScreen> {
   }
 
   void agregarMensaje(String? mensaje) {
-    String nonull = (mensaje != null) ? mensaje : "Hola"; 
+    String nonull = (mensaje != null) ? mensaje : "Hola";
     setState(() {
       listaChat.add(nonull);
       listaWidgetChat = convertirListaChatAWidget(listaChat);
@@ -58,6 +57,7 @@ class _CharScreen extends State<CharScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(255, 230, 244, 1),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0),
         child: Padding(
@@ -67,21 +67,22 @@ class _CharScreen extends State<CharScreen> {
             InkWell(
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MyApp(),
-                    ));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MyApp(),
+                  ),
+                );
               },
               child: Container(
                 width: 50,
                 height: 50,
                 decoration: BoxDecoration(
-                  color: const Color.fromRGBO(250, 230, 226, 1),
+                  color: const Color.fromRGBO(100, 16, 70, 1),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: const Icon(
                   Icons.arrow_back,
-                  color: Colors.black,
+                  color: Color.fromRGBO(255, 230, 244, 1),
                 ),
               ),
             ),
@@ -90,7 +91,7 @@ class _CharScreen extends State<CharScreen> {
                 'Chat con Eva',
                 style: TextStyle(
                     fontSize: 22,
-                    color: Colors.black,
+                    color: Color.fromRGBO(100, 16, 70, 1),
                     fontWeight: FontWeight.w800),
               ),
             ),
@@ -105,7 +106,7 @@ class _CharScreen extends State<CharScreen> {
       bottomSheet: Container(
         height: 65,
         decoration: BoxDecoration(
-            color: const Color.fromRGBO(249, 125, 129, 1),
+            color: const Color.fromRGBO(100, 16, 70, 1),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.5),
@@ -118,7 +119,8 @@ class _CharScreen extends State<CharScreen> {
           children: [
             const Padding(
               padding: EdgeInsets.only(left: 20),
-              child: Icon(Icons.face_2, color: Colors.black),
+              child:
+                  Icon(Icons.face_2, color: Color.fromRGBO(255, 230, 244, 1)),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20),
@@ -126,21 +128,24 @@ class _CharScreen extends State<CharScreen> {
                 alignment: Alignment.centerRight,
                 width: 300,
                 child: TextFormField(
-                    controller: mensajeController,
-                    decoration: const InputDecoration(
-                        hintText: 'Escribiendo...', border: InputBorder.none)),
+                  controller: mensajeController,
+                  decoration: const InputDecoration(
+                      hintText: 'Escribiendo...', border: InputBorder.none),
+                ),
               ),
             ),
             InkWell(
               // ignore: avoid_print
-              onTap: () async{
+              onTap: () async {
                 agregarMensaje(mensajeController.text);
-                final respuesta = await MainController.respuestaChatGPT(mensajeController.text);
+                final respuesta = await MainController.respuestaChatGPT(
+                    mensajeController.text);
                 agregarMensaje(respuesta!);
               },
               child: const Padding(
                 padding: EdgeInsets.only(left: 10),
-                child: Icon(Icons.send_rounded, color: Colors.black),
+                child: Icon(Icons.send_rounded,
+                    color: Color.fromRGBO(255, 230, 244, 1)),
               ),
             ),
           ],
