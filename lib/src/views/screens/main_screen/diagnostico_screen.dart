@@ -27,35 +27,40 @@ class DiagnosticoScreen extends StatefulWidget {
 class _DiagnosticoScreen extends State<DiagnosticoScreen> {
   List nombres = ['Peso', 'Hidratacion', 'Sueño'];
   List<Color> colores = [
-    const Color.fromRGBO(250, 230, 226, 1),
-    const Color.fromRGBO(250, 230, 226, 1),
-    const Color.fromRGBO(250, 230, 226, 1),
+    const Color.fromRGBO(100, 16, 70, 1),
+    const Color.fromRGBO(100, 16, 70, 1),
+    const Color.fromRGBO(100, 16, 70, 1),
   ];
   List<Icon> iconos = [
-    const Icon(Icons.accessibility_new_rounded, color: Colors.black, size: 40),
-    const Icon(Icons.water_drop, color: Colors.black, size: 40),
-    const Icon(Icons.cloud, color: Colors.black, size: 40),
+    const Icon(Icons.accessibility_new_rounded,
+        color: Color.fromRGBO(255, 230, 244, 1), size: 40),
+    const Icon(Icons.water_drop,
+        color: Color.fromRGBO(255, 230, 244, 1), size: 40),
+    const Icon(Icons.cloud, color: Color.fromRGBO(255, 230, 244, 1), size: 40),
   ];
 
   // ignore: non_constant_identifier_names
   List Sexnombres = ['Nada', 'Pocas', 'Normal', 'Mucho', 'Muy Activa'];
   // ignore: non_constant_identifier_names
   List<Color> Sexcolores = [
-    const Color.fromRGBO(250, 230, 226, 1),
-    const Color.fromRGBO(250, 230, 226, 1),
-    const Color.fromRGBO(250, 230, 226, 1),
-    const Color.fromRGBO(250, 230, 226, 1),
-    const Color.fromRGBO(250, 230, 226, 1),
+    const Color.fromRGBO(100, 16, 70, 1),
+    const Color.fromRGBO(100, 16, 70, 1),
+    const Color.fromRGBO(100, 16, 70, 1),
+    const Color.fromRGBO(100, 16, 70, 1),
+    const Color.fromRGBO(100, 16, 70, 1),
   ];
   // ignore: non_constant_identifier_names
   List<Icon> Sexiconos = [
-    const Icon(Icons.no_adult_content_outlined, color: Colors.black, size: 30),
-    const Icon(Icons.star_half_outlined, color: Colors.black, size: 30),
+    const Icon(Icons.no_adult_content_outlined,
+        color: Color.fromRGBO(255, 230, 244, 1), size: 30),
+    const Icon(Icons.star_half_outlined,
+        color: Color.fromRGBO(255, 230, 244, 1), size: 30),
     const Icon(Icons.published_with_changes_rounded,
-        color: Colors.black, size: 30),
+        color: Color.fromRGBO(255, 230, 244, 1), size: 30),
     const Icon(Icons.volunteer_activism_outlined,
-        color: Colors.black, size: 30),
-    const Icon(Icons.volunteer_activism_rounded, color: Colors.black, size: 30),
+        color: Color.fromRGBO(255, 230, 244, 1), size: 30),
+    const Icon(Icons.volunteer_activism_rounded,
+        color: Color.fromRGBO(255, 230, 244, 1), size: 30),
   ];
 
   // ignore: non_constant_identifier_names
@@ -70,61 +75,72 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
   ];
   // ignore: non_constant_identifier_names
   List<Color> Statecolores = [
-    const Color.fromRGBO(250, 230, 226, 1),
-    const Color.fromRGBO(250, 230, 226, 1),
-    const Color.fromRGBO(250, 230, 226, 1),
-    const Color.fromRGBO(250, 230, 226, 1),
-    const Color.fromRGBO(250, 230, 226, 1),
-    const Color.fromRGBO(250, 230, 226, 1),
-    const Color.fromRGBO(250, 230, 226, 1),
+    const Color.fromRGBO(100, 16, 70, 1),
+    const Color.fromRGBO(100, 16, 70, 1),
+    const Color.fromRGBO(100, 16, 70, 1),
+    const Color.fromRGBO(100, 16, 70, 1),
+    const Color.fromRGBO(100, 16, 70, 1),
+    const Color.fromRGBO(100, 16, 70, 1),
+    const Color.fromRGBO(100, 16, 70, 1),
   ];
   // ignore: non_constant_identifier_names
   List<Icon> Stateiconos = [
-    const Icon(Icons.messenger_rounded, color: Colors.black, size: 30),
-    const Icon(Icons.announcement_sharp, color: Colors.black, size: 30),
-    const Icon(Icons.crisis_alert_sharp, color: Colors.black, size: 30),
-    const Icon(Icons.not_interested_sharp, color: Colors.black, size: 30),
-    const Icon(Icons.food_bank, color: Colors.black, size: 30),
-    const Icon(Icons.tag_faces_rounded, color: Colors.black, size: 30),
-    const Icon(Icons.airline_seat_flat_rounded, color: Colors.black, size: 30),
+    const Icon(Icons.messenger_rounded,
+        color: Color.fromRGBO(255, 230, 244, 1), size: 30),
+    const Icon(Icons.announcement_sharp,
+        color: Color.fromRGBO(255, 230, 244, 1), size: 30),
+    const Icon(Icons.crisis_alert_sharp,
+        color: Color.fromRGBO(255, 230, 244, 1), size: 30),
+    const Icon(Icons.not_interested_sharp,
+        color: Color.fromRGBO(255, 230, 244, 1), size: 30),
+    const Icon(Icons.food_bank,
+        color: Color.fromRGBO(255, 230, 244, 1), size: 30),
+    const Icon(Icons.tag_faces_rounded,
+        color: Color.fromRGBO(255, 230, 244, 1), size: 30),
+    const Icon(Icons.airline_seat_flat_rounded,
+        color: Color.fromRGBO(255, 230, 244, 1), size: 30),
   ];
 
   // ignore: non_constant_identifier_names
-  List Simnombres = ['Nada', 'Mas Busto', 'Dolores'];
-  // ignore: non_constant_identifier_names
-  List<Color> Simcolores = [
-    const Color.fromRGBO(250, 230, 226, 1),
-    const Color.fromRGBO(250, 230, 226, 1),
-    const Color.fromRGBO(250, 230, 226, 1)
-  ];
-  // ignore: non_constant_identifier_names
-  List<Icon> Simiconos = [
-    const Icon(Icons.not_interested, color: Colors.black, size: 30),
-    const Icon(Icons.woman, color: Colors.black, size: 30),
-    const Icon(Icons.personal_injury_rounded, color: Colors.black, size: 30)
-  ];
-
-  // ignore: non_constant_identifier_names
-  List Pasnombres = ['anticonceptivo'];
+  List Pasnombres = ['Pastilla'];
   // ignore: non_constant_identifier_names
   List<Color> Pascolores = [const Color.fromARGB(255, 255, 196, 184)];
   // ignore: non_constant_identifier_names
   List<Icon> Pasiconos = [
-    const Icon(Icons.baby_changing_station, color: Colors.black, size: 30)
+    const Icon(Icons.medication, color: Colors.black, size: 30)
+  ];
+
+  // ignore: non_constant_identifier_names
+  List Inynombres = ['Inyeccion'];
+  // ignore: non_constant_identifier_names
+  List<Color> Inycolores = [const Color.fromARGB(255, 255, 196, 184)];
+  // ignore: non_constant_identifier_names
+  List<Icon> Inyiconos = [
+    const Icon(Icons.medical_services_sharp, color: Colors.black, size: 30)
+  ];
+
+  // ignore: non_constant_identifier_names
+  List Posnombres = ['PosDay'];
+  // ignore: non_constant_identifier_names
+  List<Color> Poscolores = [const Color.fromARGB(255, 255, 196, 184)];
+  // ignore: non_constant_identifier_names
+  List<Icon> Posiconos = [
+    const Icon(Icons.medical_information_sharp, color: Colors.black, size: 30)
   ];
 
   // ignore: non_constant_identifier_names
   List Emtnombres = ['Agregar'];
   // ignore: non_constant_identifier_names
-  List<Color> Emtcolores = [const Color.fromARGB(255, 255, 196, 184)];
+  List<Color> Emtcolores = [const Color.fromRGBO(255, 230, 244, 1)];
   // ignore: non_constant_identifier_names
   List<Icon> Emticonos = [
-    const Icon(Icons.plus_one, color: Colors.black, size: 30)
+    const Icon(Icons.plus_one, color: Color.fromRGBO(100, 16, 70, 1), size: 30)
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(255, 230, 244, 1),
       body: ListView(
         padding: const EdgeInsets.all(15),
         children: [
@@ -136,21 +152,22 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
                   InkWell(
                     onTap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MyApp(),
-                          ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MyApp(),
+                        ),
+                      );
                     },
                     child: Container(
                       width: 50,
                       height: 50,
                       decoration: BoxDecoration(
-                        color: const Color.fromRGBO(250, 230, 226, 1),
+                        color: const Color.fromRGBO(100, 16, 70, 1),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Icon(
                         Icons.arrow_back,
-                        color: Colors.black,
+                        color: Color.fromRGBO(255, 230, 244, 1),
                       ),
                     ),
                   ),
@@ -159,7 +176,7 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
                       'Diagnosticacion',
                       style: TextStyle(
                           fontSize: 22,
-                          color: Colors.black,
+                          color: Color.fromRGBO(100, 16, 70, 1),
                           fontWeight: FontWeight.w800),
                     ),
                   ),
@@ -172,13 +189,14 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: const Color.fromRGBO(250, 230, 226, 1)),
+                color: const Color.fromRGBO(100, 16, 70, 1)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
                   'Medicion',
-                  style: TextStyle(fontSize: 20, color: Colors.black),
+                  style: TextStyle(
+                      fontSize: 20, color: Color.fromRGBO(255, 230, 244, 1)),
                 ),
                 const Row(
                   children: [
@@ -186,13 +204,16 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
                       'probabilidad de embarazo',
                       style: TextStyle(
                           fontSize: 22,
-                          color: Colors.black,
+                          color: Color.fromRGBO(255, 230, 244, 1),
                           fontWeight: FontWeight.w800),
                     ),
                     SizedBox(
-                      width: 60,
+                      width: 50,
                     ),
-                    Icon(Icons.crib_rounded)
+                    Icon(
+                      Icons.crib_rounded,
+                      color: Color.fromRGBO(255, 230, 244, 1),
+                    )
                   ],
                 ),
                 const SizedBox(
@@ -204,7 +225,7 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
                       child: LinearProgressIndicator(
                         value: .2,
                         backgroundColor: Colors.black54,
-                        color: Color.fromARGB(255, 255, 196, 184),
+                        color: Color.fromRGBO(255, 230, 244, 1),
                         minHeight: 5,
                       ),
                     ),
@@ -213,7 +234,9 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
                     ),
                     Text(
                       '20%',
-                      style: TextStyle(fontSize: 14, color: Colors.black),
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Color.fromRGBO(255, 230, 244, 1)),
                     ),
                   ],
                 ),
@@ -222,7 +245,8 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
                 ),
                 Text(
                   'Fecha  ${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}',
-                  style: const TextStyle(fontSize: 16, color: Colors.black),
+                  style: const TextStyle(
+                      fontSize: 16, color: Color.fromRGBO(255, 230, 244, 1)),
                 ),
               ],
             ),
@@ -271,7 +295,7 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
               'Relaciones Sexuales',
               style: TextStyle(
                   fontSize: 22,
-                  color: Colors.black,
+                  color: Color.fromRGBO(100, 16, 70, 1),
                   fontWeight: FontWeight.w800),
             ),
           ),
@@ -317,7 +341,7 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
               'Estado de animo',
               style: TextStyle(
                   fontSize: 22,
-                  color: Colors.black,
+                  color: Color.fromRGBO(100, 16, 70, 1),
                   fontWeight: FontWeight.w800),
             ),
           ),
@@ -363,7 +387,7 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
               'Gestion de anticonceptivos',
               style: TextStyle(
                   fontSize: 22,
-                  color: Colors.black,
+                  color: Color.fromRGBO(100, 16, 70, 1),
                   fontWeight: FontWeight.w800),
             ),
           ),
@@ -372,7 +396,7 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: const Color.fromRGBO(250, 230, 226, 1)),
+                color: const Color.fromRGBO(100, 16, 70, 1)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -380,7 +404,7 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
                   'Pastillas',
                   style: TextStyle(
                       fontSize: 20,
-                      color: Colors.black,
+                      color: Color.fromRGBO(255, 230, 244, 1),
                       fontWeight: FontWeight.w800),
                 ),
                 const SizedBox(
@@ -417,7 +441,7 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: const Color.fromRGBO(250, 230, 226, 1)),
+                color: const Color.fromRGBO(100, 16, 70, 1)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -425,7 +449,7 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
                   'Inyecciones',
                   style: TextStyle(
                       fontSize: 20,
-                      color: Colors.black,
+                      color: Color.fromRGBO(255, 230, 244, 1),
                       fontWeight: FontWeight.w800),
                 ),
                 const SizedBox(
@@ -462,7 +486,7 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: const Color.fromRGBO(250, 230, 226, 1)),
+                color: const Color.fromRGBO(100, 16, 70, 1)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -470,7 +494,7 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
                   'Pastilla PosDay',
                   style: TextStyle(
                       fontSize: 20,
-                      color: Colors.black,
+                      color: Color.fromRGBO(255, 230, 244, 1),
                       fontWeight: FontWeight.w800),
                 ),
                 const SizedBox(
@@ -505,7 +529,8 @@ class _DiagnosticoScreen extends State<DiagnosticoScreen> {
           ),
           const Text(
             'Recomendamos fuertemente que si tomaste uno de estos métodos anticonceptivos tener precaución al volver a ingerir uno de estos por 2 segunda vez consecutiva.',
-            style: TextStyle(fontSize: 14, color: Colors.black),
+            style:
+                TextStyle(fontSize: 14, color: Color.fromRGBO(100, 16, 70, 1)),
           ),
         ],
       ),

@@ -35,6 +35,7 @@ class Usuario {
 
 }
 
+
 Future<Usuario?> obtenerUsuarioPorCorreo(String correo) async {
   try {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -90,20 +91,3 @@ Future<bool> existenciaUsuario({required String email})async{
     return false;
 }
 
-/*void main() {
-  // Ejemplo de uso
-  Usuario nuevoUsuario = Usuario(
-    nombre: 'Nombre Usuario',
-    correo: 'correo@example.com',
-    birthday: DateTime.now(),
-    inicioUltimoPeriodo: DateTime.now(),
-    finalizoUltimoPeriodo: DateTime.now(),
-    duracionUsual: 7,
-    frecuenciaRelacionesMes: 2,
-    tomasMuchoLiquido: 'No',
-    createdAt: Timestamp.now(),
-  );
-
-  agregarUsuarioFirestore(nuevoUsuario);
-}
-*/

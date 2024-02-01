@@ -29,6 +29,7 @@ class _NotaScreen extends State<NotaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(255, 230, 244, 1),
       body: ListView(
         children: [
           Padding(
@@ -39,21 +40,22 @@ class _NotaScreen extends State<NotaScreen> {
                   InkWell(
                     onTap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MyApp(),
-                          ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MyApp(),
+                        ),
+                      );
                     },
                     child: Container(
                       width: 50,
                       height: 50,
                       decoration: BoxDecoration(
-                        color: const Color.fromRGBO(250, 230, 226, 1),
+                        color: const Color.fromRGBO(100, 16, 70, 1),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Icon(
                         Icons.arrow_back,
-                        color: Colors.black,
+                        color: Color.fromRGBO(255, 230, 244, 1),
                       ),
                     ),
                   ),
@@ -62,7 +64,7 @@ class _NotaScreen extends State<NotaScreen> {
                       'Notas',
                       style: TextStyle(
                           fontSize: 22,
-                          color: Colors.black,
+                          color: Color.fromRGBO(100, 16, 70, 1),
                           fontWeight: FontWeight.w800),
                     ),
                   ),
@@ -70,7 +72,8 @@ class _NotaScreen extends State<NotaScreen> {
           ),
           const SizedBox(height: 20),
           const ItemNota(
-            color: Color.fromRGBO(250, 230, 226, 1),
+            titulo: 'Hola amigos',
+            color: Color.fromRGBO(230, 196, 216, 1),
             dia: '20',
             mes: '01',
             ciclo: 'ovuacion',
@@ -80,7 +83,7 @@ class _NotaScreen extends State<NotaScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color.fromRGBO(250, 230, 226, 1),
+        backgroundColor: const Color.fromRGBO(100, 16, 70, 1),
         onPressed: () {
           Navigator.push(
               context,
@@ -88,7 +91,7 @@ class _NotaScreen extends State<NotaScreen> {
                 builder: (context) => const AddNota(),
               ));
         },
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add, color: Color.fromRGBO(255, 230, 244, 1)),
       ),
     );
   }
@@ -96,6 +99,7 @@ class _NotaScreen extends State<NotaScreen> {
 
 class ItemNota extends StatelessWidget {
   final Color color;
+  final String titulo;
   final String descripcion;
   final String dia;
   final String mes;
@@ -106,7 +110,8 @@ class ItemNota extends StatelessWidget {
       required this.descripcion,
       required this.dia,
       required this.mes,
-      required this.ciclo});
+      required this.ciclo,
+      required this.titulo});
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +131,7 @@ class ItemNota extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 255, 196, 184),
+                color: const Color.fromRGBO(100, 16, 70, 1),
                 borderRadius: BorderRadius.circular(10)),
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Column(
@@ -134,17 +139,17 @@ class ItemNota extends StatelessWidget {
                 Text(mes,
                     style: const TextStyle(
                         fontSize: 20,
-                        color: Colors.black,
+                        color: Color.fromRGBO(255, 230, 244, 1),
                         fontWeight: FontWeight.w800)),
                 Text(dia,
                     style: const TextStyle(
                         fontSize: 30,
-                        color: Colors.black,
+                        color: Color.fromRGBO(255, 230, 244, 1),
                         fontWeight: FontWeight.w800)),
                 Text(ciclo,
                     style: const TextStyle(
                         fontSize: 14,
-                        color: Colors.black,
+                        color: Color.fromRGBO(255, 230, 244, 1),
                         fontWeight: FontWeight.w800)),
               ],
             ),
@@ -155,11 +160,11 @@ class ItemNota extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Esto es una nota',
-                    style: TextStyle(
+                  Text(
+                    titulo,
+                    style: const TextStyle(
                         fontSize: 20,
-                        color: Colors.black,
+                        color: Color.fromRGBO(100, 16, 70, 1),
                         fontWeight: FontWeight.w800),
                   ),
                   const SizedBox(
@@ -167,7 +172,10 @@ class ItemNota extends StatelessWidget {
                   ),
                   Text(
                     descripcion,
-                    style: const TextStyle(fontSize: 16, color: Colors.black),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Color.fromRGBO(100, 16, 70, 1),
+                    ),
                   ),
                 ],
               ),

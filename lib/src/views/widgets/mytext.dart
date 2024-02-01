@@ -22,7 +22,7 @@ class MyText extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 25),
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
       decoration: BoxDecoration(
-        color: const Color(0x00ffcec5).withOpacity(0.5),
+        color: const Color.fromRGBO(255, 206, 234, 1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -36,8 +36,8 @@ class MyText extends StatelessWidget {
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: hintText,
-                    hintStyle: TextStyle(
-                      color: Colors.black.withOpacity(0.5),
+                    hintStyle: const TextStyle(
+                      color: Color.fromRGBO(100, 16, 70, 1),
                     )),
                 obscureText: obsecureText,
               ),

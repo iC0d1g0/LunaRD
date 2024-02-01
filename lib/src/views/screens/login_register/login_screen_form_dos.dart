@@ -19,7 +19,7 @@ class _LoginScreenFormDosState extends State<LoginScreenFormDos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFAE6E2),
+      backgroundColor: const Color.fromRGBO(255, 230, 244, 1),
       body: SafeArea(
         child: Center(
           child: Column(

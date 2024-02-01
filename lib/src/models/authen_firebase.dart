@@ -12,8 +12,9 @@ class AuthService {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
         email: email,
-        password: password, 
+        password: password,
       );
+    
       User? user = result.user;
       return user;
     } catch (e) {
@@ -23,6 +24,7 @@ class AuthService {
     Future<User?> signInWithCredencial(AuthCredential facebook) async {
     try {
       UserCredential result = await _auth.signInWithCredential(facebook);
+      
       User? user = result.user;
       return user;
     } catch (e) {
