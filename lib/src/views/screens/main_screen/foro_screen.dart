@@ -50,7 +50,7 @@ class _ForoState extends State<Foro> {
       backgroundColor: Colors.white,
 
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         title: const Center(
           child: Text("FORO          ",style: TextStyle
                       (fontWeight: FontWeight.bold,

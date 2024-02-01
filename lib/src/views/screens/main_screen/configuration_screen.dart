@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -19,7 +18,7 @@ class Config extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'ConfiguracionoMenu',
       theme: ThemeData(
-        primaryColor: Color.fromARGB(0, 255, 230, 244),
+        primaryColor: const Color.fromARGB(0, 255, 230, 244),
       ),
       home: const ConfigScreen(),
     );
@@ -30,8 +29,8 @@ Future<String?> retonrnaNombre( )async{
     String nombre ='Adderlis';
     for (Usuario usuario in datosUsuariosList) {
     nombre= usuario.nombre;
-    String Correo=usuario.correo;
-    DateTime birthday=usuario.birthday;
+    //String Correo=usuario.correo;
+    //DateTime birthday=usuario.birthday;
     // Y así sucesivamente, puedes acceder a las demás propiedades
      return nombre;
   }

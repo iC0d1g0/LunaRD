@@ -45,12 +45,8 @@ class _WallPostState extends State<WallPost> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
     isLiked = widget.likes.contains(currentUSer.email);
-    
-
   }
 
   void toggleLike() {
@@ -206,12 +202,12 @@ void showCommentDialogComments() {
           TextButton(
           onPressed:() async {
             //primero eliminar comentario de firestire(si solo elimnas el post los comentarios seguiran en la base de datos)
-            final CommentsDocs = await FirebaseFirestore.instance
+            final commentsDocs = await FirebaseFirestore.instance
             .collection('foro_luna')
             .doc(widget.postId)
             .collection('Comments').get();
 
-            for (var doc in CommentsDocs.docs){
+            for (var doc in commentsDocs.docs){
               await FirebaseFirestore.
               instance.collection('foro_luna')
               .doc(widget.postId)
@@ -224,9 +220,8 @@ void showCommentDialogComments() {
             .collection('foro_luna')
             .doc(widget.postId)
             .delete();
-            //dismiss the dialog
+            // ignore: use_build_context_synchronously
             Navigator.pop(context);
-             
           },
           child: const Text("Eliminar"),
           ),
