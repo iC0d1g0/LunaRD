@@ -29,11 +29,10 @@ class CharScreen extends StatefulWidget {
 class _CharScreen extends State<CharScreen> {
   
   final mensajeController = TextEditingController();
+  bool inputDeshabilitado = false;
 
   List<Widget> listaWidgetChat = [];
-  List<String> listaChat = [
-    MainController.respuestaChatInicial,
-  ];
+  List<String> listaChat = [];
 
   List<Widget> convertirListaChatAWidget(List<String> listaChat) {
     List<Widget> listaWidgetChat = [];
@@ -130,6 +129,7 @@ class _CharScreen extends State<CharScreen> {
                 alignment: Alignment.centerRight,
                 width: 300,
                 child: TextFormField(
+                    readOnly: inputDeshabilitado,
                     maxLines: null,
                     controller: mensajeController,
                     decoration: const InputDecoration(
@@ -139,10 +139,15 @@ class _CharScreen extends State<CharScreen> {
             InkWell(
               // ignore: avoid_print
               onTap: () async{
-                if(mensajeController.text == ''){
-                  agregarMensaje(mensajeController.text);
-                  agregarMensaje(await MainController.respuestaChatGPT(mensajeController.text));
+                if(mensajeController.text != ''){
+                  inputDeshabilitado = true;
+                  setState(() {});
+                  final String str = mensajeController.text;
                   mensajeController.clear();
+                  agregarMensaje(str);
+                  agregarMensaje(await MainController.respuestaChatGPT(str));
+                  inputDeshabilitado = false;
+                  setState(() {});
                 }
               },
               child: const Padding(

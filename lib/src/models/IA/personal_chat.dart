@@ -18,7 +18,7 @@ class ChatGPT {
       body: jsonEncode({
         'model': 'gpt-3.5-turbo',
         'messages': [
-          {'role': 'system', 'content': 'You are a helpful assistant.'},
+          {'role': 'system', 'content': 'Actúa como una profecional (llamada Eva) especialista en el tema de la menstruación y la gestación humana.'},
           {'role': 'user', 'content': prompt},
         ],
       }),

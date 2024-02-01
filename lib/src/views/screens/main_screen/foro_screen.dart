@@ -117,7 +117,7 @@ class _ForoState extends State<Foro> {
                   ),
                   //post boton
                   IconButton(onPressed: postMessage,
-                   icon: const Icon(Icons.arrow_circle_up),color:const Color.fromARGB(220, 63,7,43)),
+                   icon: const Icon(Icons.arrow_circle_up),color:Color.fromARGB(255, 63, 7, 43)),
               
                 ],
               
