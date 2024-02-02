@@ -86,10 +86,9 @@ int simpleIntInput = 0;
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
-        backgroundColor: const Color(0xFFFAE6E2),
-          body: Center(
-            child: Padding(
-          padding: const EdgeInsets.all(10.0),
+        backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+          body: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 0,horizontal: 10),
             child: Column(  
               mainAxisSize: MainAxisSize.min,
               children: [   
@@ -101,34 +100,47 @@ int simpleIntInput = 0;
                     animationDuration: 2000,
                     lineHeight: 10,
                     percent: 0.4,
-                    progressColor: Colors.deepPurple,
+                    progressColor: const Color.fromRGBO(100, 16, 70, 1),
                     barRadius: const Radius.circular(10),
                     // ignore: deprecated_member_use
                     linearStrokeCap: LinearStrokeCap.roundAll,
                   ),
                   ),
-                  
+                const SizedBox(height: 20),
               const Text("¿Cuando inicio tu ultimo periodo menstrual?",
                textAlign: TextAlign.center,
                style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                    color: Color.fromRGBO(100, 16, 70, 1),
                   ),
               ),
               const SizedBox(height: 10),
-                CupertinoButton(
-                    onPressed: () => _selectDate(context),
-                    child: const Text(
-                      'Seleccionar Fecha',
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFDA2B9E),
-                          decoration: TextDecoration.none),
+                Container(
+                   decoration: BoxDecoration(
+                      
+                    color: const Color.fromRGBO(100, 16, 70, 1),
+                          border: Border.all(
+                            
+                    color: const Color.fromRGBO(100, 16, 70, 1),
+                            width: 2.0, // Ancho del borde
+                          ),
+                          borderRadius: BorderRadius.circular(25.0), // Radio de borde
                     ),
-                  ),
-                const SizedBox(height: 40),
+                  
+                  child: CupertinoButton(
+                      onPressed: () => _selectDate(context),
+                      child: const Text(
+                        'Seleccionar Fecha',
+                        style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(255, 206, 234, 1),
+                            decoration: TextDecoration.none),
+                      ),
+                    ),
+                ),
+                const SizedBox(height: 20),
                 Text(
                     '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
                     style: const TextStyle(
@@ -142,22 +154,36 @@ int simpleIntInput = 0;
                     style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                    color: Color.fromRGBO(100, 16, 70, 1),
                   ),
                    ),
                    const SizedBox(height: 10),
-                CupertinoButton(
-                    onPressed: () => _selectDate2(context),
-                    child: const Text(
-                      'Seleccionar Fecha',
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFDA2B9E),
-                          decoration: TextDecoration.none),
+                Container(
+                  decoration: BoxDecoration(
+                      
+                    color: const Color.fromRGBO(100, 16, 70, 1),
+                          border: Border.all(
+                            
+                    color: const Color.fromRGBO(100, 16, 70, 1),
+                            width: 2.0, // Ancho del borde
+                          ),
+                          borderRadius: BorderRadius.circular(25.0), // Radio de borde
                     ),
+                  child: CupertinoButton(
+                      onPressed: () => _selectDate2(context),
+                      child: const Text(
+                        'Seleccionar Fecha',
+                        style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(255, 206, 234, 1),
+                            decoration: TextDecoration.none),
+                      ),
+          
+                    ),
+          
                   ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 20),
                 Text(
                     '${selectedDate2.day}/${selectedDate2.month}/${selectedDate2.year}',
                     style: const TextStyle(
@@ -166,23 +192,25 @@ int simpleIntInput = 0;
                         decoration: TextDecoration.none),
                   ),
                 const SizedBox(height: 40),  
-                  const Text("¿cuantos dias suele durar sualmente?",
+                  const Text("Cuántos dias suele durar?",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                    color: Color.fromRGBO(100, 16, 70, 1),
                   ),
                   ),
                   const SizedBox(height: 10),
                 QuantityInput(
+                  buttonColor: const Color.fromRGBO(100, 16, 70, 1),
+                  
                   // ignore: prefer_const_constructors    
                   value: simpleIntInput,
                   onChanged: (value) => setState(() => simpleIntInput = int.parse(value.replaceAll(',', 'dias')))
                 ),
                 const SizedBox(height: 70),  
                 MyNext(
-                   customColor: const Color(0xFFDA2B9E).withOpacity(0.7),
+                   customColor: const Color.fromRGBO(100, 16, 70, 1),
                      text:"Siguiente",
                      onTap: () {
                       MainController.usuaria.inicioUltimoPeriodo = selectedDate;
@@ -196,13 +224,12 @@ int simpleIntInput = 0;
                   ),
               ]
               ),
-            ),
-          ), 
+            ), 
            appBar: AppBar(
-  backgroundColor: const Color(0xFFFAE6E2),       
+  backgroundColor:const Color.fromARGB(255, 255, 255, 255),       
         leading: IconButton(
  
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, color:   Color.fromRGBO(100, 16, 70, 1)),
           onPressed: () {
             Navigator.pop(context);
           },

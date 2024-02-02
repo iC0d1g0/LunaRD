@@ -29,7 +29,7 @@ class _NotaScreen extends State<NotaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(255, 230, 244, 1),
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       body: ListView(
         children: [
           Padding(
