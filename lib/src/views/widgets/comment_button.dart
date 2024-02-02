@@ -10,7 +10,7 @@ class CommentBoutton extends StatelessWidget {
       onTap: onTap,
       child: const Icon(
         Icons.comment,
-        color: Color.fromRGBO(255, 230, 244, 1),
+        color:  Color.fromRGBO(100, 16, 70, 1),
       ),
     );
   }

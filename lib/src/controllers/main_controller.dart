@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:luna_rd/src/app.dart';
 import 'package:luna_rd/src/models/IA/personal_chat.dart';
+import 'package:luna_rd/src/models/authen_firebase.dart';
 import 'package:luna_rd/src/models/database/databa_fire.dart';
 import 'package:luna_rd/src/models/database/entidad_usuaria.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,8 +18,9 @@ class MainController {
   static String respuestaChatInicial = 'ia/Hola soy Eva, ¿Cómo estás hoy?';
   static ChatGPT chatGPT = ChatGPT();
 
-  static Future<DatosUsuarios>datosUsuariaExistente(String email) async {
-     Usuario usuarioRecuperado = await obtenerUsuarioDesdeFirestore(email);
+  static Future<DatosUsuarios>datosUsuariaExistente(String? email) async {
+     String correo = (email != null) ? email : "";
+     Usuario usuarioRecuperado = await obtenerUsuarioDesdeFirestore(correo);
       usuaria.nombre=usuarioRecuperado.nombre;
       usuaria.birthday=usuarioRecuperado.birthday;
       usuaria.correo=usuarioRecuperado.correo;
@@ -26,8 +28,7 @@ class MainController {
       usuaria.finalizoUltimoPeriodo=usuarioRecuperado.finalizoUltimoPeriodo;
       usuaria.duracionUsual=usuarioRecuperado.duracionUsual;
       usuaria.tomasMuchoLiquido=usuarioRecuperado.tomasMuchoLiquido;
-      usuaria.createdAt=usuarioRecuperado.createdAt as String?;
-      return MainController.usuaria;
+       return MainController.usuaria;
     }
  static Future<Usuario> obtenerUsuarioDesdeFirestore(String correo) async {
   try {

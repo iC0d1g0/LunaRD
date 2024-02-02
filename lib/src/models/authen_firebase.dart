@@ -14,8 +14,9 @@ class AuthService {
         email: email,
         password: password,
       );
-    
+      
       User? user = result.user;
+      
       return user;
     } catch (e) {
          throw Exception('signInWithEmailAndPassword: $e');

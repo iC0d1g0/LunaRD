@@ -19,6 +19,10 @@ class LoginController {
     User? user;
     try {
       user = await auth.signInWithEmailAndPassword(nombre, password);
+       String? correo=FirebaseAuth.instance.currentUser?.email!;
+      
+      MainController.usuaria= await MainController.datosUsuariaExistente(correo);
+    
     } catch (e) {
       MainController.mensajeInferior(context, "Hubo un Error: $e", Colors.red);
     }
@@ -26,6 +30,7 @@ class LoginController {
       if (user != null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setBool('started', true);
+     //prefs.setString('email', nombre);
       return true;
     } else {
       return false;
@@ -92,6 +97,9 @@ class LoginController {
     User? user;
     try {
       user = await auth.signInWithGoogle();
+      String? correo=FirebaseAuth.instance.currentUser?.email!;
+      
+      MainController.usuaria= await MainController.datosUsuariaExistente(correo);
     } catch (e) {
       MainController.mensajeInferior(context, "Hubo un Error!: $e", Colors.red);
     }

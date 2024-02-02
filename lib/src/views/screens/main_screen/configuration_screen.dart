@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:luna_rd/src/app.dart';
 import 'package:luna_rd/src/controllers/login_controller.dart';
+import 'package:luna_rd/src/controllers/main_controller.dart';
 import 'package:luna_rd/src/models/database/databa_fire.dart';
 import 'package:luna_rd/src/models/database/database_services.dart';
 
@@ -39,8 +40,20 @@ class ConfigScreen extends StatefulWidget {
   @override
   State<ConfigScreen> createState() => _ConfigScreen();
 }
+class DatosConfiguracion{
+   final usuarioActual = FirebaseAuth.instance.currentUser!;
+     String? getEmail(){
+      return usuarioActual.email;
+     }
+      String? getNombre(){
+        MainController.datosUsuariaExistente(getEmail());
+       
+      return  MainController.usuaria.nombre;
+     }
 
+}
 class _ConfigScreen extends State<ConfigScreen> {
+  DatosConfiguracion miUsuaria=DatosConfiguracion();
   final defaultPadding = 16.0;
   final currentUSer = FirebaseAuth.instance.currentUser!.email;
 
@@ -189,7 +202,7 @@ class _ConfigScreen extends State<ConfigScreen> {
                         const SizedBox(
                           height: 20,
                         ),
-                        lastUpdates('Nombre:', 'Gmail :  $currentUSer',
+                        lastUpdates('Nombre:${miUsuaria.getNombre()}', 'Gmail :  $currentUSer',
                             'Contraseña: ********'),
                         const SizedBox(height: 40),
                         const Text(

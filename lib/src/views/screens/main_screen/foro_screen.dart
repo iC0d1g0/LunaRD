@@ -47,24 +47,12 @@ class _ForoState extends State<Foro> {
     return Scaffold(
       backgroundColor: Colors.white,
 
-      appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(255, 230, 244, 1),
-        title: const Center(
-          child: Text("FORO          ",style: TextStyle
-                      (fontWeight: FontWeight.bold,
-                      color:Color.fromARGB(255, 86, 47,92))),
-          
-          
-          ),
-        
-      ),
-      
      body: Center(
         child: Column(
           children: [
             const SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 10),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

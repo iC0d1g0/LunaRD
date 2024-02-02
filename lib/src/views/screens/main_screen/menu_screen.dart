@@ -64,32 +64,33 @@ class _MenuBasicoState extends State<MenuBasico> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(255, 230, 244, 1),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: ListView(
-        padding: EdgeInsets.zero,
+        padding: const EdgeInsets.all(5.0),
+        
         children: [
           Container(
             height: 150,
             decoration: const BoxDecoration(
-              color: Color.fromRGBO(100, 16, 70, 1),
+              color: Color.fromRGBO(255, 230, 244, 1),
               borderRadius: BorderRadius.only(),
             ),
             child: Column(children: [
-              const SizedBox(height: 50),
+              const SizedBox(height: 40),
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                title: const Center(
-                  child: Text('Nombre',
-                      style: TextStyle(
+                title:  Center(
+                  child: Text((MainController.usuaria.nombre !=null ) ? MainController.usuaria.nombre! :'Nombre',
+                      style: const TextStyle(
                           fontSize: 22,
-                          color: Color.fromRGBO(255, 230, 244, 1),
+                          color: Color.fromRGBO(100, 16, 70, 1),
                           fontWeight: FontWeight.w800)),
                 ),
                 subtitle: const Center(
                   child: Text(
-                    'Estado del usuario',
+                    'Bienvenida!!💕💕 ',
                     style: TextStyle(
-                        fontSize: 20, color: Color.fromRGBO(255, 230, 244, 1)),
+                        fontSize: 20, color: Color.fromRGBO(100, 16, 70, 1)),
                   ),
                 ),
                 onTap: () {
@@ -102,14 +103,14 @@ class _MenuBasicoState extends State<MenuBasico> {
                 trailing: const CircleAvatar(
                   radius: 50,
                   backgroundImage: AssetImage('assets/images/perfil.png'),
-                  backgroundColor: Color.fromRGBO(255, 230, 244, 1),
+                  backgroundColor: Color.fromARGB(255, 246, 200, 227),
                 ),
               ),
               const SizedBox(height: 20),
             ]),
           ),
           Container(
-            color: const Color.fromRGBO(255, 230, 244, 1),
+            color: Color.fromARGB(255, 255, 255, 255),
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: GridView.count(
@@ -129,10 +130,15 @@ class _MenuBasicoState extends State<MenuBasico> {
                     },
                     child: itemDashboard(
                         'Calendario',
-                        const DecorationImage(
+                       const DecorationImage(colorFilter:ColorFilter.matrix(<double>[
+                                          -1,  0,  0, 0, 100,
+                                          0, -1,  0, 0, 16,
+                                          0,  0, -1, 0, 70,
+                                          0,  0,  0, 1,   1,
+                                        ]),
                             image: AssetImage('assets/images/calendario_.png'),
                             scale: 8),
-                        const Color.fromRGBO(255, 230, 244, 1)),
+                         const Color.fromARGB(255, 246, 200, 227)),
                   ),
                   InkWell(
                     onTap: () {
@@ -144,10 +150,15 @@ class _MenuBasicoState extends State<MenuBasico> {
                     },
                     child: itemDashboard(
                         'Foro',
-                        const DecorationImage(
+                        const DecorationImage(colorFilter:ColorFilter.matrix(<double>[
+                                          -1,  0,  0, 0, 100,
+                                          0, -1,  0, 0, 16,
+                                          0,  0, -1, 0, 70,
+                                          0,  0,  0, 1,   1,
+                                        ]),
                             image: AssetImage('assets/images/foro_.png'),
                             scale: 8),
-                        const Color.fromRGBO(255, 230, 244, 1)),
+                         const Color.fromARGB(255, 246, 200, 227)),
                   ),
                   InkWell(
                     onTap: () {
@@ -159,10 +170,15 @@ class _MenuBasicoState extends State<MenuBasico> {
                     },
                     child: itemDashboard(
                         'Diagnostico',
-                        const DecorationImage(
+                        const DecorationImage(colorFilter:ColorFilter.matrix(<double>[
+                                          -1,  0,  0, 0, 100,
+                                          0, -1,  0, 0, 16,
+                                          0,  0, -1, 0, 70,
+                                          0,  0,  0, 1,   1,
+                                        ]),
                             image: AssetImage('assets/images/consulta.png'),
                             scale: 8),
-                        const Color.fromRGBO(255, 230, 244, 1)),
+                         const Color.fromARGB(255, 246, 200, 227)),
                   ),
                   InkWell(
                     onTap: () {
@@ -174,10 +190,15 @@ class _MenuBasicoState extends State<MenuBasico> {
                     },
                     child: itemDashboard(
                         'Historial',
-                        const DecorationImage(
+                        const DecorationImage(colorFilter:ColorFilter.matrix(<double>[
+                                          -1,  0,  0, 0, 100,
+                                          0, -1,  0, 0, 16,
+                                          0,  0, -1, 0, 70,
+                                          0,  0,  0, 1,   1,
+                                        ]),
                             image: AssetImage('assets/images/historial.png'),
                             scale: 8),
-                        const Color.fromRGBO(255, 230, 244, 1)),
+                         const Color.fromARGB(255, 246, 200, 227)),
                   ),
                   InkWell(
                     onTap: () {
@@ -189,10 +210,15 @@ class _MenuBasicoState extends State<MenuBasico> {
                     },
                     child: itemDashboard(
                         'Notas',
-                        const DecorationImage(
+                        const DecorationImage(colorFilter:ColorFilter.matrix(<double>[
+                                          -1,  0,  0, 0, 100,
+                                          0, -1,  0, 0, 16,
+                                          0,  0, -1, 0, 70,
+                                          0,  0,  0, 1,   1,
+                                        ]),
                             image: AssetImage('assets/images/notas.png'),
                             scale: 8),
-                        const Color.fromRGBO(255, 230, 244, 1)),
+                         const Color.fromARGB(255, 246, 200, 227)),
                   ),
                   InkWell(
                     onTap: () {
@@ -202,12 +228,18 @@ class _MenuBasicoState extends State<MenuBasico> {
                             builder: (context) => const Preguntas(),
                           ));
                     },
+                    
                     child: itemDashboard(
-                        'Preguntas',
-                        const DecorationImage(
+                            'Preguntas',
+                            const DecorationImage(colorFilter:ColorFilter.matrix(<double>[
+                                          -1,  0,  0, 0, 100,
+                                          0, -1,  0, 0, 16,
+                                          0,  0, -1, 0, 70,
+                                          0,  0,  0, 1,   1,
+                                        ]),
                             image: AssetImage('assets/images/pregunta.png'),
                             scale: 7),
-                        const Color.fromRGBO(255, 230, 244, 1)),
+                        const Color.fromARGB(255, 246, 200, 227)),
                   ),
                 ],
               ),
@@ -239,7 +271,7 @@ class _MenuBasicoState extends State<MenuBasico> {
   itemDashboard(String title, DecorationImage icondata, Color background) =>
       Container(
         decoration: BoxDecoration(
-          color: const Color.fromRGBO(100, 16, 70, 1),
+          color: const Color.fromRGBO(255, 230, 244, 1),
           borderRadius: BorderRadius.circular(25),
           boxShadow: [
             BoxShadow(
@@ -262,7 +294,7 @@ class _MenuBasicoState extends State<MenuBasico> {
             Text(title,
                 style: const TextStyle(
                   fontSize: 18,
-                  color: Color.fromRGBO(255, 230, 244, 1),
+                  color: Color.fromRGBO(100, 16, 70, 1),
                 )),
           ],
         ),

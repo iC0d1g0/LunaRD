@@ -95,7 +95,7 @@ class _WallPostState extends State<WallPost> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: const Color.fromRGBO(255, 230, 244, 1),
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
         title: const Text("Agrega un comentario"),
         content: TextField(
           controller: _commenttoCommentTextController,
@@ -197,30 +197,10 @@ class _WallPostState extends State<WallPost> {
         ),
         actions: [
           TextButton(
-          onPressed:() async {
-            //primero eliminar comentario de firestire(si solo elimnas el post los comentarios seguiran en la base de datos)
-            final commentsDocs = await FirebaseFirestore.instance
-            .collection('foro_luna')
-            .doc(widget.postId)
-            .collection('Comments').get();
-
-            for (var doc in commentsDocs.docs){
-              await FirebaseFirestore.
-              instance.collection('foro_luna')
-              .doc(widget.postId)
-              .collection('Comments')
-              .doc(doc.id)
-              .delete();
-              //luego se elimina el post
-            }
-            FirebaseFirestore.instance
-            .collection('foro_luna')
-            .doc(widget.postId)
-            .delete();
-            // ignore: use_build_context_synchronously
+          onPressed:()  {
             Navigator.pop(context);
           },
-          child: const Text("Eliminar"),
+          child: const Text("Cancelar"),
           ),
           TextButton(
             onPressed: () async {
@@ -260,7 +240,7 @@ class _WallPostState extends State<WallPost> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(100, 16, 70, 1),
+        color: Color.fromRGBO(255, 230, 244, 1),
         borderRadius: BorderRadius.circular(20),
       ),
       margin: const EdgeInsets.only(top: 25, left: 25, right: 25),
@@ -282,8 +262,8 @@ class _WallPostState extends State<WallPost> {
                     Text(
                       widget.message,
                       style: const TextStyle(
+                          color:const Color.fromRGBO(100, 16, 70, 1) ,
                           fontSize: 16,
-                          color: Color.fromRGBO(255, 230, 244, 1),
                           fontWeight: FontWeight.w800),
                     ),
 
@@ -294,7 +274,7 @@ class _WallPostState extends State<WallPost> {
                       widget.user,
                       style: const TextStyle(
                           fontSize: 14,
-                          color: Color.fromRGBO(255, 230, 244, 1)),
+                          color: const Color.fromRGBO(100, 16, 70, 1)),
                     ),
                   ],
                 ),
@@ -320,7 +300,7 @@ class _WallPostState extends State<WallPost> {
                   Text(
                     widget.likes.length.toString(),
                     style: const TextStyle(
-                        color: Color.fromRGBO(255, 230, 244, 1)),
+                        color:  Color.fromRGBO(100, 16, 70, 1)),
                   ),
                 ],
               ),
@@ -332,10 +312,7 @@ class _WallPostState extends State<WallPost> {
 
                   const SizedBox(width: 10),
                   //contador de comentarios
-                  const Text(
-                    '0',
-                    style: TextStyle(color: Color.fromRGBO(255, 230, 244, 1)),
-                  ),
+               
                 ],
               ),
             ],
