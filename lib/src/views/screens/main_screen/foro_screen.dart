@@ -13,14 +13,16 @@ class Foro extends StatefulWidget {
 }
 
 class _ForoState extends State<Foro> {
+  /*
   //user
   final currentUser = FirebaseAuth.instance.currentUser!;
   //controlador de texto
+  */
   final textController = TextEditingController();
   void signOut() {
     FirebaseAuth.instance.signOut();
   }
-
+/*
   //post Message
   void postMessage() {
     //solo postear si hay algo en el TextField
@@ -39,7 +41,7 @@ class _ForoState extends State<Foro> {
       textController.clear();
     });
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,7 +102,7 @@ class _ForoState extends State<Foro> {
                   ]),
             ),
             const SizedBox(height: 10),
-            //the wall
+          /*  //the wall
             Expanded(
               child: StreamBuilder(
                 stream: FirebaseFirestore.instance
@@ -133,7 +135,7 @@ class _ForoState extends State<Foro> {
                 },
               ),
             ),
-            //post msg
+            *///post msg
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -148,7 +150,7 @@ class _ForoState extends State<Foro> {
                   ),
                   //post boton
                   IconButton(
-                      onPressed: postMessage,
+                      onPressed: ()=>(),//post fuction
                       icon: const Icon(Icons.send),
                       color: const Color.fromRGBO(100, 16, 70, 1)),
                 ],

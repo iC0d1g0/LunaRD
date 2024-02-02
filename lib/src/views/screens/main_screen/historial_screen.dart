@@ -37,7 +37,7 @@ class _HistorialScreen extends State<HistorialScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(255, 230, 244, 1),
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       body: ListView(
         children: [
           Padding(
@@ -87,6 +87,9 @@ class _HistorialScreen extends State<HistorialScreen> {
             selectedDayPredicate: (day) => isSameDay(day, ahora),
             availableGestures: AvailableGestures.all,
             headerStyle: const HeaderStyle(
+              formatButtonDecoration:  BoxDecoration(
+                color: Color.fromRGBO(100, 16, 70, 1),
+              ),
               formatButtonVisible: false,
               titleCentered: true,
               titleTextStyle: TextStyle(
@@ -99,6 +102,16 @@ class _HistorialScreen extends State<HistorialScreen> {
                   fontSize: 16,
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
+
+              defaultTextStyle :TextStyle(
+                
+                color:Color.fromRGBO(100, 16, 70, 1),
+              ),
+
+              todayDecoration: BoxDecoration(
+                color: Color.fromRGBO(173, 28, 122, 1),
+                shape: BoxShape.circle,
+              ),
             ),
           ),
           const SizedBox(height: 40),
@@ -137,7 +150,7 @@ class sexualesPos extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: const Color.fromRGBO(100, 16, 70, 1),
+          color: const Color.fromRGBO(255, 230, 244, 1),
         ),
         child: Column(
           children: [
@@ -149,7 +162,7 @@ class sexualesPos extends StatelessWidget {
                   nombre,
                   style: const TextStyle(
                       fontSize: 20,
-                      color: Color.fromRGBO(255, 230, 244, 1),
+                      color: Color.fromRGBO(100, 16, 70, 1),
                       fontWeight: FontWeight.w800),
                 ),
               ],
@@ -158,7 +171,7 @@ class sexualesPos extends StatelessWidget {
             Text(
               descripcion,
               style: const TextStyle(
-                  fontSize: 18, color: Color.fromRGBO(255, 230, 244, 1)),
+                  fontSize: 18, color: Color.fromRGBO(100, 16, 70, 1)),
             ),
             const SizedBox(height: 20),
           ],
@@ -179,7 +192,7 @@ class anticonceptivosPos extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: const Color.fromRGBO(100, 16, 70, 1),
+          color: const Color.fromRGBO(255, 230, 244, 1),
         ),
         child: Column(
           children: [
@@ -191,7 +204,7 @@ class anticonceptivosPos extends StatelessWidget {
                   nombre,
                   style: const TextStyle(
                       fontSize: 20,
-                      color: Color.fromRGBO(255, 230, 244, 1),
+                      color: Color.fromRGBO(100, 16, 70, 1),
                       fontWeight: FontWeight.w800),
                 ),
               ],
@@ -207,7 +220,7 @@ class anticonceptivosPos extends StatelessWidget {
                     width: 60,
                     height: 60,
                     decoration: const BoxDecoration(
-                        color: Color.fromRGBO(255, 230, 244, 1),
+                        color: Color.fromRGBO(225, 187, 212, 1),
                         shape: BoxShape.circle),
                     child: const Center(
                       child: Icon(Icons.baby_changing_station,
@@ -238,7 +251,7 @@ class embarazoPos extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: const Color.fromRGBO(100, 16, 70, 1),
+          color: const Color.fromRGBO(255, 230, 244, 1),
         ),
         child: Column(
           children: [
@@ -253,7 +266,7 @@ class embarazoPos extends StatelessWidget {
                   nombre,
                   style: const TextStyle(
                       fontSize: 20,
-                      color: Color.fromRGBO(255, 230, 244, 1),
+                      color: Color.fromRGBO(100, 16, 70, 1),
                       fontWeight: FontWeight.w800),
                 ),
               ],
@@ -264,11 +277,11 @@ class embarazoPos extends StatelessWidget {
                 SizedBox(width: 10),
                 Text('Probavilidad de embarazo alcanzada',
                     style: TextStyle(
-                        fontSize: 18, color: Color.fromRGBO(255, 230, 244, 1))),
+                        fontSize: 18, color: Color.fromRGBO(100, 16, 70, 1))),
                 Icon(
                   Icons.pregnant_woman_outlined,
                   size: 25,
-                  color: Color.fromRGBO(255, 230, 244, 1),
+                  color: Color.fromRGBO(100, 16, 70, 1),
                 ),
               ],
             ),
@@ -281,7 +294,7 @@ class embarazoPos extends StatelessWidget {
                 Expanded(
                   child: LinearProgressIndicator(
                     value: .2,
-                    backgroundColor: Colors.black54,
+                    backgroundColor: Color.fromRGBO(100, 16, 70, 1),
                     color: Color.fromRGBO(255, 230, 244, 1),
                     minHeight: 5,
                   ),
@@ -290,7 +303,7 @@ class embarazoPos extends StatelessWidget {
                 Text(
                   '20%',
                   style: TextStyle(
-                      fontSize: 14, color: Color.fromRGBO(255, 230, 244, 1)),
+                      fontSize: 14, color: Color.fromRGBO(100, 16, 70, 1)),
                 ),
                 SizedBox(width: 10),
               ],
@@ -329,7 +342,7 @@ class malentendidoPos extends StatelessWidget {
                   nombre,
                   style: const TextStyle(
                       fontSize: 20,
-                      color: Color.fromRGBO(255, 230, 244, 1),
+                      color: Color.fromRGBO(100, 16, 70, 1),
                       fontWeight: FontWeight.w800),
                 ),
               ],
@@ -345,7 +358,7 @@ class malentendidoPos extends StatelessWidget {
                     width: 60,
                     height: 60,
                     decoration: const BoxDecoration(
-                        color: Color.fromRGBO(255, 230, 244, 1),
+                        color: Color.fromRGBO(100, 16, 70, 1),
                         shape: BoxShape.circle),
                     child: const Center(
                       child: Icon(Icons.personal_injury,

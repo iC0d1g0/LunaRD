@@ -22,7 +22,7 @@ class _MyBanco2State extends State<MyAhh> {
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
-        backgroundColor: const Color(0xFFFAE6E2),
+        backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
           body: Center(
             child: Padding(
           padding: const EdgeInsets.only(bottom:200),
@@ -39,26 +39,26 @@ class _MyBanco2State extends State<MyAhh> {
                     animationDuration: 1000,
                     lineHeight: 10,
                     percent: 0.6,
-                    progressColor: Colors.deepPurple,
+                    progressColor: const Color.fromRGBO(100, 16, 70, 1),
                     barRadius: const Radius.circular(10),
                     // ignore: deprecated_member_use
                     linearStrokeCap: LinearStrokeCap.roundAll,
                   ),
                   ),
                   
-              const Text("¿Tu periodo dura mas de un mes en llegar? o dura menos de 24 dias?",
+              const Text("¿Tu periodo dura mas de un mes en llegar?",
                textAlign: TextAlign.center,
                style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                    color:  Color.fromRGBO(100, 16, 70, 1),
                     
                   ),
               ),
               const SizedBox(height: 40),
                MyButtonTrue(
                 customColor:
-                const Color(0x00ffcec5).withOpacity(0.7), 
+                const Color.fromRGBO(100, 16, 70, 1), 
                 text: "Más de 30 días", 
                 onTap: () {
                   MainController.usuaria.duracionUsual = 1;
@@ -71,7 +71,7 @@ class _MyBanco2State extends State<MyAhh> {
               const SizedBox(height: 20),
                 MyButtonTrue(
                 customColor:
-                const Color(0x00ffcec5).withOpacity(0.7),
+                const Color.fromRGBO(100, 16, 70, 1),
                 text: "Menos de 24 días", 
                 onTap: () {
                   MainController.usuaria.duracionUsual = -1;
@@ -85,7 +85,7 @@ class _MyBanco2State extends State<MyAhh> {
               const SizedBox(height: 20),
                 MyButtonTrue(
                 customColor:
-                const Color(0x00ffcec5).withOpacity(0.7), 
+                const Color.fromRGBO(100, 16, 70, 1),
                 text: "Entre 24 y 30 días", 
                 onTap: () {
                   MainController.usuaria.duracionUsual = 0;
@@ -104,10 +104,10 @@ class _MyBanco2State extends State<MyAhh> {
             ),
           ), 
            appBar: AppBar(
-  backgroundColor: const Color(0xFFFAE6E2),       
+     backgroundColor: const Color.fromRGBO(255, 255, 255, 1),      
         leading: IconButton(
  
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, color: Color.fromRGBO(100, 16, 70, 1),),
           onPressed: () {
             Navigator.pop(context);
           },

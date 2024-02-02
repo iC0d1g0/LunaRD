@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
     MainController.barColor = const Color(0xFFFAE6E2);
 
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(255, 230, 244, 1),
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(

@@ -22,7 +22,7 @@ class _MyBanco2State extends State<MyBono3> {
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
-        backgroundColor: const Color(0xFFFAE6E2),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
           body: Center(
             child: Padding(
           padding: const EdgeInsets.only(bottom:200),
@@ -39,27 +39,27 @@ class _MyBanco2State extends State<MyBono3> {
                     animationDuration: 500,
                     lineHeight: 10,
                     percent: 0.8,
-                    progressColor: Colors.deepPurple,
+                    progressColor: const Color.fromRGBO(100, 16, 70, 1),
                     barRadius: const Radius.circular(10),
                     // ignore: deprecated_member_use
                     linearStrokeCap: LinearStrokeCap.roundAll,
                   ),
                   ),
                   
-              const Text("¿Tienes relaciones a menudo?",
+              const Text("¿Eres sexualmente activa?",
                textAlign: TextAlign.center,
                style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                    color:  Color.fromRGBO(100, 16, 70, 1),
                     
                   ),
               ),
               const SizedBox(height: 40),
                MyButtonTrue(
                 customColor:
-                const Color(0x00ffcec5).withOpacity(0.7), 
-                text: "No, no tengo", 
+                const Color.fromRGBO(100, 16, 70, 1), 
+                text: "No", 
                 onTap: () {
                   MainController.usuaria.frecuenciaRelacionesMes = 0;
                    Navigator.push(context, 
@@ -71,8 +71,8 @@ class _MyBanco2State extends State<MyBono3> {
               const SizedBox(height: 20),
                 MyButtonTrue(
                 customColor:
-                const Color(0x00ffcec5).withOpacity(0.7), 
-                text: "Si, tengo pocas", 
+               const Color.fromRGBO(100, 16, 70, 1), 
+                text: "A veces", 
                 onTap: () {
                   MainController.usuaria.frecuenciaRelacionesMes = 1;
                    Navigator.push(context, 
@@ -85,8 +85,8 @@ class _MyBanco2State extends State<MyBono3> {
               const SizedBox(height: 20),
                 MyButtonTrue(
                 customColor:
-                const Color(0x00ffcec5).withOpacity(0.7), 
-                text: "Si, tengo muchas", 
+                const Color.fromRGBO(100, 16, 70, 1), 
+                text: "Si", 
                 onTap: () {
                   MainController.usuaria.frecuenciaRelacionesMes = 2;
                    Navigator.push(context, 
@@ -104,10 +104,10 @@ class _MyBanco2State extends State<MyBono3> {
             ),
           ), 
            appBar: AppBar(
-  backgroundColor: const Color(0xFFFAE6E2),       
+  backgroundColor: const Color.fromARGB(255, 255, 255, 255),       
         leading: IconButton(
  
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back), color: const Color.fromRGBO(100, 16, 70, 1),
           onPressed: () {
             Navigator.pop(context);
           },
