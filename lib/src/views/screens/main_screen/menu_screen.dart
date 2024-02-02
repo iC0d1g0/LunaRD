@@ -1,5 +1,6 @@
 // Dependencias
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 //import 'package:flutter/services.dart';
 
 // Screens
@@ -150,12 +151,20 @@ class _MenuBasicoState extends State<MenuBasico> {
                         const Color.fromRGBO(255, 230, 244, 1)),
                   ),
                   InkWell(
-                    onTap: () {
-                      Navigator.push(
+                    onTap: () async {
+                      /* Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const Diagnostico(),
-                          ));
+                          )); */
+                      
+                      const url = 'https://www.humnsa.gob.do/index.php/articulos/item/432-chequeo-ginecologico'; //Aquí va la Uri del Diagnóstico
+                      Uri uri = Uri.parse(url);
+                      if (await canLaunchUrl(uri)) {
+                        await launchUrl(uri, mode: LaunchMode.externalApplication);
+                      } else {
+                        throw 'No se puede abrir $url';
+                      }
                     },
                     child: itemDashboard(
                         'Diagnostico',

@@ -45,7 +45,6 @@ class _CharScreen extends State<CharScreen> {
     return listaWidgetChat;
   }
 
-<<<<<<< HEAD
   void agregarMensaje(String mensaje) {
     listaChat.add(mensaje);
     listaWidgetChat = convertirListaChatAWidget(listaChat);
@@ -56,14 +55,6 @@ class _CharScreen extends State<CharScreen> {
   void initState() {
     super.initState();
     agregarMensaje(MainController.respuestaChatInicial);
-=======
-  void agregarMensaje(String? mensaje) {
-    String nonull = (mensaje != null) ? mensaje : "Hola";
-    setState(() {
-      listaChat.add(nonull);
-      listaWidgetChat = convertirListaChatAWidget(listaChat);
-    });
->>>>>>> b3a8b334cee17b6ca017628bc70f412ef43952c9
   }
 
   @override
@@ -140,23 +131,15 @@ class _CharScreen extends State<CharScreen> {
                 alignment: Alignment.centerRight,
                 width: 300,
                 child: TextFormField(
-<<<<<<< HEAD
                     readOnly: inputDeshabilitado,
                     maxLines: null,
                     controller: mensajeController,
                     decoration: const InputDecoration(
                         hintText: 'Escribiendo...', border: InputBorder.none)),
-=======
-                  controller: mensajeController,
-                  decoration: const InputDecoration(
-                      hintText: 'Escribiendo...', border: InputBorder.none),
-                ),
->>>>>>> b3a8b334cee17b6ca017628bc70f412ef43952c9
               ),
             ),
             InkWell(
               // ignore: avoid_print
-<<<<<<< HEAD
               onTap: () async{
                 if(mensajeController.text.isNotEmpty){
                   inputDeshabilitado = true;
@@ -168,13 +151,6 @@ class _CharScreen extends State<CharScreen> {
                   inputDeshabilitado = false;
                   setState(() {});
                 }
-=======
-              onTap: () async {
-                agregarMensaje(mensajeController.text);
-                final respuesta = await MainController.respuestaChatGPT(
-                    mensajeController.text);
-                agregarMensaje(respuesta!);
->>>>>>> b3a8b334cee17b6ca017628bc70f412ef43952c9
               },
               child: const Padding(
                 padding: EdgeInsets.only(left: 10),
