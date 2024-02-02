@@ -16,7 +16,7 @@ class Comments extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color.fromARGB(252, 255, 195, 232),
+        color: const Color.fromARGB(252, 255, 195, 232),
         borderRadius: BorderRadius.circular(10),
       ),
       margin: const EdgeInsets.only(bottom: 5),

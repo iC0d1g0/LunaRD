@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:luna_rd/src/app.dart';
 import 'package:luna_rd/src/models/IA/personal_chat.dart';
-import 'package:luna_rd/src/models/authen_firebase.dart';
+//import 'package:luna_rd/src/models/authen_firebase.dart';
 import 'package:luna_rd/src/models/database/databa_fire.dart';
 import 'package:luna_rd/src/models/database/entidad_usuaria.dart';
 import 'package:shared_preferences/shared_preferences.dart';

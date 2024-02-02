@@ -95,7 +95,7 @@ class _WallPostState extends State<WallPost> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         title: const Text("Agrega un comentario"),
         content: TextField(
           controller: _commenttoCommentTextController,
@@ -240,7 +240,7 @@ class _WallPostState extends State<WallPost> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color.fromRGBO(255, 230, 244, 1),
+        color: const Color.fromRGBO(255, 230, 244, 1),
         borderRadius: BorderRadius.circular(20),
       ),
       margin: const EdgeInsets.only(top: 25, left: 25, right: 25),
@@ -262,7 +262,7 @@ class _WallPostState extends State<WallPost> {
                     Text(
                       widget.message,
                       style: const TextStyle(
-                          color:const Color.fromRGBO(100, 16, 70, 1) ,
+                          color:Color.fromRGBO(100, 16, 70, 1) ,
                           fontSize: 16,
                           fontWeight: FontWeight.w800),
                     ),
@@ -274,7 +274,7 @@ class _WallPostState extends State<WallPost> {
                       widget.user,
                       style: const TextStyle(
                           fontSize: 14,
-                          color: const Color.fromRGBO(100, 16, 70, 1)),
+                          color: Color.fromRGBO(100, 16, 70, 1)),
                     ),
                   ],
                 ),

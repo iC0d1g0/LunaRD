@@ -1,12 +1,13 @@
 // Dependencias
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 //import 'package:flutter/services.dart';
 
 // Screens
 import 'package:luna_rd/src/views/screens/main_screen/calendario_screen.dart';
 import 'package:luna_rd/src/views/screens/main_screen/chat_ai_screen.dart';
 import 'package:luna_rd/src/views/screens/main_screen/configuration_screen.dart';
-import 'package:luna_rd/src/views/screens/main_screen/diagnostico_screen.dart';
+//import 'package:luna_rd/src/views/screens/main_screen/diagnostico_screen.dart';
 import 'package:luna_rd/src/views/screens/main_screen/foro_screen.dart';
 import 'package:luna_rd/src/views/screens/main_screen/historial_screen.dart';
 import 'package:luna_rd/src/views/screens/main_screen/notas_screen.dart';
@@ -110,7 +111,7 @@ class _MenuBasicoState extends State<MenuBasico> {
             ]),
           ),
           Container(
-            color: Color.fromARGB(255, 255, 255, 255),
+            color: const Color.fromARGB(255, 255, 255, 255),
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: GridView.count(
@@ -161,12 +162,20 @@ class _MenuBasicoState extends State<MenuBasico> {
                          const Color.fromARGB(255, 246, 200, 227)),
                   ),
                   InkWell(
-                    onTap: () {
-                      Navigator.push(
+                    onTap: () async {
+                      /* Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const Diagnostico(),
-                          ));
+                          )); */
+                      
+                      const url = 'https://www.humnsa.gob.do/index.php/articulos/item/432-chequeo-ginecologico'; //Aquí va la Uri del Diagnóstico
+                      Uri uri = Uri.parse(url);
+                      if (await canLaunchUrl(uri)) {
+                        await launchUrl(uri, mode: LaunchMode.externalApplication);
+                      } else {
+                        throw 'No se puede abrir $url';
+                      }
                     },
                     child: itemDashboard(
                         'Diagnostico',
