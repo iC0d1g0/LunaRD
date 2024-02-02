@@ -45,12 +45,16 @@ class _CharScreen extends State<CharScreen> {
     return listaWidgetChat;
   }
 
-  void agregarMensaje(String? mensaje) {
-    String nonull = (mensaje != null) ? mensaje : "Hola";
-    setState(() {
-      listaChat.add(nonull);
-      listaWidgetChat = convertirListaChatAWidget(listaChat);
-    });
+  void agregarMensaje(String mensaje) {
+    listaChat.add(mensaje);
+    listaWidgetChat = convertirListaChatAWidget(listaChat);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    agregarMensaje(MainController.respuestaChatInicial);
   }
 
   @override
