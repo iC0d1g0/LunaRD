@@ -60,7 +60,7 @@ class _CalendarioScreen extends State<CalendarioScreen> {
     String mesActual = obtenerMesActual(now.month);
 
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(255, 230, 244, 1),
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       body: ListView(
        
         children: [
@@ -148,6 +148,7 @@ class _CalendarioScreen extends State<CalendarioScreen> {
                       ),
                     ),
                   ),
+                 
                   InkWell(
                     onTap: () => {}, //print("hola"),
                     child: Container(
@@ -159,26 +160,7 @@ class _CalendarioScreen extends State<CalendarioScreen> {
                             borderRadius: BorderRadius.circular(20),
                             color: const Color.fromRGBO(100, 16, 70, 1)),
                         child: const Text(
-                          'Fertil',
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Color.fromRGBO(255, 230, 244, 1)),
-                        ),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () => {}, //print("hola"),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: const Color.fromRGBO(100, 16, 70, 1)),
-                        child: const Text(
-                          'Infertil',
+                          'Retraso',
                           style: TextStyle(
                               fontSize: 16,
                               color: Color.fromRGBO(255, 230, 244, 1)),
@@ -203,14 +185,14 @@ class _CalendarioScreen extends State<CalendarioScreen> {
                     height: 230.0,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Color.fromRGBO(100, 16, 70, 1),
+                      color: Color.fromRGBO(255, 230, 244, 1),
                     ),
                   ),
                   Text(
                     '${now.day} $mesActual',
                     style: const TextStyle(
                         fontSize: 44,
-                        color: Color.fromRGBO(255, 230, 244, 1),
+                        color: Color.fromRGBO(100, 16, 70, 1),
                         fontWeight: FontWeight.w800),
                   ),
                 ],
@@ -234,8 +216,49 @@ class _CalendarioScreen extends State<CalendarioScreen> {
             rangeSelectionMode: RangeSelectionMode.toggledOn,
             onRangeSelected: _onRangeSelectd,
             rangeEndDay: DateTime(2024, 02, 20),
+
+            headerStyle: const HeaderStyle(
+            
+            formatButtonDecoration:  BoxDecoration(
+              color: Color.fromRGBO(100, 16, 70, 1),
+              ),
+            
+            formatButtonVisible: false,
+            titleCentered: true,
+            titleTextStyle: TextStyle(
+            fontSize: 20,
+            color: Color.fromRGBO(100, 16, 70, 1),
+            fontWeight: FontWeight.w800),
+            
+
+            ),
+
+
             calendarStyle: const CalendarStyle(
+
               outsideDaysVisible: false,
+              rangeHighlightColor: Color.fromRGBO(255, 230, 244, 1),
+              rangeEndDecoration: BoxDecoration(
+                color:  Color.fromRGBO(100, 16, 70, 1),
+                shape: BoxShape.circle,
+              ),
+              rangeStartDecoration: BoxDecoration(
+                color:  Color.fromRGBO(100, 16, 70, 1),
+                shape: BoxShape.circle,
+              ),
+              defaultTextStyle :TextStyle(
+                
+                color:Color.fromRGBO(100, 16, 70, 1),
+              ),
+
+              todayDecoration: BoxDecoration(
+                color: Color.fromRGBO(173, 28, 122, 1),
+                shape: BoxShape.circle,
+              ),
+              
+              
+              
+             
             ),
             onFormatChanged: (format) {
               if (_calendarFormat != format) {

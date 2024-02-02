@@ -44,7 +44,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(255, 230, 244, 1),
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -132,6 +132,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       if (userRegisted != null && userRegisted.displayName != null && userRegisted.email != null) {
                         MainController.usuaria.nombre = userRegisted.displayName;
                         MainController.usuaria.correo = userRegisted.email;
+                        // ignore: use_build_context_synchronously
                         Navigator.push(
                           // ignore: use_build_context_synchronously
                           context,

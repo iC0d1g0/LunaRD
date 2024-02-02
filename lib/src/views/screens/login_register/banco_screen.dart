@@ -51,7 +51,7 @@ class _BonoPageState extends State<BonoPage> {
     return ListView(
       children: [
         CupertinoPageScaffold(
-          backgroundColor: const Color(0xFFFAE6E2),
+          backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
           // navigationBar: const CupertinoNavigationBar(
           //   middle: Text('Seleccionar Fecha'),
           // ),
@@ -66,7 +66,7 @@ class _BonoPageState extends State<BonoPage> {
                     animationDuration: 1000,
                     lineHeight: 10,
                     percent: 0.2,
-                    progressColor: Colors.deepPurple,
+                    progressColor: const Color.fromRGBO(100, 16, 70, 1),
                     barRadius: const Radius.circular(10),
                     // ignore: deprecated_member_use
                     linearStrokeCap: LinearStrokeCap.roundAll,
@@ -76,7 +76,7 @@ class _BonoPageState extends State<BonoPage> {
                     'Fecha De Nacimiento',
                     style: TextStyle(
                         fontSize: 22.0,
-                        color: Colors.black,
+                        color: Color.fromRGBO(100, 16, 70, 1),
                         decoration: TextDecoration.none),
                   ),
                   const SizedBox(height: 20.0),
@@ -88,20 +88,35 @@ class _BonoPageState extends State<BonoPage> {
                         decoration: TextDecoration.none),
                   ),
                   const SizedBox(height: 20.0),
-                  CupertinoButton(
-                    onPressed: () => _selectDate(context),
-                    child: const Text(
-                      'Seleccionar Fecha',
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFDA2B9E),
-                          decoration: TextDecoration.none),
+                  Container(
+                    decoration: BoxDecoration(
+                      
+                    color: const Color.fromRGBO(100, 16, 70, 1),
+                          border: Border.all(
+                            
+                    color: const Color.fromRGBO(100, 16, 70, 1),
+                            width: 2.0, // Ancho del borde
+                          ),
+                          borderRadius: BorderRadius.circular(25.0), // Radio de borde
+                    ),
+                  
+                    
+              
+                    child: CupertinoButton(
+                      onPressed: () => _selectDate(context),
+                      child: const Text(
+                        'Seleccionar Fecha',
+                        style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(255, 206, 234, 1),
+                            decoration: TextDecoration.none),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 200),
                   MyNext(
-                    customColor: const Color(0xFFDA2B9E).withOpacity(0.7),
+                    customColor: const Color.fromRGBO(100, 16, 70, 1),
                     text: "Siguiente",
                     onTap: () {
                       MainController.usuaria.birthday = selectedDate;

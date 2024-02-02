@@ -56,7 +56,7 @@ class _CharScreen extends State<CharScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(255, 230, 244, 1),
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0),
         child: Padding(
@@ -114,40 +114,63 @@ class _CharScreen extends State<CharScreen> {
                 offset: const Offset(0, 3),
               ),
             ]),
-        child: Row(
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 20),
-              child:
-                  Icon(Icons.face_2, color: Color.fromRGBO(255, 230, 244, 1)),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: Container(
-                alignment: Alignment.centerRight,
-                width: 300,
-                child: TextFormField(
-                  controller: mensajeController,
-                  decoration: const InputDecoration(
-                      hintText: 'Escribiendo...', border: InputBorder.none),
+        child: Expanded(
+          child: Row(
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(left: 20),
+                child:
+                    Icon(Icons.face_2, color: Color.fromRGBO(255, 230, 244, 1)),
+              ),
+               Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Container(
+                  alignment: Alignment.centerRight,
+                  width: 300,
+                  
+                  child:  TextFormField(
+                    
+                      readOnly: inputDeshabilitado,
+                      maxLines: null,
+                      controller: mensajeController,
+                      decoration: InputDecoration(
+                      
+                      filled: true,
+                      fillColor:  const Color.fromRGBO(255, 230, 244, 1),
+                      hintText: 'Escribiendo...',
+                      hintStyle:  const TextStyle(
+                      color:   Color.fromRGBO(100, 16, 70, 1),),
+                       border: OutlineInputBorder(
+                       borderRadius:  BorderRadius.circular(15),
+                      ),
+                      
+                    ),
+                  
+                  ),
                 ),
               ),
-            ),
-            InkWell(
-              // ignore: avoid_print
-              onTap: () async {
-                agregarMensaje(mensajeController.text);
-                final respuesta = await MainController.respuestaChatGPT(
-                    mensajeController.text);
-                agregarMensaje(respuesta!);
+              InkWell(
+                // ignore: avoid_print
+               onTap: () async{
+                if(mensajeController.text.isNotEmpty){
+                  inputDeshabilitado = true;
+                  setState(() {});
+                  final String str = mensajeController.text;
+                  mensajeController.clear();
+                  agregarMensaje(str);
+                  agregarMensaje(await MainController.respuestaChatGPT(str));
+                  inputDeshabilitado = false;
+                  setState(() {});
+                }
               },
-              child: const Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Icon(Icons.send_rounded,
-                    color: Color.fromRGBO(255, 230, 244, 1)),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Icon(Icons.send_rounded,
+                      color: Color.fromRGBO(255, 230, 244, 1)),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
