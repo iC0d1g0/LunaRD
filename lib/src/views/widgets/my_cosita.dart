@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-class MyButton extends StatelessWidget {
+class MyCosita extends StatelessWidget {
   final Color customColor;
+  final Color colorText;
   final String text;
   final void Function()? onTap;
 
-  const MyButton({
+  const MyCosita({
     super.key,
     required this.customColor,
     required this.text,
     required this.onTap,
+    required this.colorText,
   });
 
   @override
@@ -18,7 +20,7 @@ class MyButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: double.infinity,
-        height: 60,
+        height: 45,
         margin: const EdgeInsets.symmetric(horizontal: 25),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
@@ -27,8 +29,8 @@ class MyButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: const TextStyle(
-              color: Color.fromRGBO(100, 16, 70, 1),
+            style: TextStyle(
+              color: colorText,
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),

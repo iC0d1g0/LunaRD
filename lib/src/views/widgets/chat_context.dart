@@ -16,10 +16,10 @@ class ChatAI extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(15),
               decoration: const BoxDecoration(
-                color: Color.fromRGBO(250, 230, 226, 1),
+                color:  Color.fromRGBO(255, 230, 244, 1),
               ),
               child: Text(mensaje,
-                  style: const TextStyle(fontSize: 16, color: Colors.black)),
+                  style: const TextStyle(fontSize: 16, color: Color.fromRGBO(100, 16, 70, 1),)),
             ),
           ),
         )
@@ -43,10 +43,10 @@ class ChatPerson extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(15),
               decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 255, 196, 184),
+                color: Color.fromRGBO(247, 192, 223, 1),
               ),
               child: Text(mensaje,
-                  style: const TextStyle(fontSize: 16, color: Colors.black)),
+                  style: const TextStyle(fontSize: 16, color: Color.fromRGBO(100, 16, 70, 1),)),
             ),
           ),
         )

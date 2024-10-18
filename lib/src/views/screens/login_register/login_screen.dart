@@ -21,7 +21,6 @@ class LoginScreen extends StatefulWidget {
 
 // ignore: camel_case_types
 class _LoginScreenState extends State<LoginScreen> {
-
   final nombreController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -44,7 +43,8 @@ class _LoginScreenState extends State<LoginScreen> {
     if (loginSuccessful) {
       MainController.reiniciarApp(context);
     } else {
-      MainController.mensajeInferior(context, "Usuario o contraseña incorrecta", Colors.red);
+      MainController.mensajeInferior(
+          context, "Usuario o contraseña incorrecta", Colors.red);
     }
   }
 
@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
     MainController.barColor = const Color(0xFFFAE6E2);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFAE6E2),
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: const Text(
                   "Olvide mi contraseña",
                   style: TextStyle(
-                    color: Color(0xFFDA2B9E),
+                    color: Color.fromRGBO(198, 0, 115, 1),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -92,14 +92,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 20,
               ),
               MyButtono(
-                customColor: const Color(0xFFDA2B9E),
-                text: "Iniciar Sesión",
-                onTap: () async {
-                  bool loginSuccessful = await LoginController.verificarLogin(context, nombreController.text, passwordController.text);
-                  // ignore: use_build_context_synchronously
-                  navigateIfLoginSuccessful(context, loginSuccessful);
-                }
-              ),
+                  customColor: const Color.fromRGBO(100, 16, 70, 1),
+                  text: "Iniciar Sesión",
+                  onTap: () async {
+                    bool loginSuccessful = await LoginController.verificarLogin(
+                        context,
+                        nombreController.text,
+                        passwordController.text);
+                    // ignore: use_build_context_synchronously
+                    navigateIfLoginSuccessful(context, loginSuccessful);
+                  }),
               const SizedBox(
                 height: 20,
               ),
@@ -108,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  color: Colors.black,
+                  color: Color.fromRGBO(100, 16, 70, 1),
                 ),
               ),
               const SizedBox(
@@ -124,17 +126,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     child: GestureDetector(
                       onTap: () async{
-                        try {
-                          await LoginController.iniciarConGoogle(context);
-                        } catch (e) {
-                          // ignore: use_build_context_synchronously
-                          MainController.mensajeInferior(context, "Error al iniciar con Google", Colors.red);
-                        }
+                        bool loginSuccessful = await LoginController.iniciarConGoogle(context);
+                        // ignore: use_build_context_synchronously
+                        navigateIfLoginSuccessful(context, loginSuccessful);
                       },
                       child: Image.asset("assets/images/goo.png", width: 40)
                     ),
                   ),
-                 
                 ],
               ),
               const SizedBox(height: 15),
@@ -144,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const Text(
                     "¿Aún no tienes cuenta?",
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Color.fromRGBO(100, 16, 70, 1),
                     ),
                   ),
                   const SizedBox(width: 16),
@@ -159,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: const Text(
                       "Register",
                       style: TextStyle(
-                        color: Color(0xFFDA2B9E),
+                        color: Color.fromRGBO(198, 0, 115, 1),
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),

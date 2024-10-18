@@ -17,7 +17,7 @@ class _CargaState extends State<Carga> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFAE6E2),
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       body: Center(
         // child: Padding(
         //   padding: const EdgeInsets.all(15.0),
@@ -29,8 +29,9 @@ class _CargaState extends State<Carga> {
                 //MainController.reiniciarApp(context);
                 await SQLHelper.createDatos(MainController.usuaria);
 
+                // ignore: use_build_context_synchronously
                 MainController.mensajeInferior(
-                  // ignore: use_build_context_synchronously
+                    // ignore: use_build_context_synchronously
                     context,
                     "Usuaria Creada Satisfactoriamente",
                     const Color.fromARGB(255, 26, 139, 30));
@@ -49,10 +50,10 @@ class _CargaState extends State<Carga> {
               percent: 1.0,
               center: const Text(
                 '100%',
-                style: TextStyle(fontSize: 40),
+                style: TextStyle(fontSize: 40,color:  Color.fromRGBO(100, 16, 70, 1)),
               ),
-              progressColor: Colors.deepPurple,
-              backgroundColor: Colors.deepPurple.shade100,
+              progressColor: const Color.fromRGBO(100, 16, 70, 1),
+              backgroundColor: const Color.fromARGB(50, 100, 16, 71),
               circularStrokeCap: CircularStrokeCap.round,
             )
           ],

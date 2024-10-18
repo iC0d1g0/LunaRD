@@ -44,7 +44,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFAE6E2),
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -53,12 +53,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             MyText(
               controller: nombreController,
               hintText: "Nombre",
-              ),
+            ),
             const SizedBox(height: 12),
-            MyText(
-              controller: correoController,
-              hintText: "Email"
-              ),
+            MyText(controller: correoController, hintText: "Email"),
             const SizedBox(height: 12),
             MyText(
               controller: passwordController,
@@ -79,26 +76,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
               height: 20,
             ),
             MyButtono(
-                customColor: const Color(0xFFDA2B9E),
+                customColor: const Color.fromRGBO(100, 16, 70, 1),
                 text: "Registrar",
-                onTap: () async{
-                  User? userRegisted = await RegisterController.registrarUsuario(context, nombreController.text, correoController.text, passwordController.text, cPasswordController.text);
+                onTap: () async {
+                  User? userRegisted =
+                      await RegisterController.registrarUsuario(
+                          context,
+                          nombreController.text,
+                          correoController.text,
+                          passwordController.text,
+                          cPasswordController.text);
                   //if (MainController.usuaria != null && userRegisted != null) {
-                    MainController.usuaria.nombre = nombreController.text;
-                    MainController.usuaria.correo = correoController.text;
-                    if (userRegisted != null) {
-                     // ignore: use_build_context_synchronously
-                      Navigator.push(
-                        // ignore: use_build_context_synchronously
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const BonoPage(),
-                        ),
-                      );
-                    }
-                  //} else {
+                  MainController.usuaria.nombre = nombreController.text;
+                  MainController.usuaria.correo = correoController.text;
+                  if (userRegisted != null) {
                     // ignore: use_build_context_synchronously
-                    //MainController.mensajeInferior(context, "Error al registrar", Colors.red);
+                    Navigator.push(
+                      // ignore: use_build_context_synchronously
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const BonoPage(),
+                      ),
+                    );
+                  }
+                  //} else {
+                  // ignore: use_build_context_synchronously
+                  //MainController.mensajeInferior(context, "Error al registrar", Colors.red);
                   //}
                 }),
             const SizedBox(
@@ -109,7 +112,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: Colors.black,
+                color: Color.fromRGBO(100, 16, 70, 1),
               ),
             ),
             const SizedBox(
@@ -125,17 +128,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   child: GestureDetector(
                     onTap: () async{
-                      try {
-                        await RegisterController.registrarConGoogle();
-                      } catch (e) {
+                      User? userRegisted = await RegisterController.registrarConGoogle();
+                      if (userRegisted != null && userRegisted.displayName != null && userRegisted.email != null) {
+                        MainController.usuaria.nombre = userRegisted.displayName;
+                        MainController.usuaria.correo = userRegisted.email;
                         // ignore: use_build_context_synchronously
-                        MainController.mensajeInferior(context, "Error al iniciar con Google", Colors.red);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const BonoPage(),
+                          ),
+                        );
+                      } else {
+                        // ignore: use_build_context_synchronously
+                        MainController.mensajeInferior(context, "Error al registrar con Google", Colors.red);
                       }
                     },
                     child: Image.asset("assets/images/goo.png", width: 40),
                   ),
                 ),
-                
               ],
             ),
             const SizedBox(height: 40),
@@ -145,7 +156,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 const Text(
                   "¿Ya tienes una cuenta?",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Color.fromRGBO(100, 16, 70, 1),
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -160,7 +171,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: const Text(
                     "Sign In",
                     style: TextStyle(
-                      color: Color(0xFFDA2B9E),
+                      color: Color.fromRGBO(198, 0, 115, 1),
                       fontWeight: FontWeight.bold,
                     ),
                   ),

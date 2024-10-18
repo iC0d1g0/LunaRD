@@ -22,7 +22,7 @@ class _MyBanco2State extends State<MyBono4> {
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
-        backgroundColor: const Color(0xFFFAE6E2),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
           body: Center(
             child: Padding(
           padding: const EdgeInsets.only(bottom:200),
@@ -39,26 +39,26 @@ class _MyBanco2State extends State<MyBono4> {
                     animationDuration: 400,
                     lineHeight: 10,
                     percent: 0.9,
-                    progressColor: Colors.deepPurple,
+                    progressColor: const Color.fromRGBO(100, 16, 70, 1),
                     barRadius: const Radius.circular(10),
                     // ignore: deprecated_member_use
                     linearStrokeCap: LinearStrokeCap.roundAll,
                   ),
                   ),
                   
-              const Text("¿Tomas muchos liquidos en el dia?",
+              const Text("Qué tanto líquido tomas?",
                textAlign: TextAlign.center,
                style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                    color:  Color.fromRGBO(100, 16, 70, 1),
                     
                   ),
               ),
               const SizedBox(height: 40),
                MyButtonTrue(
                 customColor:
-                const Color(0x00ffcec5).withOpacity(0.7), 
+                const Color.fromRGBO(100, 16, 70, 1),
                 text: "Entre 2 y 4 veces", 
                 onTap: () {
                   MainController.usuaria.tomasMuchoLiquido = "Entre 2 y 4 veces";
@@ -71,7 +71,7 @@ class _MyBanco2State extends State<MyBono4> {
               const SizedBox(height: 20),
                 MyButtonTrue(
                 customColor:
-                const Color(0x00ffcec5).withOpacity(0.7), 
+                const Color.fromRGBO(100, 16, 70, 1), 
                 text: "Entre 5 y 7 veces", 
                 onTap: () {
                   MainController.usuaria.tomasMuchoLiquido = "Entre 5 y 7 veces";
@@ -85,7 +85,7 @@ class _MyBanco2State extends State<MyBono4> {
               const SizedBox(height: 20),
                 MyButtonTrue(
                 customColor:
-                const Color(0x00ffcec5).withOpacity(0.7), 
+               const Color.fromRGBO(100, 16, 70, 1),
                 text: "Mas de 8 veces", 
                 onTap: () {  
                   MainController.usuaria.tomasMuchoLiquido = "Mas de 8 veces";
@@ -100,10 +100,10 @@ class _MyBanco2State extends State<MyBono4> {
             ),
           ), 
            appBar: AppBar(
-  backgroundColor: const Color(0xFFFAE6E2),       
+  backgroundColor: const Color.fromARGB(255, 255, 255, 255),       
         leading: IconButton(
  
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, color:  Color.fromRGBO(100, 16, 70, 1),),
           onPressed: () {
             Navigator.pop(context);
           },

@@ -37,6 +37,7 @@ class _HistorialScreen extends State<HistorialScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       body: ListView(
         children: [
           Padding(
@@ -47,21 +48,22 @@ class _HistorialScreen extends State<HistorialScreen> {
                   InkWell(
                     onTap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MyApp(),
-                          ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MyApp(),
+                        ),
+                      );
                     },
                     child: Container(
                       width: 50,
                       height: 50,
                       decoration: BoxDecoration(
-                        color: const Color.fromRGBO(250, 230, 226, 1),
+                        color: const Color.fromRGBO(100, 16, 70, 1),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Icon(
                         Icons.arrow_back,
-                        color: Colors.black,
+                        color: Color.fromRGBO(255, 230, 244, 1),
                       ),
                     ),
                   ),
@@ -70,14 +72,11 @@ class _HistorialScreen extends State<HistorialScreen> {
                       'Historial',
                       style: TextStyle(
                           fontSize: 22,
-                          color: Colors.black,
+                          color: Color.fromRGBO(100, 16, 70, 1),
                           fontWeight: FontWeight.w800),
                     ),
                   ),
                 ]),
-          ),
-          const SizedBox(
-            height: 10,
           ),
           TableCalendar(
             focusedDay: ahora,
@@ -88,34 +87,49 @@ class _HistorialScreen extends State<HistorialScreen> {
             selectedDayPredicate: (day) => isSameDay(day, ahora),
             availableGestures: AvailableGestures.all,
             headerStyle: const HeaderStyle(
-                formatButtonVisible: false,
-                titleCentered: true,
-                titleTextStyle: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w800)),
+              formatButtonDecoration:  BoxDecoration(
+                color: Color.fromRGBO(100, 16, 70, 1),
+              ),
+              formatButtonVisible: false,
+              titleCentered: true,
+              titleTextStyle: TextStyle(
+                  fontSize: 20,
+                  color: Color.fromRGBO(100, 16, 70, 1),
+                  fontWeight: FontWeight.w800),
+            ),
             calendarStyle: const CalendarStyle(
-                todayTextStyle: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold)),
+              todayTextStyle: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+
+              defaultTextStyle :TextStyle(
+                
+                color:Color.fromRGBO(100, 16, 70, 1),
+              ),
+
+              todayDecoration: BoxDecoration(
+                color: Color.fromRGBO(173, 28, 122, 1),
+                shape: BoxShape.circle,
+              ),
+            ),
           ),
           const SizedBox(height: 40),
           const Text(
             '  Informacion acerca del dia',
             style: TextStyle(
-                fontSize: 22, color: Colors.black, fontWeight: FontWeight.w800),
+                fontSize: 22,
+                color: Color.fromRGBO(100, 16, 70, 1),
+                fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 20),
           const sexualesPos(nombre: 'Sexualidad', descripcion: 'descripcion'),
           const SizedBox(height: 10),
           const embarazoPos(nombre: 'Embarazo', descripcion: 'descripcion'),
           const SizedBox(height: 10),
-          const anticonceptivosPos(
-              nombre: 'Anticonceptivos', descripcion: 'descripcion'),
+          const anticonceptivosPos(nombre: 'Anticonceptivos'),
           const SizedBox(height: 10),
-          const malentendidoPos(
-              nombre: 'Malestares', descripcion: 'descripcion'),
+          const malentendidoPos(nombre: 'Malestares'),
           const SizedBox(height: 20),
         ],
       ),
@@ -136,7 +150,7 @@ class sexualesPos extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: const Color.fromRGBO(250, 230, 226, 1),
+          color: const Color.fromRGBO(255, 230, 244, 1),
         ),
         child: Column(
           children: [
@@ -148,7 +162,7 @@ class sexualesPos extends StatelessWidget {
                   nombre,
                   style: const TextStyle(
                       fontSize: 20,
-                      color: Colors.black,
+                      color: Color.fromRGBO(100, 16, 70, 1),
                       fontWeight: FontWeight.w800),
                 ),
               ],
@@ -156,7 +170,8 @@ class sexualesPos extends StatelessWidget {
             const SizedBox(height: 20),
             Text(
               descripcion,
-              style: const TextStyle(fontSize: 18, color: Colors.black),
+              style: const TextStyle(
+                  fontSize: 18, color: Color.fromRGBO(100, 16, 70, 1)),
             ),
             const SizedBox(height: 20),
           ],
@@ -169,9 +184,7 @@ class sexualesPos extends StatelessWidget {
 // ignore: camel_case_types
 class anticonceptivosPos extends StatelessWidget {
   final String nombre;
-  final String descripcion;
-  const anticonceptivosPos(
-      {super.key, required this.nombre, required this.descripcion});
+  const anticonceptivosPos({super.key, required this.nombre});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -179,7 +192,7 @@ class anticonceptivosPos extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: const Color.fromRGBO(250, 230, 226, 1),
+          color: const Color.fromRGBO(255, 230, 244, 1),
         ),
         child: Column(
           children: [
@@ -191,7 +204,7 @@ class anticonceptivosPos extends StatelessWidget {
                   nombre,
                   style: const TextStyle(
                       fontSize: 20,
-                      color: Colors.black,
+                      color: Color.fromRGBO(100, 16, 70, 1),
                       fontWeight: FontWeight.w800),
                 ),
               ],
@@ -207,11 +220,11 @@ class anticonceptivosPos extends StatelessWidget {
                     width: 60,
                     height: 60,
                     decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 255, 196, 184),
+                        color: Color.fromRGBO(225, 187, 212, 1),
                         shape: BoxShape.circle),
                     child: const Center(
                       child: Icon(Icons.baby_changing_station,
-                          color: Colors.black, size: 30),
+                          color: Color.fromRGBO(100, 16, 70, 1), size: 30),
                     ),
                   ),
                 ),
@@ -238,7 +251,7 @@ class embarazoPos extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: const Color.fromRGBO(250, 230, 226, 1),
+          color: const Color.fromRGBO(255, 230, 244, 1),
         ),
         child: Column(
           children: [
@@ -253,7 +266,7 @@ class embarazoPos extends StatelessWidget {
                   nombre,
                   style: const TextStyle(
                       fontSize: 20,
-                      color: Colors.black,
+                      color: Color.fromRGBO(100, 16, 70, 1),
                       fontWeight: FontWeight.w800),
                 ),
               ],
@@ -263,10 +276,12 @@ class embarazoPos extends StatelessWidget {
               children: [
                 SizedBox(width: 10),
                 Text('Probavilidad de embarazo alcanzada',
-                    style: TextStyle(fontSize: 18, color: Colors.black)),
+                    style: TextStyle(
+                        fontSize: 18, color: Color.fromRGBO(100, 16, 70, 1))),
                 Icon(
                   Icons.pregnant_woman_outlined,
-                  size: 20,
+                  size: 25,
+                  color: Color.fromRGBO(100, 16, 70, 1),
                 ),
               ],
             ),
@@ -279,15 +294,16 @@ class embarazoPos extends StatelessWidget {
                 Expanded(
                   child: LinearProgressIndicator(
                     value: .2,
-                    backgroundColor: Colors.black54,
-                    color: Color.fromARGB(255, 255, 196, 184),
+                    backgroundColor: Color.fromRGBO(100, 16, 70, 1),
+                    color: Color.fromRGBO(255, 230, 244, 1),
                     minHeight: 5,
                   ),
                 ),
                 SizedBox(width: 10),
                 Text(
                   '20%',
-                  style: TextStyle(fontSize: 14, color: Colors.black),
+                  style: TextStyle(
+                      fontSize: 14, color: Color.fromRGBO(100, 16, 70, 1)),
                 ),
                 SizedBox(width: 10),
               ],
@@ -303,9 +319,7 @@ class embarazoPos extends StatelessWidget {
 // ignore: camel_case_types
 class malentendidoPos extends StatelessWidget {
   final String nombre;
-  final String descripcion;
-  const malentendidoPos(
-      {super.key, required this.nombre, required this.descripcion});
+  const malentendidoPos({super.key, required this.nombre});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -313,7 +327,7 @@ class malentendidoPos extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: const Color.fromRGBO(250, 230, 226, 1),
+          color: const Color.fromRGBO(100, 16, 70, 1),
         ),
         child: Column(
           children: [
@@ -328,7 +342,7 @@ class malentendidoPos extends StatelessWidget {
                   nombre,
                   style: const TextStyle(
                       fontSize: 20,
-                      color: Colors.black,
+                      color: Color.fromRGBO(100, 16, 70, 1),
                       fontWeight: FontWeight.w800),
                 ),
               ],
@@ -344,11 +358,11 @@ class malentendidoPos extends StatelessWidget {
                     width: 60,
                     height: 60,
                     decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 255, 196, 184),
+                        color: Color.fromRGBO(100, 16, 70, 1),
                         shape: BoxShape.circle),
                     child: const Center(
                       child: Icon(Icons.personal_injury,
-                          color: Colors.black, size: 30),
+                          color: Color.fromRGBO(100, 16, 70, 1), size: 30),
                     ),
                   ),
                 ),

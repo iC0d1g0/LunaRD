@@ -21,7 +21,7 @@ class _LoginScreenFormState extends State<LoginScreenForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFAE6E2),
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -41,7 +41,7 @@ class _LoginScreenFormState extends State<LoginScreenForm> {
                     ),
                   ),
                   MyButton(
-                    customColor: const Color(0x00ffcec5).withOpacity(0.7),
+                    customColor: const Color.fromRGBO(255, 206, 234, 1),
                     text: 'Iniciar Sesión',
                     onTap: () {
                       Navigator.push(
@@ -53,7 +53,7 @@ class _LoginScreenFormState extends State<LoginScreenForm> {
                   ),
                   const SizedBox(height: 20),
                   MyButtono(
-                    customColor: const Color(0xFFDA2B9E).withOpacity(0.7),
+                    customColor: const Color.fromRGBO(100, 16, 70, 1),
                     text: "Crear Cuenta",
                     onTap: () {
                       Navigator.push(
@@ -73,12 +73,12 @@ class _LoginScreenFormState extends State<LoginScreenForm> {
                     children: [
                       Text(
                         "Condiciones de uso",
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(color: Color.fromRGBO(100, 16, 70, 1)),
                       ),
                       SizedBox(width: 20),
                       Text(
                         "Politica Privacidad",
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(color: Color.fromRGBO(100, 16, 70, 1)),
                       ),
                     ],
                   )),

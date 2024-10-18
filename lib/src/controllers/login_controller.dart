@@ -19,13 +19,18 @@ class LoginController {
     User? user;
     try {
       user = await auth.signInWithEmailAndPassword(nombre, password);
+       String? correo=FirebaseAuth.instance.currentUser?.email!;
+      
+      MainController.usuaria= await MainController.datosUsuariaExistente(correo);
+    
     } catch (e) {
       MainController.mensajeInferior(context, "Hubo un Error: $e", Colors.red);
     }
 
       if (user != null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setBool('logiado', true);
+      prefs.setBool('started', true);
+     //prefs.setString('email', nombre);
       return true;
     } else {
       return false;
@@ -87,17 +92,24 @@ class LoginController {
 
   }
 
-  static Future<User?> iniciarConGoogle(context) async{
+  static Future<bool> iniciarConGoogle(context) async{
     AuthService auth = AuthService();
     User? user;
     try {
       user = await auth.signInWithGoogle();
+      String? correo=FirebaseAuth.instance.currentUser?.email!;
+      
+      MainController.usuaria= await MainController.datosUsuariaExistente(correo);
     } catch (e) {
-      MainController.mensajeInferior(
-          context, "Hubo un Error!", Colors.red,
-      );
+      MainController.mensajeInferior(context, "Hubo un Error!: $e", Colors.red);
     }
-    return user;
+    if (user != null) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool('started', true);
+      return true;
+    } else {
+      return false;
+    }
   }
  /*
   static Future<User?> iniciarConFacebook(context) async{
@@ -117,7 +129,7 @@ class LoginController {
     AuthService auth = AuthService();
     await auth.signOut();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove('recordarme');
+    prefs.remove('started');
     MainController.reiniciarApp(context);
   }
 }

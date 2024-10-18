@@ -44,20 +44,21 @@ class MyApp extends StatelessWidget {
             if (snapshot.data == true) {
               SystemChrome.setSystemUIOverlayStyle(
                 const SystemUiOverlayStyle(
-                  statusBarColor: Color.fromRGBO(250, 230, 226, 1),
+                  statusBarColor: Color.fromRGBO(240, 120, 218, 0.91),
                 ),
-              );  
+              );
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: 'Luna',
                 theme: ThemeData(
-                  colorSchemeSeed: const Color(0xFFFF8692),
+                  colorSchemeSeed: const Color.fromARGB(255, 250, 204, 244),
                   fontFamily: "Inter",
                 ),
                 initialRoute: MenuBasico.routeName,
                 routes: {
                   MenuBasico.routeName: (context) => const MenuBasico(),
-                  LoginScreenForm.routeName: (context) => const LoginScreenForm(),
+                  LoginScreenForm.routeName: (context) =>
+                      const LoginScreenForm(),
                 },
               );
             } else {
@@ -65,20 +66,21 @@ class MyApp extends StatelessWidget {
                 const SystemUiOverlayStyle(
                   statusBarColor: Color(0xFFFAE6E2),
                 ),
-              );  
+              );
               return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Luna',
-              theme: ThemeData(
-                colorSchemeSeed: const Color(0xFFFF8692),
-                fontFamily: "Inter",
-              ),
-              initialRoute: LoginScreenForm.routeName,
-              routes: {
-                MenuBasico.routeName: (context) => const MenuBasico(),
-                LoginScreenForm.routeName: (context) => const LoginScreenForm(),
-              },
-            );
+                debugShowCheckedModeBanner: false,
+                title: 'Luna',
+                theme: ThemeData(
+                  colorSchemeSeed: const Color(0xFFFF8692),
+                  fontFamily: "Inter",
+                ),
+                initialRoute: LoginScreenForm.routeName,
+                routes: {
+                  MenuBasico.routeName: (context) => const MenuBasico(),
+                  LoginScreenForm.routeName: (context) =>
+                      const LoginScreenForm(),
+                },
+              );
             }
           }
         }

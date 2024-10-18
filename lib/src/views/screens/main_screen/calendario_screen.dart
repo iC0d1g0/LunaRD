@@ -27,10 +27,10 @@ class CalendarioScreen extends StatefulWidget {
   State<CalendarioScreen> createState() => _CalendarioScreen();
 }
 
-class _CalendarioScreen extends State<CalendarioScreen>{
-    final CalendarFormat _calendarFormat = CalendarFormat.month;
-    DateTime _focusedDay = DateTime.now();
-    DateTime? _selectedDay;
+class _CalendarioScreen extends State<CalendarioScreen> {
+  final CalendarFormat _calendarFormat = CalendarFormat.month;
+  DateTime _focusedDay = DateTime.now();
+  DateTime? _selectedDay;
 
   @override
   void initState() {
@@ -38,8 +38,8 @@ class _CalendarioScreen extends State<CalendarioScreen>{
     _selectedDay = _focusedDay;
   }
 
-  void _onDaySelected(DateTime selectedDay, DateTime focusedDay){
-    if(!isSameDay(_selectedDay, selectedDay)){
+  void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
+    if (!isSameDay(_selectedDay, selectedDay)) {
       setState(() {
         _selectedDay = selectedDay;
         _focusedDay = focusedDay;
@@ -47,20 +47,20 @@ class _CalendarioScreen extends State<CalendarioScreen>{
     }
   }
 
-  void _onRangeSelectd(DateTime? start, DateTime? end, DateTime focusedDay){
+  void _onRangeSelectd(DateTime? start, DateTime? end, DateTime focusedDay) {
     setState(() {
       _selectedDay = null;
       _focusedDay = focusedDay;
-  
     });
   }
 
   @override
   Widget build(BuildContext context) {
-     DateTime now = DateTime.now();
-     String mesActual = obtenerMesActual(now.month);
+    DateTime now = DateTime.now();
+    String mesActual = obtenerMesActual(now.month);
 
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       body: ListView(
        
         children: [
@@ -81,12 +81,12 @@ class _CalendarioScreen extends State<CalendarioScreen>{
                     width: 50,
                     height: 50,
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(220, 251, 225,242),
+                      color: const Color.fromRGBO(100, 16, 70, 1),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: const Icon(
                       Icons.arrow_back,
-                      color: Color.fromARGB(255, 86, 47,92),
+                      color: Color.fromRGBO(255, 230, 244, 1),
                     ),
                   ),
                 ),
@@ -95,7 +95,7 @@ class _CalendarioScreen extends State<CalendarioScreen>{
                     'Calendario',
                     style: TextStyle(
                         fontSize: 22,
-                        color: Color.fromARGB(255, 86, 47,92),
+                        color: Color.fromRGBO(100, 16, 70, 1),
                         fontWeight: FontWeight.w800),
                   ),
                 ),
@@ -107,62 +107,64 @@ class _CalendarioScreen extends State<CalendarioScreen>{
             children: [
               Row(
                 children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                    ),
+                  InkWell(
+                    onTap: () => {}, //print("hola johan"),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color:const  Color.fromARGB(255, 239, 209, 203),
+                        horizontal: 10,
                       ),
-                      child: const Text(
-                        'Mestruacion',
-                        style: TextStyle(fontSize: 14, color: Color.fromARGB(255, 86, 47,92)),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: const Color.fromRGBO(255, 206, 234, 1),
+                        ),
+                        child: const Text(
+                          'Mestruacion',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Color.fromRGBO(100, 16, 70, 1)),
+                        ),
                       ),
                     ),
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                  InkWell(
+                    onTap: () => {}, //print("hola"),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 10),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: const Color.fromARGB(220, 251, 225,242)),
-                      child: const Text(
-                        'Ovulacion',
-                        style: TextStyle(fontSize: 14, color: Color.fromARGB(255, 86, 47,92)),
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 10),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: const Color.fromRGBO(100, 16, 70, 1)),
+                        child: const Text(
+                          'Ovulacion',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Color.fromRGBO(255, 230, 244, 1)),
+                        ),
                       ),
                     ),
                   ),
-                    Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                 
+                  InkWell(
+                    onTap: () => {}, //print("hola"),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 10),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: const Color.fromARGB(220, 251, 225,242)),
-                      child: const Text(
-                        'Fertil',
-                        style: TextStyle(fontSize: 14, color: Color.fromARGB(255, 86, 47,92)),
-                      ),
-                    ),
-                  ),
-                       Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 10),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color:const Color.fromARGB(220, 251, 225,242)),
-                      child: const Text(
-                        'Infertil',
-                        style: TextStyle(fontSize: 14, color: Color.fromARGB(255, 86, 47,92)),
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 10),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: const Color.fromRGBO(100, 16, 70, 1)),
+                        child: const Text(
+                          'Retraso',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Color.fromRGBO(255, 230, 244, 1)),
+                        ),
                       ),
                     ),
                   ),
@@ -171,41 +173,42 @@ class _CalendarioScreen extends State<CalendarioScreen>{
             ],
           ),
           const SizedBox(
-                height: 100,
-              ),
-Column(
-  children: [
-    Stack(
-      alignment: Alignment.center,
-      children: [
-        Container(
-          width: 230.0,
-          height: 230.0,
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            color: Color.fromARGB(220, 251, 225,242),
+            height: 100,
           ),
-        ),
-        Text(
-          '${now.day} $mesActual',
-          style: const TextStyle(fontSize: 34, color: Color.fromARGB(255, 86, 47,92)),
-        ),
-        
-      ],
-    ),
-  ],
-),
-            
-  // 
+          Column(
+            children: [
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    width: 230.0,
+                    height: 230.0,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color.fromRGBO(255, 230, 244, 1),
+                    ),
+                  ),
+                  Text(
+                    '${now.day} $mesActual',
+                    style: const TextStyle(
+                        fontSize: 44,
+                        color: Color.fromRGBO(100, 16, 70, 1),
+                        fontWeight: FontWeight.w800),
+                  ),
+                ],
+              ),
+            ],
+          ),
 
- const SizedBox(height: 60),
-        
+          //
+
+          const SizedBox(height: 60),
+
           TableCalendar(
-            
             firstDay: DateTime.utc(2010, 10, 20),
             lastDay: DateTime.utc(2040, 10, 20),
             focusedDay: DateTime.now(),
-            selectedDayPredicate: (day) => isSameDay(_selectedDay, day),            
+            selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
             calendarFormat: _calendarFormat,
             startingDayOfWeek: StartingDayOfWeek.monday,
             onDaySelected: _onDaySelected,
@@ -213,27 +216,66 @@ Column(
             rangeSelectionMode: RangeSelectionMode.toggledOn,
             onRangeSelected: _onRangeSelectd,
             rangeEndDay: DateTime(2024, 02, 20),
+
+            headerStyle: const HeaderStyle(
+            
+            formatButtonDecoration:  BoxDecoration(
+              color: Color.fromRGBO(100, 16, 70, 1),
+              ),
+            
+            formatButtonVisible: false,
+            titleCentered: true,
+            titleTextStyle: TextStyle(
+            fontSize: 20,
+            color: Color.fromRGBO(100, 16, 70, 1),
+            fontWeight: FontWeight.w800),
+            
+
+            ),
+
+
             calendarStyle: const CalendarStyle(
-              outsideDaysVisible: false, 
+
+              outsideDaysVisible: false,
+              rangeHighlightColor: Color.fromRGBO(255, 230, 244, 1),
+              rangeEndDecoration: BoxDecoration(
+                color:  Color.fromRGBO(100, 16, 70, 1),
+                shape: BoxShape.circle,
+              ),
+              rangeStartDecoration: BoxDecoration(
+                color:  Color.fromRGBO(100, 16, 70, 1),
+                shape: BoxShape.circle,
+              ),
+              defaultTextStyle :TextStyle(
+                
+                color:Color.fromRGBO(100, 16, 70, 1),
+              ),
+
+              todayDecoration: BoxDecoration(
+                color: Color.fromRGBO(173, 28, 122, 1),
+                shape: BoxShape.circle,
+              ),
+              
+              
+              
+             
             ),
             onFormatChanged: (format) {
-              if(_calendarFormat != format){
-                 setState(() {
-                   _calendarFormat;
-                 }); 
+              if (_calendarFormat != format) {
+                setState(() {
+                  _calendarFormat;
+                });
               }
             },
             onPageChanged: ((focusedDay) {
               _focusedDay = focusedDay;
-            }
-            ),
-            
-          
+            }),
           ),
         ],
       ),
     );
   }
+
   String obtenerMesActual(int numeroMes) {
     switch (numeroMes) {
       case 1:
@@ -265,5 +307,3 @@ Column(
     }
   }
 }
-
-

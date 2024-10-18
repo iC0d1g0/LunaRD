@@ -1,34 +1,60 @@
 //Here the main controller
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:luna_rd/src/app.dart';
+import 'package:luna_rd/src/models/IA/personal_chat.dart';
+//import 'package:luna_rd/src/models/authen_firebase.dart';
+import 'package:luna_rd/src/models/database/databa_fire.dart';
 import 'package:luna_rd/src/models/database/entidad_usuaria.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-class MyClass extends StatefulWidget {
-  const MyClass({super.key});
-
-  @override
-  State<MyClass> createState() => _MyClassState();
-}
-
-class _MyClassState extends State<MyClass> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
 class MainController {
   static DatosUsuarios usuaria = DatosUsuarios();
-  //mySetState es una variable que se usa para actualizar el estado de un widget desde otra clase
-  static State<MyClass> mySetState = const MyClass().createState();
-
   static Color barColor = const Color.fromRGBO(255, 198, 187, 1);
+  static String respuestaChatInicial = 'ia/Hola soy Eva, ¿Cómo estás hoy?';
+  static ChatGPT chatGPT = ChatGPT();
 
-  static String moverLetra(String p) {
-    return p.isNotEmpty ? p.substring(0, 1).toUpperCase() + p.substring(1) : '';
+  static Future<DatosUsuarios>datosUsuariaExistente(String? email) async {
+     String correo = (email != null) ? email : "";
+     Usuario usuarioRecuperado = await obtenerUsuarioDesdeFirestore(correo);
+      usuaria.nombre=usuarioRecuperado.nombre;
+      usuaria.birthday=usuarioRecuperado.birthday;
+      usuaria.correo=usuarioRecuperado.correo;
+      usuaria.inicioUltimoPeriodo=usuarioRecuperado.inicioUltimoPeriodo;
+      usuaria.finalizoUltimoPeriodo=usuarioRecuperado.finalizoUltimoPeriodo;
+      usuaria.duracionUsual=usuarioRecuperado.duracionUsual;
+      usuaria.tomasMuchoLiquido=usuarioRecuperado.tomasMuchoLiquido;
+       return MainController.usuaria;
+    }
+ static Future<Usuario> obtenerUsuarioDesdeFirestore(String correo) async {
+  try {
+    DocumentSnapshot document = await FirebaseFirestore.instance.collection('perfil_usuarios').doc(correo).get();
+
+    if (document.exists) {
+      return Usuario.fromFirestore(document);
+    } else {
+      
+      return Usuario(nombre: "", correo: "", birthday: DateTime.now(), inicioUltimoPeriodo: DateTime.now(), finalizoUltimoPeriodo: DateTime.now(), duracionUsual: 0, frecuenciaRelacionesMes: 0, tomasMuchoLiquido: "", createdAt: Timestamp.now());
+    }
+  } catch (e) {
+   
+    return Usuario(nombre: "", correo: "", birthday: DateTime.now(), inicioUltimoPeriodo: DateTime.now(), finalizoUltimoPeriodo: DateTime.now(), duracionUsual: 0, frecuenciaRelacionesMes: 0, tomasMuchoLiquido: "", createdAt: Timestamp.now());
+  }
+  }
+  
+  static Future<String> respuestaChatGPT(String mensaje) async {  
+    String? respuesta = await chatGPT.callAPI(mensaje);
+    if (respuesta == null) {
+      return 'ia/Lo siento, no puedo responder en este momento. ¿Podrías intentarlo más tarde?';
+    }
+    final jsonResponse = json.decode(respuesta);
+    final resp = jsonResponse['choices'][0]['message']['content'];
+    MainController.respuestaChatInicial = 'ia/$resp';
+    return 'ia/$resp';
   }
 
   static void reiniciarApp(BuildContext context) {

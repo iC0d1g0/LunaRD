@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:luna_rd/src/views/screens/main_screen/notas_screen.dart';
+import 'package:luna_rd/src/views/widgets/my_cosita.dart';
+//import 'package:luna_rd/src/views/widgets/mybutton.dart';
 
 class AddNota extends StatelessWidget {
   const AddNota({super.key});
@@ -10,7 +12,7 @@ class AddNota extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'AgregarNotaMenu',
       theme: ThemeData(
-        primaryColor: const Color.fromRGBO(255, 244, 242, 1),
+        primaryColor: const Color.fromRGBO(255, 255, 255, 1),
       ),
       home: const AddNotaScreen(),
     );
@@ -29,7 +31,7 @@ class _AddNotaScreen extends State<AddNotaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1)   , body: ListView(
         padding: const EdgeInsets.all(15),
         children: [
           Padding(
@@ -40,30 +42,31 @@ class _AddNotaScreen extends State<AddNotaScreen> {
                   InkWell(
                     onTap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Nota(),
-                          ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Nota(),
+                        ),
+                      );
                     },
                     child: Container(
                       width: 50,
                       height: 50,
                       decoration: BoxDecoration(
-                        color: const Color.fromRGBO(250, 230, 226, 1),
+                        color: const Color.fromRGBO(100, 16, 70, 1),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Icon(
                         Icons.arrow_back,
-                        color: Colors.black,
+                        color: Color.fromRGBO(255, 230, 244, 1),
                       ),
                     ),
                   ),
                   const Center(
                     child: Text(
-                      'Notas',
+                      'Agregar Nota',
                       style: TextStyle(
                           fontSize: 22,
-                          color: Colors.black,
+                          color: Color.fromRGBO(100, 16, 70, 1),
                           fontWeight: FontWeight.w800),
                     ),
                   ),
@@ -72,26 +75,40 @@ class _AddNotaScreen extends State<AddNotaScreen> {
           const SizedBox(
             height: 20,
           ),
+
           TextField(
+            
             decoration: InputDecoration(
-                hintText: 'Titulo',
-                labelText: 'Titulo',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+              filled: true,
+              fillColor: const Color.fromRGBO(255, 230, 244, 1),
+              hintText: 'Titulo',
+              hintStyle: const TextStyle(
+              color: Color.fromRGBO(100, 16, 70, 1),
+              ),
+              
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5),
                 ),
-                prefixIcon: const Icon(Icons.title)),
+                prefixIcon: const Icon(Icons.title,color: Color.fromRGBO(100, 16, 70, 1),
+                ),
+            ),
           ),
           const SizedBox(
             height: 20,
           ),
           TextField(
             decoration: InputDecoration(
+              filled: true,
+              fillColor: const Color.fromRGBO(255, 230, 244, 1),
                 hintText: 'Motivo',
-                labelText: 'Motivo',
+                hintStyle: const TextStyle(
+                color: Color.fromRGBO(100, 16, 70, 1)
+              ),
+                
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(5),
                 ),
-                prefixIcon: const Icon(Icons.title)),
+                prefixIcon: const Icon(Icons.title,color: Color.fromRGBO(100, 16, 70, 1),)),
           ),
           const SizedBox(
             height: 20,
@@ -99,17 +116,22 @@ class _AddNotaScreen extends State<AddNotaScreen> {
           TextField(
             maxLines: 10,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: const Color.fromRGBO(255, 230, 244, 1),
                 hintText: 'Nota...',
-                labelText: 'Nota',
+                
+                hintStyle: const TextStyle(
+                color: Color.fromRGBO(100, 16, 70, 1)
+              ),
                 alignLabelWithHint: true,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                prefixIcon: const Icon(Icons.title)),
+                prefixIcon: const Icon(Icons.title,color: Color.fromRGBO(100, 16, 70, 1),)),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 5),
           MaterialButton(
-            color: const Color.fromRGBO(250, 230, 226, 1),
+            color: const Color.fromRGBO(100, 16, 70, 1),
             onPressed: () => showDatePicker(
                     context: context,
                     firstDate: DateTime(2000),
@@ -123,33 +145,26 @@ class _AddNotaScreen extends State<AddNotaScreen> {
             child: const Text('Selecciona Fecha',
                 style: TextStyle(
                     fontSize: 18,
-                    color: Colors.black,
+                    color: Color.fromRGBO(255, 230, 244, 1),
                     fontWeight: FontWeight.w800)),
           ),
           const SizedBox(height: 5),
           Text('${dt.day}/${dt.month}/${dt.year}',
               style: const TextStyle(
                   fontSize: 18,
-                  color: Colors.black,
+                  color: Color.fromRGBO(100, 16, 70, 1),
                   fontWeight: FontWeight.w800)),
         ],
       ),
       bottomSheet: Container(
-        width: double.infinity,
-        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        child: ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.all(5),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10))),
-          child: const Text(
-            'Guardar',
-            style: TextStyle(
-                fontSize: 22, color: Colors.black, fontWeight: FontWeight.w800),
-          ),
-        ),
-      ),
+          width: double.infinity,
+          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          child: MyCosita(
+            text: 'Guardar Accion',
+            colorText: const Color.fromRGBO(255, 230, 244, 1),
+            customColor: const Color.fromRGBO(100, 16, 70, 1),
+            onTap: () => {}, //print("Accion de guardar las notificaciones creadas."),
+          )),
     );
   }
 }
