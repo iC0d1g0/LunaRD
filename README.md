@@ -24,7 +24,7 @@ El proyecto fue desarrollado utilizando la arquitectura **MVC (Modelo-Vista-Cont
 
 Este proyecto fue posible gracias a la colaboración de un gran equipo de colegas:
 - [iC0d1g0](https://github.com/iC0d1g0)
-- [DannyHack](https://avatars.githubusercontent.com/u/65183782?s=64&v=4)
+- [DannyHack](https://github.com/CarlosDelRosario7)
 - [MatosRD](https://github.com/MatosRD)
 - [sshoannn](https://github.com/sshoannn)
 - [deadmasacre48](https://github.com/deadmasacre48)
